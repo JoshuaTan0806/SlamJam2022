@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public Dictionary<Stat, float> stats = new Dictionary<Stat, float>();
+    [System.Serializable]
+    public class StatDictionary : SerializableDictionary<Stat, float> { }
+
+    public StatDictionary stats = new StatDictionary();
 
     public void AddStat(Stat stat, float value)
     {

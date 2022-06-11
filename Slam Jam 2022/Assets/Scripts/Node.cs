@@ -36,6 +36,9 @@ public class Node : ScriptableObject
         if (IsActive)
             return false;
 
+        if (!Player.instance.HasSkillPoint())
+            return false;
+
         if (isStartingNode)
             return true;
 
@@ -118,9 +121,15 @@ public class Node : ScriptableObject
     public void ToggleNode()
     {
         if (CanBeToggledOn())
+        {
+            Player.instance.RemoveSkillPoint();
             IsActive = true;
+        }
         else if (CanBeToggledOff())
+        {
+            Player.instance.AddSkillPoint();
             IsActive = false;
+        }
     }
 
     void ApplyPowerUps(bool toggle)
