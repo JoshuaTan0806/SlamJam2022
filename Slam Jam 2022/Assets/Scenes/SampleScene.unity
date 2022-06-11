@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afea8dbcd2d18e5439b195fd5621e47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillPoints: 0
 --- !u!114 &2067215178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +467,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6022e50241b57e48923a888fbcf2307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    m_keys: []
+    m_values: []
 --- !u!4 &2067215179
 Transform:
   m_ObjectHideFlags: 0

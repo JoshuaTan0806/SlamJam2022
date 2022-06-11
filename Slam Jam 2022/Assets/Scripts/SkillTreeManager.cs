@@ -21,12 +21,26 @@ public class SkillTreeManager : MonoBehaviour
         StartCoroutine(AutoSave());
     }
 
+    private void Start()
+    {
+        InitialiseSkillTree();
+    }
+
     IEnumerator AutoSave()
     {
         while (true)
         {
             yield return new WaitForSecondsRealtime(60);
             Save();
+        }
+    }
+
+    void InitialiseSkillTree()
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            if (nodes[i].IsActive)
+                nodes[i].ApplyPowerUps(true);
         }
     }
 

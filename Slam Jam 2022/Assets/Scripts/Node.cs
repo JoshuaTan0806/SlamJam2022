@@ -132,7 +132,7 @@ public class Node : ScriptableObject
         }
     }
 
-    void ApplyPowerUps(bool toggle)
+    public void ApplyPowerUps(bool toggle)
     {
         if (toggle)
         {
