@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         stats = GetComponent<PlayerStats>();
     }
 
-    public void AddStat(Stat stat, float value)
+    public void AddStat(string stat, float value)
     {
         stats.AddStat(stat, value);
     }

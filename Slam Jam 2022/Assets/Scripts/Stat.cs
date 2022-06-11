@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skill Tree/Stat")]
 public class Stat : ScriptableObject
 {
-
+    public string ID;
 }

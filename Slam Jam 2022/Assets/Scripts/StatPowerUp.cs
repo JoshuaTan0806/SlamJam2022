@@ -15,11 +15,11 @@ public class StatPowerUp : PowerUp
 
     public override void ApplyPowerUp()
     {
-        Player.instance.AddStat(stat, increase);
+        Player.instance.AddStat(stat.ID, increase);
     }
 
     public override void UnapplyPowerUp()
     {
-        Player.instance.AddStat(stat, -increase);
+        Player.instance.AddStat(stat.ID, -increase);
     }
 }

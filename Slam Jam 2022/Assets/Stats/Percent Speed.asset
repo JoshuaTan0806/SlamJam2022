@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b607e9e9dd565a4283325e503ed378b, type: 3}
   m_Name: Percent Speed
   m_EditorClassIdentifier: 
+  ID: Percent Speed
