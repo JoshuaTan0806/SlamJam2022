@@ -17,22 +17,11 @@ public class SkillTreeManager : MonoBehaviour
 
         allNodes = new List<Node>();
         allNodes = nodes;
-
-        StartCoroutine(AutoSave());
     }
 
     private void Start()
     {
         InitialiseSkillTree();
-    }
-
-    IEnumerator AutoSave()
-    {
-        while (true)
-        {
-            yield return new WaitForSecondsRealtime(60);
-            Save();
-        }
     }
 
     void InitialiseSkillTree()
@@ -42,16 +31,6 @@ public class SkillTreeManager : MonoBehaviour
             if (nodes[i].IsActive)
                 nodes[i].ApplyPowerUps(true);
         }
-    }
-
-    void Load()
-    {
-
-    }
-
-    void Save()
-    {
-
     }
 
     [SerializeField] GameObject SkillTreePrefab;

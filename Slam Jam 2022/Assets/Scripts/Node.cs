@@ -36,7 +36,7 @@ public class Node : ScriptableObject
         if (IsActive)
             return false;
 
-        if (!Player.instance.HasSkillPoint())
+        if (Player.instance.skillPoints <= 0)
             return false;
 
         if (isStartingNode)
@@ -122,12 +122,12 @@ public class Node : ScriptableObject
     {
         if (CanBeToggledOn())
         {
-            Player.instance.RemoveSkillPoint();
+            Player.instance.skillPoints--;
             IsActive = true;
         }
         else if (CanBeToggledOff())
         {
-            Player.instance.AddSkillPoint();
+            Player.instance.skillPoints++;
             IsActive = false;
         }
     }
@@ -148,5 +148,7 @@ public class Node : ScriptableObject
                 powerUps[i].UnapplyPowerUp();
             }
         }
+
+        GameManager.Save();
     }
 }
