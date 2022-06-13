@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Skill Tree/Node")]
 public class Node : ScriptableObject
@@ -11,7 +12,10 @@ public class Node : ScriptableObject
     public float size = 1;
     public bool isStartingNode = false;
     public List<PowerUp> powerUps = new List<PowerUp>();
-    [SerializeField] List<Node> connectedNodes;
+    [SerializeField, ReadOnly] List<Node> connectedNodes;
+
+    [Header("Connect Nodes")]
+    [SerializeField] Node NodeToConnect;
 
     public bool IsActive
     {
@@ -150,5 +154,22 @@ public class Node : ScriptableObject
         }
 
         GameManager.Save();
+    }
+
+    [Button]
+    public void ConnectOrRemoveNode()
+    {
+        NodeToConnect = null;
+
+        if(connectedNodes.Contains(NodeToConnect))
+        {
+            connectedNodes.Remove(NodeToConnect);
+            NodeToConnect.connectedNodes.Remove(this);
+        }
+        else
+        {
+            connectedNodes.Add(NodeToConnect);
+            NodeToConnect.connectedNodes.Add(this);
+        }
     }
 }
