@@ -8,6 +8,7 @@ namespace Items
     /// <summary>
     /// Item class
     /// </summary>
+    [CreateAssetMenu(fileName = "Item", menuName = "Item", order = 0)]
     public class ItemData : ScriptableObject
     {
         #region Variables
@@ -54,6 +55,7 @@ namespace Items
         /// <summary>
         /// The stats for the item
         /// </summary>
+        [SerializeField]
         private StatDictionary stats = new StatDictionary();
         #endregion
 
@@ -114,12 +116,15 @@ namespace Items
         /// </summary>
         /// <param name="itemToRoll">The item to roll</param>
         /// <returns></returns>
-        public static ItemData RollItem(ItemData itemToRoll)
+        public static ItemData RollItem(ItemData itemToRoll, float scale)
         {   //Null catch
             if (!itemToRoll)
                 return null;
 
-            return itemToRoll.CreateInstance();
+            var ret = itemToRoll.CreateInstance();
+            ret.SetScale(scale);
+
+            return ret;
         }
         /// <summary>
         /// Sets the level of the item
@@ -130,6 +135,11 @@ namespace Items
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
             //Calculate stat bonuses
+        }
+
+        public void SetScale(float scale)
+        {
+            throw new System.NotImplementedException();
         }
         /// <summary>
         /// Gets the stats for the items
@@ -150,11 +160,16 @@ namespace Items
         [System.Serializable]
         public class ConnectionDictionary : Dictionary<ConnectionDirection, ConnectionType> { }
     }
-
+    /// <summary>
+    /// The type of item this is
+    /// </summary>
     public enum ItemType
     {
         NULL = 0
     }
+    /// <summary>
+    /// The connections items can have
+    /// </summary>
     public enum ConnectionDirection
     {
         NORTH = 0,
@@ -162,7 +177,9 @@ namespace Items
         SOUTH = 2,
         WEST = 3
     }
-
+    /// <summary>
+    /// The type of connections
+    /// </summary>
     [System.Flags]
     public enum ConnectionType
     {

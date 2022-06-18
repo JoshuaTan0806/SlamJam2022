@@ -8,8 +8,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        if(GetStat(Stat.CurrentSaturation) != 0)
-            stats.Add(Stat.CurrentSaturation, GetStat(Stat.MaxSaturation));
     }
 
     public void AddStat(Stat stat, float value)
