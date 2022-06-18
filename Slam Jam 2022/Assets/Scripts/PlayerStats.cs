@@ -29,8 +29,5 @@ public class PlayerStats : MonoBehaviour
     }
 
     List<Summonable> currentActiveSummons = new List<Summonable>();
-    public void AddSummon(Summonable summon)
-    {
-
-    }
+    public List<Summonable> CurrentActiveSummons => currentActiveSummons;
 }
