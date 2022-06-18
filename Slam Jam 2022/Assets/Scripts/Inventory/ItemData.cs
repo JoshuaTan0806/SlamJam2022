@@ -55,6 +55,7 @@ namespace Items
         /// <summary>
         /// The stats for the item
         /// </summary>
+        [SerializeField]
         private StatDictionary stats = new StatDictionary();
         #endregion
 
