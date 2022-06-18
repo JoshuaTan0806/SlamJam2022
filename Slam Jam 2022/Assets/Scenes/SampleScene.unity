@@ -553,7 +553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afea8dbcd2d18e5439b195fd5621e47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    m_keys: 
+    m_values: []
   skillPoints: 3
+  baseStats:
+    m_keys: 
+    m_values: []
 --- !u!114 &2067215178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    m_keys: []
+    m_keys: 
     m_values: []
 --- !u!4 &2067215179
 Transform:

@@ -7,6 +7,10 @@ public class SkillTree : MonoBehaviour
     [SerializeField] GameObject Node;
     [SerializeField] GameObject NodeHolder;
 
+    [SerializeField] float minScale;
+    [SerializeField] float maxScale;
+    [SerializeField] float scrollMultiplier;
+
     private void Awake()
     {
         Populate();
@@ -33,5 +37,21 @@ public class SkillTree : MonoBehaviour
         {
             Destroy(NodeHolder.transform.GetChild(i).gameObject);
         }
+    }
+
+    private void Update()
+    {
+        Zoom();
+    }
+
+    void Zoom()
+    {
+        if (Input.mouseScrollDelta.y == 0)
+            return;
+
+        float scale = NodeHolder.transform.localScale.x + (Input.mouseScrollDelta.y * scrollMultiplier);
+        scale = Mathf.Clamp(scale, minScale, maxScale);
+
+        NodeHolder.transform.localScale = scale * Vector3.one;
     }
 }
