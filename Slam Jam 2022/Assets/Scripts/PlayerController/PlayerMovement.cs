@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController characterController = null;
 
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -24,13 +25,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if(direction.magnitude >= 0.1f)
         {
             characterController.Move(direction * MoveSpeed * Time.deltaTime);
         }
+
+        Debug.Log(horizontal + ", " + vertical);
+        Debug.Log(Input.GetKey(KeyCode.W));
     }
 }
