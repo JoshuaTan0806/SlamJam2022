@@ -6,7 +6,9 @@ using UnityEngine;
 public class AIManager : MonoBehaviour
 {
 	const float sightCheckCooldown = 0.2f;
+	[System.Serializable]
 	class IdleActionDict : SerializableDictionary<AIIdleState, int> { }
+	[System.Serializable]
 	class TriggeredActionDict : SerializableDictionary<AITriggeredState, int> { }
 
 	[Tooltip("All the idle actions which the AI can do, with weightings")]
@@ -18,23 +20,53 @@ public class AIManager : MonoBehaviour
 	AIEyes eyes;
 	PlayerStats stats;
 
+	PlayerStats aiTarget;
+	public PlayerStats AiTarget => aiTarget;
+
 	bool triggered = false;
 
 	public bool IsAlly = false;
 
+	private float sightTimer;
+
 	private void Awake()
 	{
-		eyes.GetComponent<AIEyes>();
-		stats.GetComponent<PlayerStats>();
+		eyes = GetComponent<AIEyes>();
+		stats = GetComponent<PlayerStats>();
 
 		PickIdleState();
 	}
 
 	private void Update()
 	{
+		sightTimer -= Time.deltaTime;
+		if(sightTimer <= 0)
+		{
+			sightTimer = sightCheckCooldown;
+
+			if (triggered)
+			{
+				//If we can't spot an enemy while triggered
+				if(!CanSeeEnemies(out aiTarget))
+				{
+					triggered = false;
+					PickIdleState();
+				}
+			}
+			else
+			{
+				//If we can spot an enemy while idle
+				if(CanSeeEnemies(out aiTarget))
+				{
+					triggered = true;
+					PickTriggeredState();
+				}
+			}
+		}
+
 		if (currentState)
 		{
-			currentState.UpdateState();
+			currentState.UpdateState(aiTarget);
 
 			if (currentState.StateDuration > 0 && currentState.StateTimer >= currentState.StateDuration)
 			{
@@ -52,12 +84,11 @@ public class AIManager : MonoBehaviour
 
 	bool CanSeeEnemies(out PlayerStats enemy)
 	{
-		var playerStats = Player.instance.GetComponent<PlayerStats>();
+		var playerStats = Player.instance;
 
 		if (!IsAlly)
 		{
 			//Check the player and all of his summons
-
 			if (eyes.CanSeeTransform(Player.instance.transform))
 			{
 				enemy = playerStats;
@@ -78,7 +109,6 @@ public class AIManager : MonoBehaviour
 		else
 		{
 			//Check for the first thing which isn't an enemy
-
 			var sight = eyes.GetAllInSight();
 			foreach (var e in sight)
 			{
@@ -140,9 +170,11 @@ public class AIManager : MonoBehaviour
 			if (rand <= 0)
 			{
 				PickState(i.Key);
-				return;
+				break;
 			}
 		}
+
+		transform.LookAt(new Vector3(aiTarget.transform.position.x, transform.position.y, aiTarget.transform.position.z));
 	}
 
 	void PickState(AIState state)
@@ -152,7 +184,7 @@ public class AIManager : MonoBehaviour
 
 		currentState = state;
 
-		currentState.TriggerState();
+		currentState.TriggerState(this);
 	}
 	#endregion
 

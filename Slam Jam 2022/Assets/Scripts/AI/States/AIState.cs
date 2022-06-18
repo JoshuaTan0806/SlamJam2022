@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIState : ScriptableObject
 {
 	[Tooltip("Duration the AI will be in the state (-1 for until otherwise stated)")]
-	[SerializeField] float stateDuration = -1;
+	[SerializeField] protected float stateDuration = -1;
 	public float StateDuration => stateDuration;
 
 	float stateTimer;
 	public float StateTimer => stateTimer;
 
-	public virtual void TriggerState()
-	{
+	NavMeshAgent agent;
+	protected NavMeshAgent Agent => agent;
 
+	public virtual void TriggerState(AIManager ai)
+	{
+		agent = ai.GetComponent<NavMeshAgent>();
 	}
 
 	public virtual void StopState()
@@ -21,8 +25,14 @@ public class AIState : ScriptableObject
 
 	}
 
-	public virtual void UpdateState()
+	public virtual void UpdateState(PlayerStats target)
 	{
 		stateTimer += Time.deltaTime;
+	}
+
+	protected void FinishState()
+	{
+		stateDuration = 1;
+		stateTimer = 2;
 	}
 }
