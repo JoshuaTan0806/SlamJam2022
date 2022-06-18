@@ -23,7 +23,7 @@ public class SkillTree : MonoBehaviour
         for (int i = 0; i < SkillTreeManager.allNodes.Count; i++)
         {
             GameObject g = Instantiate(Node, NodeHolder.transform);
-            g.GetComponent<NodeButton>().Node = SkillTreeManager.allNodes[i];
+            g.GetComponentInChildren<NodeButton>().Node = SkillTreeManager.allNodes[i];
         }
     }
 
