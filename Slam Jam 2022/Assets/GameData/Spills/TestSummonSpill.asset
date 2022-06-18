@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b607e9e9dd565a4283325e503ed378b, type: 3}
-  m_Name: Percent Damage
+  m_Script: {fileID: 11500000, guid: 87beb564d844db140b829b9a8e85721b, type: 3}
+  m_Name: TestSummonSpill
   m_EditorClassIdentifier: 
-  ID: Percent Damage
+  castCost: 20
+  castCooldown: 1
+  spellType: 0
+  summon: {fileID: 0}
+  maxSummons: -1
+  numToSummon: 1

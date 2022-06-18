@@ -18,6 +18,7 @@ public class Summonable : MonoBehaviour
 
     [SerializeField] float summonLifeTime = -1;
     float aliveTime;
+    public float AliveTime => aliveTime;
 
     PlayerStats summoner;
     SummonSpill spill;
