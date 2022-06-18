@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -22,7 +23,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    Node node;
+    [ReadOnly, SerializeField] Node node;
     
 
     void Initialise()
