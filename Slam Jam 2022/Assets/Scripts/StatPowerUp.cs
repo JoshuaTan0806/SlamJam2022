@@ -10,16 +10,16 @@ public class StatPowerUp : PowerUp
 
     private void OnValidate()
     {
-        Name = increase + " " + stat.name;
+        Name = increase + " " + stat.ToString();
     }
 
     public override void ApplyPowerUp()
     {
-        Player.instance.AddStat(stat.ID, increase);
+        Player.instance.AddStat(stat, increase);
     }
 
     public override void UnapplyPowerUp()
     {
-        Player.instance.AddStat(stat.ID, -increase);
+        Player.instance.AddStat(stat, -increase);
     }
 }

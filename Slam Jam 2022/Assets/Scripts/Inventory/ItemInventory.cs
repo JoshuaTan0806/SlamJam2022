@@ -91,5 +91,19 @@ namespace Items
 
             throw new System.NotImplementedException();
         }
+        /// <summary>
+        /// Get an item from the inventory.
+        /// </summary>
+        /// <param name="index">Index of the item to get</param>
+        /// <returns>Returns the item at the index. Returns null if no item</returns>
+        public static ItemData GetItem(Vector2Int index)
+        {
+            ItemData ret = _equipped[index.x, index.y];
+
+            if (ret && !ret.IsInstance)
+                throw ItemIDs.NOT_INSTANCED_ERROR;
+
+            return ret;
+        }
     }
 }

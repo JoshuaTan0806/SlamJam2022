@@ -4,7 +4,18 @@
 /// </summary>
 public static class StatIDs
 {
-    public const string STRENGTH = "S";
-    public const string CURRENT_SATURATION = "SAT";
-    public const string MAX_SATURATION = "MSAT";
+    public static string StatToName(Stat stat)
+    {
+        switch(stat)
+        {
+            default:
+                return stat.ToString();
+        }
+    }
+}
+
+public enum Stat
+{
+    CurrentSaturation = 'H',
+    MaxSaturation = 'P',
 }

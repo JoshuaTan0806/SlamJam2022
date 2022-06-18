@@ -85,6 +85,18 @@ namespace Items
 
             return ret;
         }
+        /// <summary>
+        /// Rolls an item.
+        /// </summary>
+        /// <param name="itemToRoll">The item to roll</param>
+        /// <returns></returns>
+        public static ItemData RollItem(ItemData itemToRoll)
+        {   //Null catch
+            if (!itemToRoll)
+                return null;
+
+            return itemToRoll.CreateInstance();
+        }
 
         public void SetLevel(int index)
         {
