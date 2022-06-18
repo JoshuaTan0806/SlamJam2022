@@ -9,6 +9,10 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] Color ActiveColor;
     [SerializeField] Color AvailableColor;
+    [SerializeField] Image Highlight;
+    [SerializeField] Image Icon;
+    [SerializeField] GameObject infoPrefab;
+    GameObject info;
 
     public Node Node
     {
@@ -28,20 +32,17 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Initialise()
     {
-        GetComponent<Image>().sprite = node.icon;
+        Icon.sprite = node.icon;
         GetComponent<Button>().onClick.AddListener(() => node.ToggleNode());
         
         GetComponent<RectTransform>().localScale = node.size * Vector3.one;
-        GetComponent<RectTransform>().anchoredPosition = node.coordinates * 50;
+        GetComponent<RectTransform>().anchoredPosition = node.coordinates * 100;
 
         if (node.IsActive)
-            GetComponent<Image>().color = ActiveColor;
-        else if(node.CanBeToggledOn())
-            GetComponent<Image>().color = AvailableColor;
+            Highlight.color = ActiveColor;
+        else if (node.CanBeToggledOn())
+            Highlight.color = AvailableColor;
     }
-
-    [SerializeField] GameObject infoPrefab;
-    GameObject info;
 
     public void OnPointerEnter(PointerEventData eventData)
     {

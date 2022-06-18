@@ -36,4 +36,9 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("SkillPoints", Player.instance.skillPoints);
     }
+
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
 }
