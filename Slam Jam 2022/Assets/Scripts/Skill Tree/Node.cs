@@ -120,7 +120,7 @@ public class Node : ScriptableObject
             return true;
         else
             return false;
-    }
+    }  
 
     public void ToggleNode()
     {

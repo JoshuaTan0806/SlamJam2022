@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 091edcdaf6a2bf94384fb0d54a1eaa33, type: 2}
   connectedNodes:
   - {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
-  NodeToConnect: {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
+  NodeToConnect: {fileID: 0}

@@ -18,4 +18,8 @@ public enum Stat
 {
     CurrentSaturation = 'H',
     MaxSaturation = 'P',
+    Damage = 'D',
+    PercentDamage = 'd',
+    Speed = 'S',
+    PercentSpeed = 's'
 }
