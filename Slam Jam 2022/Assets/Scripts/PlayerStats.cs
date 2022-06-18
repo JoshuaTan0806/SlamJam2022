@@ -16,4 +16,9 @@ public class PlayerStats : MonoBehaviour
         else
             stats[stat] += value;
     }
+
+    public float GetStat(string stat)
+    {
+        return stats.ContainsKey(stat) ? stats[stat] : 0;
+    }
 }
