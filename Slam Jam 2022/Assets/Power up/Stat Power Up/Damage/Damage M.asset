@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb2fb554d6741942b64a5cc164ef625, type: 3}
   m_Name: Damage M
   m_EditorClassIdentifier: 
-  Name: 6 Percent Damage
-  stat: {fileID: 11400000, guid: 34ada3fff5d48a24f8e69272c016d774, type: 2}
+  Name: 6% Damage
+  stat: 100
   increase: 6

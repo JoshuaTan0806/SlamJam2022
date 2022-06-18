@@ -5,17 +5,17 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [System.Serializable]
-    public class StatDictionary : SerializableDictionary<string, float> { }
+    public class StatDictionary : SerializableDictionary<Stat, float> { }
 
     [SerializeField] StatDictionary stats = new StatDictionary();
 
     private void Awake()
     {
-        if(GetStat(StatIDs.CURRENT_SATURATION) != 0)
-            stats.Add(StatIDs.CURRENT_SATURATION, GetStat(StatIDs.MAX_SATURATION));
+        if(GetStat(Stat.CurrentSaturation) != 0)
+            stats.Add(Stat.CurrentSaturation, GetStat(Stat.MaxSaturation));
     }
 
-    public void AddStat(string stat, float value)
+    public void AddStat(Stat stat, float value)
     {
         if (!stats.ContainsKey(stat))
             stats.Add(stat, value);
@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
             stats[stat] += value;
     }
 
-    public float GetStat(string stat)
+    public float GetStat(Stat stat)
     {
         return stats.ContainsKey(stat) ? stats[stat] : 0;
     }
