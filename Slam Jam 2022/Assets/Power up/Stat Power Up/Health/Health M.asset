@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb2fb554d6741942b64a5cc164ef625, type: 3}
   m_Name: Health M
   m_EditorClassIdentifier: 
-  stat: {fileID: 11400000, guid: 8c7244600f157a042939d6d6fae48e16, type: 2}
+  Name: 6% Max Saturation
+  stat: 80
   increase: 6

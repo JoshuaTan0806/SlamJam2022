@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb2fb554d6741942b64a5cc164ef625, type: 3}
   m_Name: Speed S
   m_EditorClassIdentifier: 
-  Name: 3 Percent Speed
-  stat: {fileID: 11400000, guid: 6156d3925b5b87a40bcf46220f4ae742, type: 2}
+  Name: 3% Speed
+  stat: 115
   increase: 3
