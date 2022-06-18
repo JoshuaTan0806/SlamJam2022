@@ -21,10 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public int scorePlace = 0;
     public int controller = 0;
 
-    private string verticalAxis;
-    private string strafeAxis;
-    private string horizontalAxis;
-    private string rotateAxis;
+    private string verticalAxis = "Vertical";
+    private string horizontalAxis = "Horizontal";
     private CharacterController characterController = null;
 
     private void Awake()
@@ -40,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move()
-    {
+    {   //You probably want to merge vert and horizontal move.
         VertMove();
 
         HozMove();
@@ -86,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     void HozMove()
     {
         //Player Horizontal Movement
-        float axis = Input.GetAxis(strafeAxis);
+        float axis = Input.GetAxis(horizontalAxis);
         if (axis != 0)
         {
             //Get the expected speed of the player
@@ -186,9 +184,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Rotate()
-    {
+    {   //Old rotation code. Not what we want presumably
         //Makes sure the player wants to adjust their rotation
-        if (Input.GetAxis(horizontalAxis) == 0f && Input.GetAxis(rotateAxis) == 0f)
+        /*if (Input.GetAxis(horizontalAxis) == 0f && Input.GetAxis(rotateAxis) == 0f)
         {
             //Either decelerate or acelerate the rotation until the player no longer rotates
             if (currentRotSpeed > 0f)
@@ -252,6 +250,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //Rotates the player towards the direction
-        transform.Rotate(Vector3.forward, currentRotSpeed);
+        transform.Rotate(Vector3.forward, currentRotSpeed);*/
     }
 }
