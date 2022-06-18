@@ -14,6 +14,8 @@ public class Summonable : MonoBehaviour
 
     [SerializeField] bool parentToPlayer;
 
+    [SerializeField] Vector3 spawnOffset;
+
     [Space]
 
     [SerializeField] float summonLifeTime = -1;
@@ -23,6 +25,7 @@ public class Summonable : MonoBehaviour
     PlayerStats summoner;
     public PlayerStats Summoner => summoner;
     SummonSpill spill;
+    public SummonSpill Spill => spill;
 
     public virtual void Initialise(PlayerStats summoner, SummonSpill spill)
     {
@@ -37,18 +40,25 @@ public class Summonable : MonoBehaviour
         switch (summonPlace)
         {
             case SummonPlace.OnPlayer:
-                transform.localPosition = Vector3.zero;
+                transform.position = summoner.transform.position;
                 break;
             case SummonPlace.InFrontOfPlayer:
-                transform.localPosition = summoner.transform.forward;
+                transform.position = summoner.transform.position + summoner.transform.forward;
                 break;
         }
+        transform.position += 
+            transform.right * spawnOffset.x
+            + transform.up* spawnOffset.y 
+            + transform.forward * spawnOffset.z;
+
         transform.forward = summoner.transform.forward;
     }
 
     public virtual void DestroySummon()
     {
         summoner.CurrentActiveSummons.Remove(this);
+
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -60,7 +70,6 @@ public class Summonable : MonoBehaviour
             if(aliveTime >= summonLifeTime)
             {
                 DestroySummon();
-                Destroy(gameObject);
             }
         }
     }

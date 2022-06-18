@@ -26,5 +26,6 @@ public enum Stat
     Damage = 'D',
     PercentDamage = 'd',
     Speed = 'S',
-    PercentSpeed = 's'
+    PercentSpeed = 's',
+    ProjectilePierceAmount = 'p',
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87beb564d844db140b829b9a8e85721b, type: 3}
-  m_Name: TestSummonSpill
+  m_Name: PlasmaBall
   m_EditorClassIdentifier: 
   castCost: 20
   castCooldown: 1
   spellType: 0
-  summon: {fileID: 0}
+  summon: {fileID: 335435155, guid: 7b71bfc350ffd7b4aa23107240542ee8, type: 3}
   maxSummons: -1
   numToSummon: 1
