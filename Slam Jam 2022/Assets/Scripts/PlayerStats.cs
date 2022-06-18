@@ -7,7 +7,13 @@ public class PlayerStats : MonoBehaviour
     [System.Serializable]
     public class StatDictionary : SerializableDictionary<string, float> { }
 
-    public StatDictionary stats = new StatDictionary();
+    [SerializeField] StatDictionary stats = new StatDictionary();
+
+    private void Awake()
+    {
+        if(GetStat(StatIDs.CURRENT_SATURATION) != 0)
+            stats.Add(StatIDs.CURRENT_SATURATION, GetStat(StatIDs.MAX_SATURATION));
+    }
 
     public void AddStat(string stat, float value)
     {
@@ -20,5 +26,11 @@ public class PlayerStats : MonoBehaviour
     public float GetStat(string stat)
     {
         return stats.ContainsKey(stat) ? stats[stat] : 0;
+    }
+
+    List<Summonable> currentActiveSummons = new List<Summonable>();
+    public void AddSummon(Summonable summon)
+    {
+
     }
 }
