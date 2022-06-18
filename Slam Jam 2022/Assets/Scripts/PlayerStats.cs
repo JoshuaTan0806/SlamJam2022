@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [System.Serializable]
-    public class StatDictionary : SerializableDictionary<Stat, float> { }
-
-    [SerializeField] StatDictionary stats = new StatDictionary();
+    [SerializeField] protected StatDictionary stats = new StatDictionary();
 
     private void Awake()
     {
-        if(GetStat(Stat.CurrentSaturation) != 0)
-            stats.Add(Stat.CurrentSaturation, GetStat(Stat.MaxSaturation));
     }
 
     public void AddStat(Stat stat, float value)

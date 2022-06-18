@@ -13,6 +13,11 @@ public static class StatIDs
         }
     }
 }
+/// <summary>
+/// Dictionary for storing stats.
+/// </summary>
+[System.Serializable]
+public class StatDictionary : SerializableDictionary<Stat, float> { }
 
 public enum Stat
 {
@@ -21,5 +26,6 @@ public enum Stat
     Damage = 'D',
     PercentDamage = 'd',
     Speed = 'S',
-    PercentSpeed = 's'
+    PercentSpeed = 's',
+    ProjectilePierceAmount = 'p',
 }
