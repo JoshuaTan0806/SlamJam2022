@@ -207,6 +207,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f2369701c940494c9c4f559b03ebe27, type: 2}
   - {fileID: 11400000, guid: cf9ac56a7676936469b28a4b3c419dd7, type: 2}
   - {fileID: 11400000, guid: f5a149d340fbc6546b0823557197c6c3, type: 2}
+  - {fileID: 11400000, guid: d96ba6d5a763e1d47900843a44a94f9a, type: 2}
+  - {fileID: 11400000, guid: 7cf7ebfbccdfbbf4bb2b866142f040d2, type: 2}
+  - {fileID: 11400000, guid: c5c0af83f9bdd0e4290573014f427cce, type: 2}
   SkillTreePrefab: {fileID: 4741075190369305687, guid: 88adaaaeba908564eadcce2706e9662f, type: 3}
 --- !u!4 &416772727
 Transform:

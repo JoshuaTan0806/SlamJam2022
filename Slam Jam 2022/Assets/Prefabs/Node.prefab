@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveColor: {r: 1, g: 0.84313726, b: 0, a: 1}
-  AvailableColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  AvailableColor: {r: 0.5849056, g: 0.3641509, b: 0.1462264, a: 1}
   Highlight: {fileID: 270342892123141754}
   Icon: {fileID: 6191861179189555908}
   infoPrefab: {fileID: 5572920612741471362, guid: 2d5123c40cbb07745982bda9793355b9, type: 3}
