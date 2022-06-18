@@ -21,6 +21,7 @@ public class Summonable : MonoBehaviour
     public float AliveTime => aliveTime;
 
     PlayerStats summoner;
+    public PlayerStats Summoner => summoner;
     SummonSpill spill;
 
     public virtual void Initialise(PlayerStats summoner, SummonSpill spill)
@@ -38,7 +39,11 @@ public class Summonable : MonoBehaviour
             case SummonPlace.OnPlayer:
                 transform.localPosition = Vector3.zero;
                 break;
+            case SummonPlace.InFrontOfPlayer:
+                transform.localPosition = summoner.transform.forward;
+                break;
         }
+        transform.forward = summoner.transform.forward;
     }
 
     public virtual void DestroySummon()
