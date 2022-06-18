@@ -25,4 +25,19 @@ public class PlayerStats : MonoBehaviour
 
     List<Summonable> currentActiveSummons = new List<Summonable>();
     public List<Summonable> CurrentActiveSummons => currentActiveSummons;
+
+    public List<PlayerStats> GetPlayerMinions()
+    {
+        List<PlayerStats> minions = new List<PlayerStats>();
+
+        foreach (var m in CurrentActiveSummons)
+        {
+            PlayerStats s = m.GetComponent<PlayerStats>();
+
+            if (s)
+                minions.Add(s);
+        }
+
+        return minions;
+    }
 }
