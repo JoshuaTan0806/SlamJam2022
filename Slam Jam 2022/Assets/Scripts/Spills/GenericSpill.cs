@@ -18,7 +18,7 @@ public class GenericSpill : ScriptableObject
 
     [Tooltip("How long the cast takes to go on cooldown")]
     [SerializeField] protected float castCooldown;
-    float castTimer;
+    float castTimer = -1;
     public float CastCooldown => castCooldown;
     public float CastTimer => castTimer;
 

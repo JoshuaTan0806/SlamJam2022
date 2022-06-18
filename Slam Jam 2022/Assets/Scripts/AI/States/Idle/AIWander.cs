@@ -38,7 +38,9 @@ public class AIWander : AIIdleState
 	{
 		base.UpdateState(target);
 
-		if (Vector3.Distance(Agent.transform.position, currentTargetPos) < 2)
+		//if(Agent.pathStatus == NavMeshPathStatus.PathComplete)
+		//if (Vector3.Distance(Agent.transform.position, currentTargetPos) < 0.2f)
+		if(Agent.remainingDistance <= 0.1f)
 			FinishState();
 	}
 }

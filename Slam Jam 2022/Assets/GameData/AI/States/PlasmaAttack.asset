@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8a3cfe7e2991d54f99230c5d7fe2668, type: 3}
-  m_Name: IdlePlasmaBall
+  m_Name: PlasmaAttack
   m_EditorClassIdentifier: 
   stateDuration: -1
   toCast: {fileID: 11400000, guid: 6f01f0efc603a86428c3e38021625916, type: 2}
-  afterCastCooldown: 4
+  afterCastCooldown: 3
   castOnSpot: 1
   idealCastDistance: 0

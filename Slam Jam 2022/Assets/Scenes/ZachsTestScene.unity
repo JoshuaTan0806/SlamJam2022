@@ -259,7 +259,7 @@ MonoBehaviour:
     m_values: 0100000002000000
   triggeredActions:
     m_keys:
-    - {fileID: 11400000, guid: 7251a8faafbcad549987e931f4cc2964, type: 2}
+    - {fileID: 11400000, guid: 64584ed71fa08e7439db8de37460a3b1, type: 2}
     m_values: 01000000
   IsAlly: 0
 --- !u!114 &290915901
@@ -274,9 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721b5f127d242894d9051c89d4feb6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoViewDist: 15
+  autoViewDist: 1
   fieldOfView: 45
-  viewDistance: 50
+  viewDistance: 10
   visionMask:
     serializedVersion: 2
     m_Bits: 0

@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8102155473089344357, guid: d56b87557a2d32340bf36655f72d7ef8, type: 3}
       propertyPath: m_Name
-      value: Plasma Ball
+      value: Plasma Ball Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8102155473089344358, guid: d56b87557a2d32340bf36655f72d7ef8, type: 3}
       propertyPath: m_RootOrder
@@ -98,40 +98,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8102155473089344357, guid: d56b87557a2d32340bf36655f72d7ef8, type: 3}
   m_PrefabInstance: {fileID: 876273303355102116}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &335435155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960340907951497409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458eaa8b17d17e04d948f58d7f74b82e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  summonPlace: 1
-  parentToPlayer: 0
-  spawnOffset: {x: 0, y: 1, z: 0}
-  summonLifeTime: 5
---- !u!114 &335435154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8960340907951497409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fca85122107f734eaaef3a458f3f9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  gravityEnableDelay: -1
-  damage: 10
-  canPierce: 0
-  pierceAmount: -1
-  onDestroySummonable: {fileID: 0}
 --- !u!54 &335435153
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,3 +127,37 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &335435154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8960340907951497409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fca85122107f734eaaef3a458f3f9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 200
+  gravityEnableDelay: -1
+  damage: 10
+  canPierce: 0
+  pierceAmount: -1
+  onDestroySummonable: {fileID: 0}
+--- !u!114 &335435155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8960340907951497409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458eaa8b17d17e04d948f58d7f74b82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summonPlace: 1
+  parentToPlayer: 0
+  spawnOffset: {x: 0, y: 1, z: 0}
+  summonLifeTime: 5

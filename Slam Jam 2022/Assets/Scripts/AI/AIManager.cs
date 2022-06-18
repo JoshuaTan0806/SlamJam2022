@@ -12,13 +12,12 @@ public class AIManager : MonoBehaviour
 	class TriggeredActionDict : SerializableDictionary<AITriggeredState, int> { }
 
 	[Tooltip("All the idle actions which the AI can do, with weightings")]
-	[SerializeField] IdleActionDict idleActions;
+	[SerializeField] IdleActionDict idleActions = new IdleActionDict();
 
-	[SerializeField] TriggeredActionDict triggeredActions;
+	[SerializeField] TriggeredActionDict triggeredActions = new TriggeredActionDict();
 
 	AIState currentState;
-	AIEyes eyes;
-	PlayerStats stats;
+	AIEyes aiEyes;
 
 	PlayerStats aiTarget;
 	public PlayerStats AiTarget => aiTarget;
@@ -31,8 +30,7 @@ public class AIManager : MonoBehaviour
 
 	private void Awake()
 	{
-		eyes = GetComponent<AIEyes>();
-		stats = GetComponent<PlayerStats>();
+		aiEyes = GetComponent<AIEyes>();
 
 		PickIdleState();
 	}
@@ -49,6 +47,8 @@ public class AIManager : MonoBehaviour
 				//If we can't spot an enemy while triggered
 				if(!CanSeeEnemies(out aiTarget))
 				{
+					Debug.Log("Back to idle");
+
 					triggered = false;
 					PickIdleState();
 				}
@@ -58,6 +58,8 @@ public class AIManager : MonoBehaviour
 				//If we can spot an enemy while idle
 				if(CanSeeEnemies(out aiTarget))
 				{
+					Debug.Log("Back to triggered");
+
 					triggered = true;
 					PickTriggeredState();
 				}
@@ -70,6 +72,8 @@ public class AIManager : MonoBehaviour
 
 			if (currentState.StateDuration > 0 && currentState.StateTimer >= currentState.StateDuration)
 			{
+				Debug.Log("State finished");
+
 				if (triggered)
 				{
 					PickTriggeredState();
@@ -89,7 +93,7 @@ public class AIManager : MonoBehaviour
 		if (!IsAlly)
 		{
 			//Check the player and all of his summons
-			if (eyes.CanSeeTransform(Player.instance.transform))
+			if (aiEyes.CanSeeTransform(Player.instance.transform))
 			{
 				enemy = playerStats;
 
@@ -98,7 +102,7 @@ public class AIManager : MonoBehaviour
 
 			foreach (var minion in playerStats.GetPlayerMinions())
 			{
-				if (eyes.CanSeeTransform(minion.transform))
+				if (aiEyes.CanSeeTransform(minion.transform))
 				{
 					enemy = minion;
 
@@ -109,7 +113,7 @@ public class AIManager : MonoBehaviour
 		else
 		{
 			//Check for the first thing which isn't an enemy
-			var sight = eyes.GetAllInSight();
+			var sight = aiEyes.GetAllInSight();
 			foreach (var e in sight)
 			{
 				var stats = e.GetComponent<PlayerStats>();
@@ -137,7 +141,7 @@ public class AIManager : MonoBehaviour
 	#region State Switching
 	void PickIdleState()
 	{
-		int max = 0;
+		int max = 1;
 		foreach (var i in idleActions)
 		{
 			max += i.Value;
@@ -157,14 +161,16 @@ public class AIManager : MonoBehaviour
 
 	void PickTriggeredState()
 	{
-		int max = 0;
-		foreach (var i in idleActions)
+		transform.LookAt(new Vector3(aiTarget.transform.position.x, transform.position.y, aiTarget.transform.position.z));
+
+		int max = 1;
+		foreach (var i in triggeredActions)
 		{
 			max += i.Value;
 		}
 
 		int rand = Random.Range(0, max);
-		foreach (var i in idleActions)
+		foreach (var i in triggeredActions)
 		{
 			rand -= i.Value;
 			if (rand <= 0)
@@ -173,8 +179,6 @@ public class AIManager : MonoBehaviour
 				break;
 			}
 		}
-
-		transform.LookAt(new Vector3(aiTarget.transform.position.x, transform.position.y, aiTarget.transform.position.z));
 	}
 
 	void PickState(AIState state)
@@ -182,9 +186,11 @@ public class AIManager : MonoBehaviour
 		if (currentState)
 			currentState.StopState();
 
-		currentState = state;
+		currentState = Instantiate(state);
 
 		currentState.TriggerState(this);
+
+		Debug.Log($"State changed to: {currentState.name}");
 	}
 	#endregion
 

@@ -44,10 +44,19 @@ public class AIEyes : MonoBehaviour
         return false;
     }
 
-    public Transform[] GetAllInSight()
+    public List<Transform> GetAllInSight()
     {
-        Transform[] seen = Physics.OverlapSphere(transform.position, viewDistance, ~visionMask).Select(t => t.transform).ToArray();
+        List<Transform> seen = Physics.OverlapSphere(transform.position, viewDistance, ~visionMask).Select(t => t.transform).ToList();
 
-        return seen;
+        List<Transform> inSight = new List<Transform>();
+        foreach (var s in seen)
+        {
+            if (Vector3.Dot(transform.forward, Vector3.Normalize(s.position - transform.position)) > dotView)
+            {
+                inSight.Add(s);
+            }
+        }
+
+        return inSight;
     }
 }

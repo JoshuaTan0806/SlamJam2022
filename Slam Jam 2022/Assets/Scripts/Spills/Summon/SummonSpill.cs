@@ -21,7 +21,7 @@ public class SummonSpill : GenericSpill
 		if (maxSummons > 0 && currentSummons >= maxSummons)
 			return false;
 
-		if (base.CanCastSpell(caster))
+		if (!base.CanCastSpell(caster))
 			return false;
 
 		return true;
