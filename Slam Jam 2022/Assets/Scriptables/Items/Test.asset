@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb2fb554d6741942b64a5cc164ef625, type: 3}
-  m_Name: Health S
+  m_Script: {fileID: 11500000, guid: 670514fbe7c8be348b931307e7e7dc91, type: 3}
+  m_Name: Test
   m_EditorClassIdentifier: 
-  Name: 9% Max Saturation
-  stat: 80
-  increase: 3
+  type: 0
+  randomiseConnectionDirection: 0
+  removeChance: 0.5
+  randomiseConnectionType: 0

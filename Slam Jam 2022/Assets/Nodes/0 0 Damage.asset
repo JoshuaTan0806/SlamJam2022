@@ -17,7 +17,8 @@ MonoBehaviour:
   size: 1
   isStartingNode: 1
   powerUps:
-  - {fileID: 11400000, guid: 091edcdaf6a2bf94384fb0d54a1eaa33, type: 2}
+  - {fileID: 11400000, guid: 92ec62c39704de04abbd05dc2303b8bc, type: 2}
   connectedNodes:
   - {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
-  NodeToConnect: {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
+  isActive: 1
+  NodeToConnect: {fileID: 0}

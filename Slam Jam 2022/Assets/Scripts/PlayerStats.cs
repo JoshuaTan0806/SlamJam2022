@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [System.Serializable]
-    public class StatDictionary : SerializableDictionary<Stat, float> { }
-
-    [SerializeField] StatDictionary stats = new StatDictionary();
+    [SerializeField] protected StatDictionary stats = new StatDictionary();
 
     private void Awake()
     {

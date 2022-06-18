@@ -14,9 +14,6 @@ public class Node : ScriptableObject
     public List<PowerUp> powerUps = new List<PowerUp>();
     [SerializeField, ReadOnly] List<Node> connectedNodes;
 
-    [Header("Connect Nodes")]
-    [SerializeField] Node NodeToConnect;
-
     public bool IsActive
     {
         get
@@ -33,7 +30,11 @@ public class Node : ScriptableObject
             }
         }
     }
-    bool isActive;
+
+    [ReadOnly, SerializeField] bool isActive;
+
+    [Header("Connect Nodes")]
+    [SerializeField] Node NodeToConnect;
 
     public bool CanBeToggledOn()
     {
@@ -120,7 +121,7 @@ public class Node : ScriptableObject
             return true;
         else
             return false;
-    }
+    }  
 
     public void ToggleNode()
     {

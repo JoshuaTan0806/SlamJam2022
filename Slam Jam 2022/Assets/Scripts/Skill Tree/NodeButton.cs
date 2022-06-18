@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] Color ActiveColor;
+    [SerializeField] Color AvailableColor;
+
     public Node Node
     {
         get
@@ -19,7 +23,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    Node node;
+    [ReadOnly, SerializeField] Node node;
     
 
     void Initialise()
@@ -31,9 +35,9 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         GetComponent<RectTransform>().anchoredPosition = node.coordinates * 50;
 
         if (node.IsActive)
-            GetComponent<Image>().color = Color.red;
+            GetComponent<Image>().color = ActiveColor;
         else if(node.CanBeToggledOn())
-            GetComponent<Image>().color = Color.blue;
+            GetComponent<Image>().color = AvailableColor;
     }
 
     [SerializeField] GameObject infoPrefab;

@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd326855b1721864d881766d778d976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveColor: {r: 1, g: 0.84313726, b: 0, a: 1}
+  AvailableColor: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
+  node: {fileID: 0}
   infoPrefab: {fileID: 5572920612741471362, guid: 2d5123c40cbb07745982bda9793355b9, type: 3}
 --- !u!114 &8399299184844454030
 MonoBehaviour:
