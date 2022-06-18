@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed = 1f;
 
     private CharacterController characterController = null;
+    private GameObject playerModel = null;
 
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerModel = GetComponentInChildren<Animator>().gameObject;
     }
 
     void Update()
@@ -25,16 +27,14 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Move()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if(direction.magnitude >= 0.1f)
         {
             characterController.Move(direction * MoveSpeed * Time.deltaTime);
+            playerModel.transform.forward = direction;
         }
-
-        Debug.Log(horizontal + ", " + vertical);
-        Debug.Log(Input.GetKey(KeyCode.W));
     }
 }
