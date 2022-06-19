@@ -11,12 +11,6 @@ namespace Items
     public static class ItemInventory
     {
         /// <summary>
-        /// IDEA: Read through the player's inventory, find the equipped items, return the spills attached to each equipped item for the full spill list
-        /// Cache the values so it's only needed to be read once
-        /// refresh item bonus function should be where it caches the value into this Array
-        /// </summary>
-        public static GenericSpill[] EquippedSpills;
-        /// <summary>
         /// Currently equipped items
         /// </summary>
         private static ItemData[,] _equipped = new ItemData[ItemIDs.INVENTORY_SIZE, ItemIDs.INVENTORY_SIZE];
