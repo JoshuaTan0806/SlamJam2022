@@ -25,7 +25,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (_isHighlighted != value)
             {
                 _isHighlighted = value;
-                Highlight(value);
+                ChangeHighlight();
             }
         }
     }
@@ -51,7 +51,13 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Start()
     {
         SkillTree.inputField.onValueChanged.AddListener(delegate { CheckIfHighlighted(SkillTree.inputField.text); });
-        Highlight(false);
+        ChangeHighlight();
+        node.OnActiveChanged += ChangeHighlight;
+    }
+
+    private void OnDestroy()
+    {
+        node.OnActiveChanged -= ChangeHighlight;
     }
 
     void Initialise()
@@ -110,7 +116,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         isHighlighted = IsHighlighted;
     }
 
-    void Highlight(bool isHighlighted)
+    void ChangeHighlight(bool dummyBool = false)
     {
         if (isHighlighted)
             Outline.color = HighlightedColor;

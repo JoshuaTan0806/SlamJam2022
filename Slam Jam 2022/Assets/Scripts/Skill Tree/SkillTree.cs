@@ -24,6 +24,7 @@ public class SkillTree : MonoBehaviour
         InitialiseBoundaries();
         SetSkillPointsText();
         inputField = GetComponentInChildren<TMP_InputField>();
+        Player.OnSkillPointsChanged += SetSkillPointsText;
     }
 
     private void OnDestroy()

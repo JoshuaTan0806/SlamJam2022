@@ -62,10 +62,12 @@ public class Node : ScriptableObject
             {
                 isActive = value;
                 ApplyPowerUps(value);
-                SkillTreeManager.instance.RefreshSkillTree();
+                OnActiveChanged?.Invoke(value);
             }
         }
     }
+
+    public System.Action<bool> OnActiveChanged;
 
     [ReadOnly, SerializeField] bool isActive;
 
