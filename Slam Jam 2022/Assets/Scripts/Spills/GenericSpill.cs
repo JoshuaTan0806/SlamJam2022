@@ -14,9 +14,6 @@ public class GenericSpill : ScriptableObject
     [Tooltip("How much health casting uses")]
     [SerializeField] protected float castCost;
 
-    //[Tooltip("How long it takes to cast the spell")]
-    //[SerializeField] protected float castTime = 0;
-
     [Tooltip("How long the cast takes to go on cooldown")]
     [SerializeField] protected float castCooldown;
     float castTimer = -1;

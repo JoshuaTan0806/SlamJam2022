@@ -57,6 +57,37 @@ namespace Items
         /// </summary>
         [SerializeField]
         private StatDictionary stats = new StatDictionary();
+        /// <summary>
+        /// The asset to reference
+        /// </summary>
+        [SerializeField]
+        private GenericSpill skill = null;
+        /// <summary>
+        /// Instanced copy of the asset
+        /// </summary>
+        private GenericSpill instance = null;
+        /// <summary>
+        /// Getter & Setter to make sure intance is always correctly set
+        /// </summary>
+        public GenericSpill Spill
+        {
+            get
+            {
+                if (instance == null && skill != null)
+                    instance = Instantiate(skill);
+
+                return instance;
+            }
+            set
+            {
+                skill = value;
+
+                if (value == null)
+                    instance = null;
+                else
+                    instance = Instantiate(skill);
+            }
+        }
         #endregion
 
         #region Functions
@@ -112,28 +143,22 @@ namespace Items
             return ret;
         }
         /// <summary>
-        /// Rolls an item.
-        /// </summary>
-        /// <param name="itemToRoll">The item to roll</param>
-        /// <returns></returns>
-        public static ItemData RollItem(ItemData itemToRoll, float scale)
-        {   //Null catch
-            if (!itemToRoll)
-                return null;
-
-            var ret = itemToRoll.CreateInstance();
-            ret.SetScale(scale);
-
-            return ret;
-        }
-        /// <summary>
         /// Generates a completely random item
         /// </summary>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public static ItemData CreateRandomItem(float scale)
+        public static ItemData CreateRandomItem(int scale)
         {
-            return null;
+            var rollData = ItemBuilder.Instance;
+            ItemData ret = CreateInstance<ItemData>();
+
+            byte level = (byte)scale;
+
+            ret._isInstance = true;
+            ret.type = rollData.RollType();
+            ret.Spill = rollData.RollSkill(level);
+
+            return ret;
         }
         /// <summary>
         /// Sets the level of the item
@@ -149,7 +174,7 @@ namespace Items
         /// Scale the items power
         /// </summary>
         /// <param name="scale"></param>
-        public void SetScale(float scale)
+        public void SetScale(int scale)
         {
             throw new System.NotImplementedException();
         }

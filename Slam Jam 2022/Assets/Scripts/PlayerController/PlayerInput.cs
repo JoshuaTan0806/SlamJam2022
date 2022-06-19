@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SpillInput[] SpillArray;
+    KeyCode[] inputsTaken;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        inputsTaken = new KeyCode[SpillArray.Length];
+
+        //Check for inout overlaps and remove them
+        for(int i = 0; i >= SpillArray.Length; i++)
+        {
+            for(int e = 0; e >= inputsTaken.Length; e++)
+            {
+                if(SpillArray[i].Input == inputsTaken[e])
+                {
+                    SpillArray[i].Input = KeyCode.None;
+                }
+                else if(inputsTaken[e] == KeyCode.None)
+                {
+                    inputsTaken[e] = SpillArray[i].Input;
+                    break;
+                }
+            }
+        }
     }
 }
