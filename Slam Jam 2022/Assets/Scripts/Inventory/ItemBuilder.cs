@@ -14,6 +14,7 @@ namespace Items
     public class ItemBuilder : SingletonFactory<ItemBuilder>
     {
         private static List<GenericSpill> tempSpill = new List<GenericSpill>();
+        private static StatDictionary tempStats = new StatDictionary();
         #region Type
 #if UNITY_EDITOR
         [OnCollectionChanged("RefreshTypeProbabilty")]
@@ -86,7 +87,10 @@ namespace Items
                 int cur = 0;
 
                 while (cur < range)
-                {
+                {   //Give up no more
+                    if (!levelInfo.ContainsKey((byte)(level - cur)))
+                        break;
+
                     var temp = GetInfo((byte)(level - cur));
                     //Add lower level spills but not duplicates
                     foreach (var spill in temp.possibleSkills)
@@ -101,10 +105,130 @@ namespace Items
             int rand2 = UnityEngine.Random.Range(0, tempSpill.Count);
             return tempSpill[rand2];
         }
-
+        /// <summary>
+        /// Generates the connections for an item
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="dictionary"></param>
         public void RollConnections(byte level, ref ItemData.ConnectionDictionary dictionary)
         {
+            var l = GetInfo(level);
 
+            float total = 0;
+
+            foreach (var v in l.connectionChance.Values)
+                total += v.weight;
+
+            float rand = UnityEngine.Random.Range(0, total);
+
+            byte amount = 0;
+            total = 0;
+            bool found = false;
+            //Find how many connections we should have
+            while (!found && amount < 4)
+            {
+                if (l.connectionChance.ContainsKey(amount))
+                {
+                    total += l.connectionChance[amount].weight;
+
+                    if (rand < total)
+                        break;
+                }
+                else
+                {   //Just presume that there is no more amounts that we can have
+                    amount = 0;
+                    break;
+                }
+
+                amount++;
+            }
+
+            List<ConnectionDirection> connections = new List<ConnectionDirection>();
+            connections.Add(ConnectionDirection.NORTH);
+            connections.Add(ConnectionDirection.SOUTH);
+            connections.Add(ConnectionDirection.EAST);
+            connections.Add(ConnectionDirection.WEST);
+
+            total = 0;
+            foreach (var v in l.typeChances.Values)
+                total += v.weight;
+            //Roll the connections
+            float temp;
+            for (int i = 0; i < amount; i++)
+            {
+                int rand2 = UnityEngine.Random.Range(0, connections.Count);
+                //Select a random type
+                ConnectionType type = ConnectionType.RED;
+                rand = UnityEngine.Random.Range(0, total);
+                temp = 0;
+                foreach(var k in l.typeChances.Keys)
+                {
+                    temp += l.typeChances[k].weight;
+
+                    if (rand < temp)
+                    {
+                        type = k;
+                        break;
+                    }
+                }
+
+                dictionary.Add(connections[rand2], type);
+                connections.RemoveAt(rand2);
+            }
+        }
+
+        public void RollStats(byte level, ref StatDictionary dictionary)
+        {
+            var l = GetInfo(level);
+
+            tempStats.Clear();
+
+            int amount = UnityEngine.Random.Range(l.possibleNumberOfStats.x, l.possibleNumberOfStats.y + 1);
+
+            List<Stat> s = new List<Stat>();
+            foreach (var k in l.statChances.Keys)
+            {   //Random the stat
+                s.Add(k);
+                tempStats[k] = UnityEngine.Random.Range(l.statChances[k].statRange.x, l.statChances[k].statRange.y);
+            }
+            //If use previous levels stats, get them
+            if (l.usePreviousLevel)
+            {   
+                bool checkPrevious = true;
+                int cur = 0;
+                while (checkPrevious)
+                {
+                    cur++;
+                    //Make sure there is a previous level to get
+                    byte n = (byte)(level - cur);
+
+                    if (!levelInfo.ContainsKey(n))
+                        break;
+
+                    var temp = GetInfo(n);
+                    //Add it stats
+                    foreach (var k in temp.statChances.Keys)
+                    {   //Already got that stat
+                        if (tempStats.ContainsKey(k))
+                            continue;
+                        //Random the stat
+                        s.Add(k);
+                        tempStats[k] = UnityEngine.Random.Range(temp.statChances[k].statRange.x, temp.statChances[k].statRange.y);
+                    }
+                    //Keep going until a level says not to use the previous stats.
+                    checkPrevious = temp.usePreviousLevel;
+                }
+            }
+            //Get random stats
+            while (amount > 0)
+            {
+                int rand = UnityEngine.Random.Range(0, s.Count);
+                //Add stat
+                dictionary.Add(s[rand], tempStats[s[rand]]);
+                s.RemoveAt(rand);
+
+                amount--;
+            }
         }
 
         private ItemLevelInfo GetInfo(byte level)
@@ -204,6 +328,8 @@ namespace Items
             [BoxGroup("Stats")]
             [Tooltip("To also include the previous levels")]
             public bool usePreviousLevel = false;
+            [BoxGroup("Stats")]
+            public Vector2Int possibleNumberOfStats;
 #if UNITY_EDITOR
             [OnCollectionChanged("RefreshStatProbability")]
 #endif

@@ -14,7 +14,9 @@ namespace Items
         /// Currently equipped items
         /// </summary>
         private static ItemData[,] _equipped = new ItemData[ItemIDs.INVENTORY_SIZE, ItemIDs.INVENTORY_SIZE];
-
+        /// <summary>
+        /// Storage for the players currently equipped skills
+        /// </summary>
         private static List<GenericSpill> _skills = new List<GenericSpill>();
         /// <summary>
         /// The combined stats of all equipped items
