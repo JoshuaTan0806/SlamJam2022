@@ -6,6 +6,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float MoveSpeed = 1f;
+    public float Gravity = -9.8f;
+    Vector3 velocity;
+
+    public Transform GroundCheck;
+    public float GroundDistance = 0.2f;
+    public LayerMask Ground;
+    bool isGrounded;
 
     private CharacterController characterController = null;
     private GameObject playerModel = null;
@@ -19,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        isGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, Ground);
+        if(isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0f;
+        }
+
         Move();
     }
 
@@ -36,5 +49,8 @@ public class PlayerMovement : MonoBehaviour
             characterController.Move(direction * MoveSpeed * Time.deltaTime);
             playerModel.transform.forward = direction;
         }
+
+        velocity.y += Gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
     }
 }

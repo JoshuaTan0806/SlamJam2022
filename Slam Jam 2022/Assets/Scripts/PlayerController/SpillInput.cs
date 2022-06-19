@@ -5,12 +5,11 @@ using UnityEngine;
 public class SpillInput : MonoBehaviour
 {
     public KeyCode Input;
-    //Place item variable here(Items hold references to spills and that makes my life easy)
-
-    // Start is called before the first frame update
-    void Start()
+    GenericSpill spill;
+    public GenericSpill Spill
     {
-        
+        get { return spill; }
+        set { spill = value; }
     }
 
     // Update is called once per frame
