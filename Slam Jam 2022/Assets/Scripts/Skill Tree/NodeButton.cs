@@ -116,7 +116,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         isHighlighted = IsHighlighted;
     }
 
-    void ChangeHighlight(bool dummyBool = false)
+    public void ChangeHighlight(bool dummyBool = false)
     {
         if (isHighlighted)
             Outline.color = HighlightedColor;
