@@ -63,10 +63,10 @@ public class SkillTree : MonoBehaviour
                 maxY = SkillTreeManager.allNodes[i].coordinates.y;
         }
 
-        minX *= 1080/30;
-        maxX *= 1080/30;
-        minY *= 1920/30;
-        maxY *= 1920/30;
+        minX *= coordinateMultiplier;
+        maxX *= coordinateMultiplier;
+        minY *= coordinateMultiplier;
+        maxY *= coordinateMultiplier;
     }
 
     void Populate()

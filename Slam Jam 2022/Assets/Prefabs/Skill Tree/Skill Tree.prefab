@@ -1260,8 +1260,8 @@ MonoBehaviour:
   skillPointsLabel: {fileID: 9136484499426895081}
   close: {fileID: 3787811904221934167}
   reset: {fileID: 2910588259195824488}
-  minScale: 0.5
-  maxScale: 2
+  minScale: 0.3
+  maxScale: 1
   scrollMultiplier: 0.1
 --- !u!1 &4847865787359432060
 GameObject:

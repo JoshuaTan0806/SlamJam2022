@@ -94,18 +94,24 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void ResetInfoPos()
     {
+        RectTransform infoTransform = info.GetComponent<RectTransform>();
+        infoTransform.localScale = Vector3.one / info.transform.parent.GetComponent<RectTransform>().lossyScale.x / 2;
+
         RectTransform transform = GetComponent<RectTransform>();
+
         Vector3 nodePos = transform.anchoredPosition;
 
+        RectTransform infoChildTransform = info.GetChild(0).GetComponent<RectTransform>();
+
         if (Input.mousePosition.x < Screen.width * 2 / 3)
-            nodePos.x += info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
+            nodePos.x += infoChildTransform.rect.width * infoTransform.localScale.x / 2 + transform.rect.width;
         else
-            nodePos.x -= info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
+            nodePos.x -= infoChildTransform.rect.width * infoTransform.localScale.x / 2 + transform.rect.width;
 
         if (Input.mousePosition.y < Screen.height / 4)
-            nodePos.y += info.GetChild(0).GetComponent<RectTransform>().rect.height + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) - transform.rect.height;
+            nodePos.y += infoChildTransform.rect.height + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) - transform.rect.height;
 
-        info.GetComponent<RectTransform>().anchoredPosition = nodePos;
+        infoTransform.anchoredPosition = nodePos;
     }
 
     public void OnPointerExit(PointerEventData eventData)
