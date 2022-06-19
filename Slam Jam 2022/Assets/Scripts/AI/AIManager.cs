@@ -46,6 +46,9 @@ public class AIManager : MonoBehaviour
 		{
 			sightTimer = sightCheckCooldown;
 
+			if(AiTarget)
+				transform.LookAt(new Vector3(AiTarget.transform.position.x, transform.position.y, AiTarget.transform.position.z));
+
 			if (triggered)
 			{
 				//If we can't spot an enemy while triggered
@@ -164,9 +167,7 @@ public class AIManager : MonoBehaviour
 	}
 
 	void PickTriggeredState()
-	{
-		transform.LookAt(new Vector3(aiTarget.transform.position.x, transform.position.y, aiTarget.transform.position.z));
-
+	{ 
 		int max = 1;
 		foreach (var i in triggeredActions)
 		{

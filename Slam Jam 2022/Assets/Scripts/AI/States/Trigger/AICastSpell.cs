@@ -20,6 +20,10 @@ public class AICastSpell : AITriggeredState
     [Tooltip("How close to the target we wish to be in order to cast")]
     [SerializeField] float idealCastDistance;
 
+    [HideIf("castOnSpot")]
+    [Tooltip("If true, will snap to the target when casting")]
+    [SerializeField] bool snapOnCast = false;
+
     bool casted = false;
     Vector3 currentDestination;
 
@@ -50,7 +54,7 @@ public class AICastSpell : AITriggeredState
         if (casted)
             return;
 
-        if(Vector3.Distance(currentDestination, target.transform.position) > 1.5f)
+        if (Vector3.Distance(currentDestination, target.transform.position) > 1.5f)
         {
             SetDestination();
         }
