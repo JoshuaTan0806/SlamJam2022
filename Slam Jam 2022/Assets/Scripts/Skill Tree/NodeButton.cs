@@ -71,27 +71,47 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Vector3 offset;
-
-        if (Input.mousePosition.x < Screen.width/2)
-            offset = new Vector3(100, 30, 0);
-        else
-            offset = new Vector3(-100, 30, 0);
-
-        info = Instantiate(infoPrefab, transform.position + offset, Quaternion.identity, transform);
-
-        TMPro.TextMeshProUGUI txt = info.GetComponent<TMPro.TextMeshProUGUI>();
-        txt.text = "";
-        for (int i = 0; i < node.powerUps.Count; i++)
+        if(info)
         {
-            txt.text += node.powerUps[i].Description + "\n";
+            info.SetActive(true);
         }
+        else
+        {
+            info = Instantiate(infoPrefab, transform.parent.parent);
+
+            NodeDescription n = info.GetComponent<NodeDescription>();
+
+            n.SpawnTitle(node.Name);
+
+            for (int i = 0; i < node.powerUps.Count; i++)
+            {
+                n.SpawnDescription(node.powerUps[i].Description);
+            }
+        }
+
+        ResetInfoPos();
+    }
+
+    void ResetInfoPos()
+    {
+        RectTransform transform = GetComponent<RectTransform>();
+        Vector3 nodePos = transform.anchoredPosition;
+
+        if (Input.mousePosition.x < Screen.width * 2 / 3)
+            nodePos.x += info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
+        else
+            nodePos.x -= info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
+
+        if (Input.mousePosition.y < Screen.height / 4)
+            nodePos.y += info.GetChild(0).GetComponent<RectTransform>().rect.height + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) - transform.rect.height;
+
+        info.GetComponent<RectTransform>().anchoredPosition = nodePos;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (info)
-            Destroy(info);
+            info.SetActive(false);
     }
 
     void CheckIfHighlighted(string str)
