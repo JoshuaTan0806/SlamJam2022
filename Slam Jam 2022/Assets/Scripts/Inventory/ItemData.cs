@@ -157,6 +157,8 @@ namespace Items
             ret._isInstance = true;
             ret.type = rollData.RollType();
             ret.Spill = rollData.RollSkill(level);
+            rollData.RollConnections(level, ref ret.possibleConnections);
+            rollData.RollStats(level, ref ret.stats);
 
             return ret;
         }
