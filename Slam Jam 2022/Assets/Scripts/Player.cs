@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerStats))]
-public class Player : MonoBehaviour
+public class Player : PlayerStats
 {
     public static Player instance;
 
-    PlayerStats stats;
     public int skillPoints;
+
+    [SerializeField] StatDictionary baseStats = new StatDictionary();
 
     private void Awake()
     {
@@ -17,11 +17,42 @@ public class Player : MonoBehaviour
         else
             Destroy(gameObject);
 
-        stats = GetComponent<PlayerStats>();
+        Items.ItemInventory.onItemsRefresh += RefreshBonuses;
     }
-
-    public void AddStat(string stat, float value)
+    /// <summary>
+    /// Rebuilds the players stats
+    /// </summary>
+    private void RefreshBonuses()
     {
-        stats.AddStat(stat, value);
+        stats.Clear();
+        //Combine stats
+        AddStats(baseStats);
+        AddStats(Items.ItemInventory.GetItemStats());
+
+        RecalculateStats();
+    }
+    /// <summary>
+    /// Calculates the players current stats.
+    /// </summary>
+    private void RecalculateStats()
+    {
+        //Read the stats from stats and re-calculate any stats
+    }
+    /// <summary>
+    /// Adds a stat dictionary to our current stats
+    /// </summary>
+    /// <param name="stats"></param>
+    private void AddStats(StatDictionary stats)
+    {
+        if (stats == null)
+            return;
+        //Add the stats to our current stats
+        foreach (var stat in stats.Keys)
+        {
+            if (stats.ContainsKey(stat))
+                stats[stat] += stats[stat];
+            else
+                stats[stat] = stats[stat];
+        }
     }
 }

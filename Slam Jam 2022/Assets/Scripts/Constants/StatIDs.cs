@@ -4,7 +4,28 @@
 /// </summary>
 public static class StatIDs
 {
-    public const string STRENGTH = "S";
-    public const string CURRENT_SATURATION = "SAT";
-    public const string MAX_SATURATION = "MSAT";
+    public static string StatToName(Stat stat)
+    {
+        switch(stat)
+        {
+            default:
+                return stat.ToString();
+        }
+    }
+}
+/// <summary>
+/// Dictionary for storing stats.
+/// </summary>
+[System.Serializable]
+public class StatDictionary : SerializableDictionary<Stat, float> { }
+
+public enum Stat
+{
+    CurrentSaturation = 'H',
+    MaxSaturation = 'P',
+    Damage = 'D',
+    PercentDamage = 'd',
+    Speed = 'S',
+    PercentSpeed = 's',
+    ProjectilePierceAmount = 'p',
 }

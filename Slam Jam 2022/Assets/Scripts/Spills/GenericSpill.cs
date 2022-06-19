@@ -18,7 +18,7 @@ public class GenericSpill : ScriptableObject
 
     [Tooltip("How long the cast takes to go on cooldown")]
     [SerializeField] protected float castCooldown;
-    float castTimer;
+    float castTimer = -1;
     public float CastCooldown => castCooldown;
     public float CastTimer => castTimer;
 
@@ -28,7 +28,7 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
-        if (caster.GetStat(StatIDs.CURRENT_SATURATION) + castCost > caster.GetStat(StatIDs.MAX_SATURATION))
+        if (caster.GetStat(Stat.CurrentSaturation) + castCost > caster.GetStat(Stat.MaxSaturation))
             return false;
 
         if (CastTimer > 0)
@@ -42,7 +42,7 @@ public class GenericSpill : ScriptableObject
         if (!CanCastSpell(caster))
             return false;
 
-        caster.AddStat(StatIDs.CURRENT_SATURATION, castCost);
+        caster.AddStat(Stat.CurrentSaturation, castCost);
 
         spellToggled = !spellToggled;
 

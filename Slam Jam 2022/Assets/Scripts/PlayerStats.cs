@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [System.Serializable]
-    public class StatDictionary : SerializableDictionary<string, float> { }
-
-    [SerializeField] StatDictionary stats = new StatDictionary();
+    [SerializeField] protected StatDictionary stats = new StatDictionary();
 
     private void Awake()
     {
-        if(GetStat(StatIDs.CURRENT_SATURATION) != 0)
-            stats.Add(StatIDs.CURRENT_SATURATION, GetStat(StatIDs.MAX_SATURATION));
     }
 
-    public void AddStat(string stat, float value)
+    public void AddStat(Stat stat, float value)
     {
         if (!stats.ContainsKey(stat))
             stats.Add(stat, value);
@@ -23,11 +18,26 @@ public class PlayerStats : MonoBehaviour
             stats[stat] += value;
     }
 
-    public float GetStat(string stat)
+    public float GetStat(Stat stat)
     {
         return stats.ContainsKey(stat) ? stats[stat] : 0;
     }
 
     List<Summonable> currentActiveSummons = new List<Summonable>();
     public List<Summonable> CurrentActiveSummons => currentActiveSummons;
+
+    public List<PlayerStats> GetPlayerMinions()
+    {
+        List<PlayerStats> minions = new List<PlayerStats>();
+
+        foreach (var m in CurrentActiveSummons)
+        {
+            PlayerStats s = m.GetComponent<PlayerStats>();
+
+            if (s)
+                minions.Add(s);
+        }
+
+        return minions;
+    }
 }

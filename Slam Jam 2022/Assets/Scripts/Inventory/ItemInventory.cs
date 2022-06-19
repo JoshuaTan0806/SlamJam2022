@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,14 @@ namespace Items
         /// Currently equipped items
         /// </summary>
         private static ItemData[,] _equipped = new ItemData[ItemIDs.INVENTORY_SIZE, ItemIDs.INVENTORY_SIZE];
+        /// <summary>
+        /// The combined stats of all equipped items
+        /// </summary>
+        private static StatDictionary _combinedItemStats = new StatDictionary();
+        /// <summary>
+        /// Called everytime the items are refreshed
+        /// </summary>
+        public static System.Action onItemsRefresh = null;
         /// <summary>
         /// Equips an item
         /// </summary>
@@ -31,7 +40,10 @@ namespace Items
         /// Refreshs the bonuses you get from items
         /// </summary>
         public static void RefreshItemBonuses()
-        {
+        {   //Rebuild bonus stats from items
+            _combinedItemStats.Clear();
+
+            StatDictionary itemStats;
             for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
                 for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
                 {
@@ -86,10 +98,40 @@ namespace Items
                     }
                     //Set the level of the item
                     data.SetLevel(validConnections);
-                }
-            //Refresh bonus stats
 
-            throw new System.NotImplementedException();
+                    itemStats = data.GetStats();
+
+                    //Refresh bonus stats
+                    foreach (var stat in itemStats.Keys)
+                    {   //If has, add
+                        if (_combinedItemStats.ContainsKey(stat))
+                            _combinedItemStats[stat] += itemStats[stat];
+                        //Else set
+                        else
+                            _combinedItemStats[stat] = itemStats[stat];
+                    }
+                }
+
+            onItemsRefresh.SafeInvoke();
         }
+        /// <summary>
+        /// Get an item from the inventory.
+        /// </summary>
+        /// <param name="index">Index of the item to get</param>
+        /// <returns>Returns the item at the index. Returns null if no item</returns>
+        public static ItemData GetItem(Vector2Int index)
+        {
+            ItemData ret = _equipped[index.x, index.y];
+
+            if (ret && !ret.IsInstance)
+                throw ItemIDs.NOT_INSTANCED_ERROR;
+
+            return ret;
+        }
+        /// <summary>
+        /// Gets the combined stats from all equipped items
+        /// </summary>
+        /// <returns></returns>
+        public static StatDictionary GetItemStats() => _combinedItemStats;
     }
 }
