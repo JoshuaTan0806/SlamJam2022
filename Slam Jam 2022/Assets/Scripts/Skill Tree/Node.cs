@@ -63,6 +63,7 @@ public class Node : ScriptableObject
                 isActive = value;
                 ApplyPowerUps(value);
                 OnActiveChanged?.Invoke(value);
+                SkillTreeManager.instance.RefreshSkillTree();
             }
         }
     }

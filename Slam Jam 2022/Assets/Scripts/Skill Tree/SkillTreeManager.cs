@@ -40,8 +40,10 @@ public class SkillTreeManager : MonoBehaviour
     {
         if (SkillTree == null)
             SkillTree = Instantiate(SkillTreePrefab);
+        else if (SkillTree.activeInHierarchy)
+            SkillTree.SetActive(false);
         else
-            Destroy(SkillTree);
+            SkillTree.SetActive(true);
     }
 
     public void RefreshSkillTree()
@@ -50,11 +52,15 @@ public class SkillTreeManager : MonoBehaviour
             SkillTree.GetComponent<SkillTree>().Refresh();
     }
 
-    void ResetSkillTree()
+    public void ResetSkillTree()
     {
         for (int i = 0; i < nodes.Count; i++)
         {
-            nodes[i].IsActive = false;
+            if (nodes[i].IsActive)
+            {
+                Player.instance.skillPoints++;
+                nodes[i].IsActive = false;
+            }
         }
     }
 
