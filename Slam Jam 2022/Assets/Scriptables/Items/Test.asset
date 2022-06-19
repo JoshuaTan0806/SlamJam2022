@@ -16,3 +16,6 @@ MonoBehaviour:
   randomiseConnectionDirection: 0
   removeChance: 0.5
   randomiseConnectionType: 0
+  stats:
+    m_keys: 
+    m_values: []
