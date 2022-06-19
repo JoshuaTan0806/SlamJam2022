@@ -152,6 +152,26 @@ namespace Items
 
             return stats;
         }
+        /// <summary>
+        /// Converts the item to json
+        /// </summary>
+        /// <returns>Returns the item has json</returns>
+        public string Save()
+        {
+            return JsonUtility.ToJson(this);
+        }
+        /// <summary>
+        /// Loads an Item from Json
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns>Return an instanced copy of json</returns>
+        public static ItemData Load(string json)
+        {
+            ItemData ret = JsonUtility.FromJson<ItemData>(json);
+            ret._isInstance = true;
+
+            return ret;
+        }
         #endregion
 
         /// <summary>
