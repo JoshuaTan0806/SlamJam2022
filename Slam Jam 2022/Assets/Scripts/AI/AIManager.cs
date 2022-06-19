@@ -42,14 +42,14 @@ public class AIManager : MonoBehaviour
 	private void Update()
 	{
 		sightTimer -= Time.deltaTime;
-		if(sightTimer <= 0)
+		if (sightTimer <= 0)
 		{
 			sightTimer = sightCheckCooldown;
 
 			if (triggered)
 			{
 				//If we can't spot an enemy while triggered
-				if(!CanSeeEnemies(out aiTarget))
+				if (!CanSeeEnemies(out aiTarget))
 				{
 					//Debug.Log("Back to idle");
 
@@ -60,7 +60,7 @@ public class AIManager : MonoBehaviour
 			else
 			{
 				//If we can spot an enemy while idle
-				if(CanSeeEnemies(out aiTarget))
+				if (CanSeeEnemies(out aiTarget))
 				{
 					//Debug.Log("Back to triggered");
 
@@ -189,6 +189,20 @@ public class AIManager : MonoBehaviour
 	{
 		if (currentState)
 			currentState.StopState();
+
+		if (state.SingleTime)
+		{
+			if (state is AIIdleState)
+			{
+				if (idleActions.ContainsKey(state as AIIdleState))
+					idleActions.Remove(state as AIIdleState);
+			}
+			else if (state is AITriggeredState)
+			{
+				if (triggeredActions.ContainsKey(state as AITriggeredState))
+					triggeredActions.Remove(state as AITriggeredState);
+			}
+		}
 
 		currentState = Instantiate(state);
 

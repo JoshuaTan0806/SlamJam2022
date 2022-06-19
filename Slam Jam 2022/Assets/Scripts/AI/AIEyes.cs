@@ -8,7 +8,7 @@ public class AIEyes : MonoBehaviour
 	[Tooltip("How close to the AI something can be before it is automatically noticed")]
 	[SerializeField] float autoViewDist = 15;
 
-	[Range(1, 359)]
+	[Range(1, 179)]
 	[SerializeField] float fieldOfView = 45;
 	float dotView;
 

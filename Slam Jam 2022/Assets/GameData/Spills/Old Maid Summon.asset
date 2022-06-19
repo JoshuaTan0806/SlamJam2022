@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8a3cfe7e2991d54f99230c5d7fe2668, type: 3}
-  m_Name: MeleePlasma
+  m_Script: {fileID: 11500000, guid: 87beb564d844db140b829b9a8e85721b, type: 3}
+  m_Name: Old Maid Summon
   m_EditorClassIdentifier: 
-  stateDuration: -1
-  toCast: {fileID: 11400000, guid: 6c0064095bbb2454aa3d4842fb8f726e, type: 2}
-  afterCastCooldown: 1
-  castOnSpot: 0
-  idealCastDistance: 3
+  castCost: 5
+  castCooldown: 5
+  spellType: 0
+  summon: {fileID: -64244957904412927, guid: 7f93174c7e25b5a43809aa478bc87779, type: 3}
+  maxSummons: 1
+  numToSummon: 1

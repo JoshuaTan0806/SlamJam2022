@@ -34,7 +34,18 @@ public class SummonSpill : GenericSpill
 
 		var inst = Instantiate(summon);
 		inst.Initialise(caster, this);
+		caster.CurrentActiveSummons.Add(inst);
+		currentSummons++;
+
+		inst.OnSummonDestroyed += () => RemoveSummon(inst);
 
 		return true;
+	}
+
+	void RemoveSummon(Summonable s)
+	{
+		//s.OnSummonDestroyed -= () => RemoveSummon(s);
+
+		currentSummons--;
 	}
 }

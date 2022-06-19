@@ -27,6 +27,8 @@ public class Summonable : MonoBehaviour
     SummonSpill spill;
     public SummonSpill Spill => spill;
 
+    public event System.Action OnSummonDestroyed;
+
     public virtual void Initialise(PlayerStats summoner, SummonSpill spill)
     {
         this.summoner = summoner;
@@ -56,6 +58,8 @@ public class Summonable : MonoBehaviour
 
     public virtual void DestroySummon()
     {
+        OnSummonDestroyed?.Invoke();
+
         summoner.CurrentActiveSummons.Remove(this);
 
         Destroy(gameObject);

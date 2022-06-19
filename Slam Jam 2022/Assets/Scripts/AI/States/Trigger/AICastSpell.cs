@@ -38,7 +38,7 @@ public class AICastSpell : AITriggeredState
         }
         else
         {
-            Agent.stoppingDistance = idealCastDistance - 0.2f;
+            Agent.stoppingDistance = idealCastDistance - 1f;
             SetDestination();
         }
     }

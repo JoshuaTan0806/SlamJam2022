@@ -9,6 +9,12 @@ public class AIState : ScriptableObject
 	[SerializeField] protected float stateDuration = -1;
 	public float StateDuration => stateDuration;
 
+	[Space]
+
+	[Tooltip("If true, action will remove itself after single use")]
+	[SerializeField] protected bool singleTime = false;
+	public bool SingleTime => singleTime;
+
 	float stateTimer;
 	public float StateTimer => stateTimer;
 
