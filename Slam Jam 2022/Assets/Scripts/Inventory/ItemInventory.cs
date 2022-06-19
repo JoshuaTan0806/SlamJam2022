@@ -133,5 +133,51 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         public static StatDictionary GetItemStats() => _combinedItemStats;
+        /// <summary>
+        /// Saves the players inventory as a string
+        /// </summary>
+        /// <returns>Player inventory string</returns>
+        public static string Save()
+        {   //I don't like it but it works to do mass string concat
+            string ret = string.Empty;
+
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                {
+                    ItemData cur = _equipped[x, y];
+
+                    if (cur)
+                        ret += "|" + cur.Save();
+                    else
+                        ret += "|";
+                }
+            //The first character will be a | so we can remove that
+            ret.Remove(0);
+
+            return ret;
+        }
+        /// <summary>
+        /// Loads the players inventory from a save string
+        /// </summary>
+        /// <param name="saveData">The save string</param>
+        public static void Load(string saveData)
+        {   //Nothing to load
+            if (saveData == null)
+                return;
+            //This should result in 9 items
+            string[] items = saveData.Split('|', System.StringSplitOptions.None);
+            int i = 0;
+
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                {
+                    string item = items[i];
+                    //If not null, load
+                    if (!string.IsNullOrEmpty(item))
+                        _equipped[x, y] = ItemData.Load(item);
+
+                    i++;
+                }
+        }
     }
 }
