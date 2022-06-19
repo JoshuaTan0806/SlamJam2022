@@ -6,8 +6,10 @@ using TMPro;
 
 public class SkillTree : MonoBehaviour
 {
+    public static float coordinateMultiplier = 100;
     [SerializeField] GameObject Node;
     [SerializeField] RectTransform NodeHolder;
+    [SerializeField] GameObject line;
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] TextMeshProUGUI skillPointsLabel;
     public static TMP_InputField inputField;
@@ -75,6 +77,18 @@ public class SkillTree : MonoBehaviour
             NodeButton n = g.GetComponentInChildren<NodeButton>();
             n.Node = SkillTreeManager.allNodes[i];
             NodeButtons.Add(n);
+
+            for (int j = 0; j < SkillTreeManager.allNodes[i].connectedNodes.Count; j++)
+            {
+                GameObject l = Instantiate(line, NodeHolder);
+                l.transform.SetAsFirstSibling();
+                RectTransform r = l.GetComponent<RectTransform>();
+                Vector2 linePos = SkillTreeManager.allNodes[i].coordinates + SkillTreeManager.allNodes[i].connectedNodes[j].coordinates;
+                linePos = coordinateMultiplier * linePos / 2;
+                r.anchoredPosition = linePos;
+                r.right = SkillTreeManager.allNodes[i].connectedNodes[j].coordinates - SkillTreeManager.allNodes[i].coordinates;
+                r.localScale = new Vector3(Vector3.Distance(SkillTreeManager.allNodes[i].connectedNodes[j].coordinates, SkillTreeManager.allNodes[i].coordinates) * coordinateMultiplier, r.localScale.y);
+            }
         }
     }
 

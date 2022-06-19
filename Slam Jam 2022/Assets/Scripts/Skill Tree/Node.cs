@@ -48,7 +48,7 @@ public class Node : ScriptableObject
         }
     }
 
-    [SerializeField, ReadOnly] List<Node> connectedNodes;
+    [ReadOnly] public List<Node> connectedNodes;
 
     public bool IsActive
     {
@@ -199,8 +199,6 @@ public class Node : ScriptableObject
     [Button]
     public void ConnectOrRemoveNode()
     {
-        NodeToConnect = null;
-
         if(connectedNodes.Contains(NodeToConnect))
         {
             connectedNodes.Remove(NodeToConnect);
@@ -211,5 +209,7 @@ public class Node : ScriptableObject
             connectedNodes.Add(NodeToConnect);
             NodeToConnect.connectedNodes.Add(this);
         }
+
+        NodeToConnect = null;
     }
 }
