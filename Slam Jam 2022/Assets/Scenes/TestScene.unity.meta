@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Slam Jam 2022/Assets/Scenes/levelTestScene.meta
+guid: d3fec6dba960081498f132b07d379fc4
+folderAsset: yes
+========
 guid: 703b9f3c5b0196c44aba9c1f99ddc220
+>>>>>>>> b361e03acbe91821bb2e4ddc67386cd5d4501c8a:Slam Jam 2022/Assets/Scenes/TestScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
