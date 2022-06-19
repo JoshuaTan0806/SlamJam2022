@@ -18,6 +18,7 @@ public class AIManager : MonoBehaviour
 
 	AIState currentState;
 	AIEyes aiEyes;
+	PlayerStats aiStats;
 
 	PlayerStats aiTarget;
 	public PlayerStats AiTarget => aiTarget;
@@ -30,7 +31,10 @@ public class AIManager : MonoBehaviour
 
 	private void Awake()
 	{
+		aiStats = GetComponent<PlayerStats>();
 		aiEyes = GetComponent<AIEyes>();
+
+		GetComponent<UnityEngine.AI.NavMeshAgent>().speed = aiStats.GetStat(Stat.Speed);
 
 		PickIdleState();
 	}
@@ -38,16 +42,16 @@ public class AIManager : MonoBehaviour
 	private void Update()
 	{
 		sightTimer -= Time.deltaTime;
-		if(sightTimer <= 0)
+		if (sightTimer <= 0)
 		{
 			sightTimer = sightCheckCooldown;
 
 			if (triggered)
 			{
 				//If we can't spot an enemy while triggered
-				if(!CanSeeEnemies(out aiTarget))
+				if (!CanSeeEnemies(out aiTarget))
 				{
-					Debug.Log("Back to idle");
+					//Debug.Log("Back to idle");
 
 					triggered = false;
 					PickIdleState();
@@ -56,9 +60,9 @@ public class AIManager : MonoBehaviour
 			else
 			{
 				//If we can spot an enemy while idle
-				if(CanSeeEnemies(out aiTarget))
+				if (CanSeeEnemies(out aiTarget))
 				{
-					Debug.Log("Back to triggered");
+					//Debug.Log("Back to triggered");
 
 					triggered = true;
 					PickTriggeredState();
@@ -72,7 +76,7 @@ public class AIManager : MonoBehaviour
 
 			if (currentState.StateDuration > 0 && currentState.StateTimer >= currentState.StateDuration)
 			{
-				Debug.Log("State finished");
+				//Debug.Log("State finished");
 
 				if (triggered)
 				{
@@ -186,11 +190,25 @@ public class AIManager : MonoBehaviour
 		if (currentState)
 			currentState.StopState();
 
+		if (state.SingleTime)
+		{
+			if (state is AIIdleState)
+			{
+				if (idleActions.ContainsKey(state as AIIdleState))
+					idleActions.Remove(state as AIIdleState);
+			}
+			else if (state is AITriggeredState)
+			{
+				if (triggeredActions.ContainsKey(state as AITriggeredState))
+					triggeredActions.Remove(state as AITriggeredState);
+			}
+		}
+
 		currentState = Instantiate(state);
 
 		currentState.TriggerState(this);
 
-		Debug.Log($"State changed to: {currentState.name}");
+		//Debug.Log($"State changed to: {currentState.name}");
 	}
 	#endregion
 

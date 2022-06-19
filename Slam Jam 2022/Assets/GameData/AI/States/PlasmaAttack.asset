@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlasmaAttack
   m_EditorClassIdentifier: 
   stateDuration: -1
-  toCast: {fileID: 11400000, guid: 6f01f0efc603a86428c3e38021625916, type: 2}
-  afterCastCooldown: 3
+  toCast: {fileID: 11400000, guid: 6c0064095bbb2454aa3d4842fb8f726e, type: 2}
+  afterCastCooldown: 0.1
   castOnSpot: 1
   idealCastDistance: 0

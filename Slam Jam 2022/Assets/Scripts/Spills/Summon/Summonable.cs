@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Summonable : MonoBehaviour
 {
+    [System.Serializable]
     public enum SummonPlace
     {
         OnPlayer,
-        InFrontOfPlayer
+        InFrontOfPlayer,
+        RandomlyAroundPlayer,
     }
 
     [SerializeField] SummonPlace summonPlace;
@@ -27,12 +29,20 @@ public class Summonable : MonoBehaviour
     SummonSpill spill;
     public SummonSpill Spill => spill;
 
+    public event System.Action OnSummonDestroyed;
+
     public virtual void Initialise(PlayerStats summoner, SummonSpill spill)
     {
         this.summoner = summoner;
         this.spill = spill;
 
         summoner.CurrentActiveSummons.Add(this);
+
+        var casterAsSummonable = summoner.GetComponent<Summonable>();
+        if (casterAsSummonable)
+        {
+            casterAsSummonable.Summoner.CurrentActiveSummons.Add(this);
+        }
 
         if (parentToPlayer)
             transform.SetParent(summoner.transform);
@@ -45,6 +55,9 @@ public class Summonable : MonoBehaviour
             case SummonPlace.InFrontOfPlayer:
                 transform.position = summoner.transform.position + summoner.transform.forward;
                 break;
+            case SummonPlace.RandomlyAroundPlayer:
+                transform.position = summoner.transform.position + new Vector3((Random.insideUnitCircle * 2).x, 0, (Random.insideUnitCircle * 2).y);
+                break;
         }
         transform.position += 
             transform.right * spawnOffset.x
@@ -56,7 +69,15 @@ public class Summonable : MonoBehaviour
 
     public virtual void DestroySummon()
     {
+        OnSummonDestroyed?.Invoke();
+
         summoner.CurrentActiveSummons.Remove(this);
+
+        var casterAsSummonable = summoner.GetComponent<Summonable>();
+        if (casterAsSummonable)
+        {
+            casterAsSummonable.Summoner.CurrentActiveSummons.Remove(this);
+        }
 
         Destroy(gameObject);
     }

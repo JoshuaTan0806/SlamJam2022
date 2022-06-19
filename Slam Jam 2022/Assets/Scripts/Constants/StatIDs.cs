@@ -28,4 +28,8 @@ public enum Stat
     Speed = 'S',
     PercentSpeed = 's',
     ProjectilePierceAmount = 'p',
+    Regenerateion ='r',
+    SpellDamage = 'l',
+    MaxHealthIsOne,
+    DodgeChance
 }

@@ -8,7 +8,7 @@ namespace Items
     /// <summary>
     /// Item class
     /// </summary>
-    [CreateAssetMenu(fileName = "Item", menuName = "Item", order = 0)]
+    [CreateAssetMenu(fileName = "Item", menuName = "Items/Item", order = 0)]
     public class ItemData : ScriptableObject
     {
         #region Variables
@@ -127,6 +127,15 @@ namespace Items
             return ret;
         }
         /// <summary>
+        /// Generates a completely random item
+        /// </summary>
+        /// <param name="scale"></param>
+        /// <returns></returns>
+        public static ItemData CreateRandomItem(float scale)
+        {
+            return null;
+        }
+        /// <summary>
         /// Sets the level of the item
         /// </summary>
         /// <param name="index">The level of the item</param>
@@ -136,7 +145,10 @@ namespace Items
                 throw ItemIDs.NOT_INSTANCED_ERROR;
             //Calculate stat bonuses
         }
-
+        /// <summary>
+        /// Scale the items power
+        /// </summary>
+        /// <param name="scale"></param>
         public void SetScale(float scale)
         {
             throw new System.NotImplementedException();

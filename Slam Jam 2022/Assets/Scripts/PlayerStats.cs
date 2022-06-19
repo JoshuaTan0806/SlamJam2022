@@ -6,6 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] protected StatDictionary stats = new StatDictionary();
 
+    public event System.Action OnDamageTaken;
+
     private void Awake()
     {
     }
@@ -39,5 +41,27 @@ public class PlayerStats : MonoBehaviour
         }
 
         return minions;
+    }
+
+
+    /// <summary>
+    /// Takes damage
+    /// </summary>
+    /// <param name="damage">How much damage we take</param>
+    /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
+    public void TakeDamage(float damage, bool internalDamage = false)
+    {
+        AddStat(Stat.CurrentSaturation, damage);
+
+        if (!internalDamage)
+            OnDamageTaken?.Invoke();
+
+        if (GetStat(Stat.CurrentSaturation) > GetStat(Stat.MaxSaturation))
+            Die();
+    }
+
+    void Die()
+    {
+
     }
 }
