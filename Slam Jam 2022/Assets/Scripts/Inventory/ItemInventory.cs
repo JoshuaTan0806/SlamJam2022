@@ -162,7 +162,7 @@ namespace Items
         /// <param name="saveData">The save string</param>
         public static void Load(string saveData)
         {   //Nothing to load
-            if (saveData == null)
+            if (string.IsNullOrEmpty(saveData))
                 return;
             //This should result in 9 items
             string[] items = saveData.Split('|', System.StringSplitOptions.None);
@@ -171,6 +171,11 @@ namespace Items
             for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
                 for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
                 {
+                    if (i >= items.Length)
+                    {
+                        Debug.LogError("Item Data failed to load propperly!");
+                        return;
+                    }
                     string item = items[i];
                     //If not null, load
                     if (!string.IsNullOrEmpty(item))
