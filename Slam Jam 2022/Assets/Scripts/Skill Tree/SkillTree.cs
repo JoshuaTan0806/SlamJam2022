@@ -21,6 +21,7 @@ public class SkillTree : MonoBehaviour
     [SerializeField] float scrollMultiplier;
 
     List<NodeButton> NodeButtons = new List<NodeButton>();
+    List<Node> AddedNodes = new List<Node>();
 
     private void Awake()
     {
@@ -51,8 +52,13 @@ public class SkillTree : MonoBehaviour
             n.Node = SkillTreeManager.allNodes[i];
             NodeButtons.Add(n);
 
+            AddedNodes.Add(SkillTreeManager.allNodes[i]);
+
             for (int j = 0; j < SkillTreeManager.allNodes[i].connectedNodes.Count; j++)
             {
+                if (AddedNodes.Contains(SkillTreeManager.allNodes[i].connectedNodes[j]))
+                    continue;
+
                 GameObject l = Instantiate(line, NodeHolder);
                 l.transform.SetAsFirstSibling();
                 RectTransform r = l.GetComponent<RectTransform>();

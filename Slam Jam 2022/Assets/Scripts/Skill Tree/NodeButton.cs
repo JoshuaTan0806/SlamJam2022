@@ -109,7 +109,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             nodePos.x -= infoChildTransform.rect.width * infoTransform.localScale.x / 2 + transform.rect.width;
 
         if (Input.mousePosition.y < Screen.height / 4)
-            nodePos.y += infoChildTransform.rect.height + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) - transform.rect.height;
+            nodePos.y += infoChildTransform.rect.height * infoTransform.localScale.x / 2 + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) + transform.rect.height;
 
         infoTransform.anchoredPosition = nodePos;
     }

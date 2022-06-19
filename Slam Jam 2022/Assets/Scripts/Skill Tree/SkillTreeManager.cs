@@ -22,6 +22,8 @@ public class SkillTreeManager : MonoBehaviour
     private void Start()
     {
         InitialiseSkillTree();
+        ToggleSkillTree();
+        ToggleSkillTree();
     }
 
     void InitialiseSkillTree()
