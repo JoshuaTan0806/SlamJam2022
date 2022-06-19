@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77b07615bbf9824ab1517eaf3e85598, type: 3}
   m_Name: ItemBuilder
   m_EditorClassIdentifier: 
+  levelInfo:
+    m_keys: 
+    m_values: []

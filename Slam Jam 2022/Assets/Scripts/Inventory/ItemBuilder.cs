@@ -15,7 +15,6 @@ namespace Items
     {
         public ItemLevelInfoDictionary levelInfo = new ItemLevelInfoDictionary();
 
-
         [Serializable]
         public class ItemLevelInfo
         {
@@ -23,15 +22,18 @@ namespace Items
             [BoxGroup("Skills")]
             [Range(0f, 1f)]
             [Tooltip("The likely hood of an item of this level having a skill")]
-            public double skillChance = 0.5;
+            public float skillChance = 0.5f;
             [BoxGroup("Skills")]
             [Tooltip("To include lower level skills in the pool")]
+            [HideIf("skillChance", Value = 0f)]
             public bool includeLowerLevel = false;
             [BoxGroup("Skills")]
             [ShowIf("includeLowerLevel")]
+            [HideIf("skillChance", Value = 0f)]
             [Tooltip("How many levels below this to include the skills of")]
             public byte levelRange = 0;
             [BoxGroup("Skills")]
+            [HideIf("skillChance", Value = 0f)]
             [Tooltip("The skills that can be chosen from")]
             public List<GenericSpill> possibleSkills = new List<GenericSpill>();
             #endregion
@@ -122,14 +124,14 @@ namespace Items
             }
 
             [Serializable]
-            public class StatChanceDictionary : Dictionary<Stat, StatChance> {}
+            public class StatChanceDictionary : SerializableDictionary<Stat, StatChance> {}
             [Serializable]
-            public class ConnectionChances : Dictionary<byte, Chance> {}
+            public class ConnectionChances : SerializableDictionary<byte, Chance> {}
             [Serializable]
-            public class ConnectionTypeChances : Dictionary<ConnectionType, Chance> {}
+            public class ConnectionTypeChances : SerializableDictionary<ConnectionType, Chance> {}
         }
 
         [Serializable]
-        public class ItemLevelInfoDictionary : Dictionary<byte, ItemLevelInfo> { }
+        public class ItemLevelInfoDictionary : SerializableDictionary<byte, ItemLevelInfo> { }
     }
 }
