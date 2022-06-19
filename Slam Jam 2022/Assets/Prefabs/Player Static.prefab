@@ -142,6 +142,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  Gravity: -9.8
+  GroundCheck: {fileID: 0}
+  GroundDistance: 0.2
+  Ground:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!143 &2686185577221665434
 CharacterController:
   m_ObjectHideFlags: 0
@@ -408,7 +414,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772108, y: 1}
+    m_SensorSize: {x: 1.998155, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
