@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 	List<PlayerStats> immuneEnemies = new List<PlayerStats>();
 	int enemiesHit;
 
-	private void Awake()
+	private void Start()
 	{
 		summonable = GetComponent<Summonable>();
 		rb = GetComponent<Rigidbody>();
