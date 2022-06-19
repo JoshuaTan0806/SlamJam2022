@@ -9,10 +9,29 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] Color ActiveColor;
     [SerializeField] Color AvailableColor;
-    [SerializeField] Image Highlight;
+    [SerializeField] Color HighlightedColor;
+    [SerializeField] Image Outline;
     [SerializeField] Image Icon;
     [SerializeField] GameObject infoPrefab;
     GameObject info;
+    bool isHighlighted
+    {
+        get
+        {
+            return _isHighlighted;
+        }
+        set
+        {
+            if (_isHighlighted != value)
+            {
+                _isHighlighted = value;
+                ChangeHighlight();
+            }
+        }
+    }
+
+    bool _isHighlighted;
+
 
     public Node Node
     {
@@ -28,7 +47,18 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     [ReadOnly, SerializeField] Node node;
-    
+
+    private void Start()
+    {
+        SkillTree.inputField.onValueChanged.AddListener(delegate { CheckIfHighlighted(SkillTree.inputField.text); });
+        ChangeHighlight();
+        node.OnActiveChanged += ChangeHighlight;
+    }
+
+    private void OnDestroy()
+    {
+        node.OnActiveChanged -= ChangeHighlight;
+    }
 
     void Initialise()
     {
@@ -37,11 +67,6 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         
         GetComponent<RectTransform>().localScale = node.size * Vector3.one;
         GetComponent<RectTransform>().anchoredPosition = node.coordinates * 100;
-
-        if (node.IsActive)
-            Highlight.color = ActiveColor;
-        else if (node.CanBeToggledOn())
-            Highlight.color = AvailableColor;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -67,5 +92,39 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (info)
             Destroy(info);
+    }
+
+    void CheckIfHighlighted(string str)
+    {
+        str = str.ToUpper();
+
+        bool IsHighlighted = false;
+
+
+        if (node.Name.ToUpper().Contains(str))
+            IsHighlighted = true;
+
+        for (int i = 0; i < node.powerUps.Count; i++)
+        {
+            if (node.powerUps[i].Description.ToUpper().Contains(str))
+                IsHighlighted = true;
+        }
+
+        if (str.Length == 0)
+            IsHighlighted = false;
+
+        isHighlighted = IsHighlighted;
+    }
+
+    public void ChangeHighlight(bool dummyBool = false)
+    {
+        if (isHighlighted)
+            Outline.color = HighlightedColor;
+        else if (node.IsActive)
+            Outline.color = ActiveColor;
+        else if (node.CanBeToggledOn())
+            Outline.color = AvailableColor;
+        else
+            Outline.color = Color.white;
     }
 }

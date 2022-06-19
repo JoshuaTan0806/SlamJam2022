@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     {
         inputsTaken = new KeyCode[SpillArray.Length];
 
-        //Check for inout overlaps and remove them
+        //Check for input overlaps and remove them
         for(int i = 0; i >= SpillArray.Length; i++)
         {
             for(int e = 0; e >= inputsTaken.Length; e++)

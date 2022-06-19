@@ -15,6 +15,10 @@ namespace Items
         /// </summary>
         private static ItemData[,] _equipped = new ItemData[ItemIDs.INVENTORY_SIZE, ItemIDs.INVENTORY_SIZE];
         /// <summary>
+        /// Storage for the players currently equipped skills
+        /// </summary>
+        private static List<GenericSpill> _skills = new List<GenericSpill>();
+        /// <summary>
         /// The combined stats of all equipped items
         /// </summary>
         private static StatDictionary _combinedItemStats = new StatDictionary();
@@ -42,6 +46,7 @@ namespace Items
         public static void RefreshItemBonuses()
         {   //Rebuild bonus stats from items
             _combinedItemStats.Clear();
+            _skills.Clear();
 
             StatDictionary itemStats;
             for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
@@ -51,6 +56,9 @@ namespace Items
                     //Item is null
                     if (!data)
                         continue;
+
+                    if (data.Spill)
+                        _skills.Add(data.Spill);
 
                     int validConnections = 0;
                     //Calculate how many connections are valid.
@@ -133,6 +141,11 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         public static StatDictionary GetItemStats() => _combinedItemStats;
+        /// <summary>
+        /// Gets the spills the player currently has equipped
+        /// </summary>
+        /// <returns></returns>
+        public static ReadOnlyCollection<GenericSpill> GetSpills() => _skills.AsReadOnly();
         /// <summary>
         /// Saves the players inventory as a string
         /// </summary>

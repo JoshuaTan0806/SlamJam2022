@@ -10,11 +10,14 @@ public class SkillTree : MonoBehaviour
     [SerializeField] RectTransform NodeHolder;
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] TextMeshProUGUI skillPointsLabel;
-
+    public static TMP_InputField inputField;
+    [SerializeField] Button close;
+    [SerializeField] Button reset;
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] float scrollMultiplier;
 
+    List<NodeButton> NodeButtons = new List<NodeButton>();
     float minX, maxX, minY, maxY;
 
     private void Awake()
@@ -22,7 +25,10 @@ public class SkillTree : MonoBehaviour
         Populate();
         InitialiseBoundaries();
         SetSkillPointsText();
+        inputField = GetComponentInChildren<TMP_InputField>();
         Player.OnSkillPointsChanged += SetSkillPointsText;
+        reset.onClick.AddListener(() => SkillTreeManager.instance.ResetSkillTree());
+        close.onClick.AddListener(() => SkillTreeManager.instance.ToggleSkillTree());
     }
 
     private void OnDestroy()
@@ -61,26 +67,14 @@ public class SkillTree : MonoBehaviour
         maxY *= 1920/30;
     }
 
-    public void Refresh()
-    {
-        Destroy();
-        Populate();
-    }
-
     void Populate()
     {
         for (int i = 0; i < SkillTreeManager.allNodes.Count; i++)
         {
             GameObject g = Instantiate(Node, NodeHolder.transform);
-            g.GetComponentInChildren<NodeButton>().Node = SkillTreeManager.allNodes[i];
-        }
-    }
-
-    void Destroy()
-    {
-        for (int i = NodeHolder.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(NodeHolder.transform.GetChild(i).gameObject);
+            NodeButton n = g.GetComponentInChildren<NodeButton>();
+            n.Node = SkillTreeManager.allNodes[i];
+            NodeButtons.Add(n);
         }
     }
 
@@ -120,5 +114,13 @@ public class SkillTree : MonoBehaviour
 
 
         NodeHolder.anchoredPosition = newPos;
+    }
+
+    public void Refresh()
+    {
+        for (int i = 0; i < NodeButtons.Count; i++)
+        {
+            NodeButtons[i].ChangeHighlight();
+        }
     }
 }
