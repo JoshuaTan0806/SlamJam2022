@@ -1,13 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Items;
 
-
-public struct SpillInput
-{
-    public KeyCode Input;
-    GenericSpill spill;
-}
 
 public class PlayerInput : MonoBehaviour
 {
@@ -21,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         InputCheck();
+        //SpillCheck();
     }
 
     private void InputCheck()
@@ -42,6 +38,15 @@ public class PlayerInput : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    private void SpillCheck()
+    {
+        IReadOnlyCollection<GenericSpill> spillList = ItemInventory.GetSpills();
+        for (int i = 0; i >= SpillArray.Length; i++)
+        {
+            //SpillArray[i].Spill
         }
     }
 }
