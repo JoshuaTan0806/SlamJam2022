@@ -23,15 +23,19 @@ namespace Items
             [Range(0f, 1f)]
             [Tooltip("The likely hood of an item of this level having a skill")]
             public float skillChance = 0.5f;
+
             [BoxGroup("Skills")]
             [Tooltip("To include lower level skills in the pool")]
             [HideIf("skillChance", Value = 0f)]
             public bool includeLowerLevel = false;
             [BoxGroup("Skills")]
-            [ShowIf("includeLowerLevel")]
-            [HideIf("skillChance", Value = 0f)]
+            [ShowIf("ShowChance")]
             [Tooltip("How many levels below this to include the skills of")]
             public byte levelRange = 0;
+            /// <summary>
+            /// Used to check if the property should show
+            /// </summary>
+            private bool ShowChance => includeLowerLevel && skillChance != 0;
             [BoxGroup("Skills")]
             [HideIf("skillChance", Value = 0f)]
             [Tooltip("The skills that can be chosen from")]
