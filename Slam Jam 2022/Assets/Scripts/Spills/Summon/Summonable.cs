@@ -36,6 +36,12 @@ public class Summonable : MonoBehaviour
 
         summoner.CurrentActiveSummons.Add(this);
 
+        var casterAsSummonable = summoner.GetComponent<Summonable>();
+        if (casterAsSummonable)
+        {
+            casterAsSummonable.Summoner.CurrentActiveSummons.Add(this);
+        }
+
         if (parentToPlayer)
             transform.SetParent(summoner.transform);
 
@@ -61,6 +67,12 @@ public class Summonable : MonoBehaviour
         OnSummonDestroyed?.Invoke();
 
         summoner.CurrentActiveSummons.Remove(this);
+
+        var casterAsSummonable = summoner.GetComponent<Summonable>();
+        if (casterAsSummonable)
+        {
+            casterAsSummonable.Summoner.CurrentActiveSummons.Remove(this);
+        }
 
         Destroy(gameObject);
     }
