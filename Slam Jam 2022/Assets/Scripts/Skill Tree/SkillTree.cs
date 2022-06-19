@@ -2,25 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SkillTree : MonoBehaviour
 {
     [SerializeField] GameObject Node;
     [SerializeField] RectTransform NodeHolder;
     [SerializeField] ScrollRect scrollRect;
+    [SerializeField] TextMeshProUGUI skillPointsLabel;
 
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] float scrollMultiplier;
 
-    [SerializeField] float minX;
-    [SerializeField] float maxX;
-    [SerializeField] float minY;
-    [SerializeField] float maxY;
+    float minX, maxX, minY, maxY;
 
     private void Awake()
     {
         Populate();
+        InitialiseBoundaries();
+        SetSkillPointsText();
+        Player.OnSkillPointsChanged += SetSkillPointsText;
+    }
+
+    private void OnDestroy()
+    {
+        Player.OnSkillPointsChanged -= SetSkillPointsText;
+    }
+
+    void SetSkillPointsText()
+    {
+        skillPointsLabel.SetText("Spill points: " + Player.instance.skillPoints.ToString());
+    }
+
+    void InitialiseBoundaries()
+    {
+        minX = Mathf.Infinity;
+        maxX = Mathf.NegativeInfinity;
+        minY = Mathf.Infinity;
+        maxY = Mathf.NegativeInfinity;
+
+        for (int i = 0; i < SkillTreeManager.allNodes.Count; i++)
+        {
+            if (SkillTreeManager.allNodes[i].coordinates.x < minX)
+                minX = SkillTreeManager.allNodes[i].coordinates.x;
+            if (SkillTreeManager.allNodes[i].coordinates.x > maxX)
+                maxX = SkillTreeManager.allNodes[i].coordinates.x;
+
+            if (SkillTreeManager.allNodes[i].coordinates.y < minY)
+                minY = SkillTreeManager.allNodes[i].coordinates.y;
+            if (SkillTreeManager.allNodes[i].coordinates.y > maxY)
+                maxY = SkillTreeManager.allNodes[i].coordinates.y;
+        }
+
+        minX *= 1080/30;
+        maxX *= 1080/30;
+        minY *= 1920/30;
+        maxY *= 1920/30;
     }
 
     public void Refresh()

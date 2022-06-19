@@ -6,7 +6,20 @@ public class Player : PlayerStats
 {
     public static Player instance;
 
-    public int skillPoints;
+    public int skillPoints
+    {
+        get
+        {
+            return _skillPoints;
+        }
+        set
+        {
+            _skillPoints = value;
+            OnSkillPointsChanged?.Invoke();
+        }
+    }
+    [SerializeField] int _skillPoints;
+    public static System.Action OnSkillPointsChanged;
 
     [SerializeField] StatDictionary baseStats = new StatDictionary();
 
