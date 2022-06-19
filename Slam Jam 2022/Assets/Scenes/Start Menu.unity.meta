@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Slam Jam 2022/Assets/Prefabs/Maps.meta
+guid: ddf4c07d901867b42b27ee131b535e2e
+folderAsset: yes
+========
 guid: 75c2ea5928b74e44289d4c7378bc57f5
+>>>>>>>> b361e03acbe91821bb2e4ddc67386cd5d4501c8a:Slam Jam 2022/Assets/Scenes/Start Menu.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

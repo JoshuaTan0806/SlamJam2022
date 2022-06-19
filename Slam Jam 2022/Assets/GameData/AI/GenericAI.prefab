@@ -53,7 +53,7 @@ MonoBehaviour:
   viewDistance: 10
   visionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
 --- !u!114 &4811475236929372844
 MonoBehaviour:
   m_ObjectHideFlags: 0
