@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GenericSpill : ScriptableObject
 {
+    [System.Serializable]
     public enum SpellType
     {
         SingleCast,

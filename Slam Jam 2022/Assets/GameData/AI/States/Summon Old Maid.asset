@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Summon Old Maid
   m_EditorClassIdentifier: 
   stateDuration: -1
-  singleTime: 1
+  singleTime: 0
   toCast: {fileID: 11400000, guid: 1a541615d5a29a846a547d65d16100ae, type: 2}
   afterCastCooldown: 5
   castOnSpot: 1

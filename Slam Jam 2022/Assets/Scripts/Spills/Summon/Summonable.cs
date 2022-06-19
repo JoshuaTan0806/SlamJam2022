@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Summonable : MonoBehaviour
 {
+    [System.Serializable]
     public enum SummonPlace
     {
         OnPlayer,
-        InFrontOfPlayer
+        InFrontOfPlayer,
+        RandomlyAroundPlayer,
     }
 
     [SerializeField] SummonPlace summonPlace;
@@ -52,6 +54,9 @@ public class Summonable : MonoBehaviour
                 break;
             case SummonPlace.InFrontOfPlayer:
                 transform.position = summoner.transform.position + summoner.transform.forward;
+                break;
+            case SummonPlace.RandomlyAroundPlayer:
+                transform.position = summoner.transform.position + new Vector3((Random.insideUnitCircle * 2).x, 0, (Random.insideUnitCircle * 2).y);
                 break;
         }
         transform.position += 

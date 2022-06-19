@@ -69,9 +69,27 @@ public class Projectile : MonoBehaviour
 			return;
 
 		//If we hit an ally summonable
-		var s = stats.GetComponent<Summonable>();
-		if (s && summonable.Summoner.CurrentActiveSummons.Contains(s))
-			return;
+		var s = other.GetComponent<Summonable>();
+		if (s) 
+		{
+			if(summonable.Summoner.CurrentActiveSummons.Contains(s))
+				return;
+
+			
+		}
+
+		//If our summoner was a summon
+		var summonerAsSummonable = summonable.Summoner.GetComponent<Summonable>();
+		if (summonerAsSummonable)
+		{
+			//If we hit their summoner
+			if (stats == summonerAsSummonable.Summoner)
+				return;
+
+			//If we hit their summoners other summons
+			if (s && summonerAsSummonable.Summoner.CurrentActiveSummons.Contains(s))
+				return;
+		}
 
 		HitEnemy(stats);
 	}
