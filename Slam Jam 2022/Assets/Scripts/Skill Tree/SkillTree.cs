@@ -10,6 +10,7 @@ public class SkillTree : MonoBehaviour
     [SerializeField] RectTransform NodeHolder;
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] TextMeshProUGUI skillPointsLabel;
+    public static TMP_InputField inputField;
 
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
@@ -22,6 +23,7 @@ public class SkillTree : MonoBehaviour
         Populate();
         InitialiseBoundaries();
         SetSkillPointsText();
+        inputField = GetComponentInChildren<TMP_InputField>();
         Player.OnSkillPointsChanged += SetSkillPointsText;
     }
 
