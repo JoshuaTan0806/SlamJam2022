@@ -1255,6 +1255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Node: {fileID: 4830340330693211348, guid: 6c8a28a0190fe1e4c9ccf11c259b0e7b, type: 3}
   NodeHolder: {fileID: 3640359198350300275}
+  line: {fileID: 655513883624126479, guid: 40fa37b685db42f40b632f6c85c7787f, type: 3}
   scrollRect: {fileID: 2282318660126923495}
   skillPointsLabel: {fileID: 9136484499426895081}
   close: {fileID: 3787811904221934167}

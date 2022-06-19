@@ -30,6 +30,10 @@ public enum Stat
     ProjectilePierceAmount = 'p',
     Regenerateion ='r',
     SpellDamage = 'l',
-    MaxHealthIsOne,
-    DodgeChance
+    SplashDamage, //aoe damage
+    SplashArea, //aoe size
+    CascadeChance, //crit chance
+    CascadeDamage, //crit damage
+    CurrentSpeed, //projectile speed
+    CurrentDamage, //projectile damage
 }
