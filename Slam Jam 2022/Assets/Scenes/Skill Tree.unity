@@ -559,7 +559,7 @@ MonoBehaviour:
   stats:
     m_keys: 
     m_values: []
-  _skillPoints: 0
+  _skillPoints: 3
   baseStats:
     m_keys: 
     m_values: []
