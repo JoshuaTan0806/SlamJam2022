@@ -59,7 +59,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         txt.text = "";
         for (int i = 0; i < node.powerUps.Count; i++)
         {
-            txt.text += node.powerUps[i].Name + "\n";
+            txt.text += node.powerUps[i].Description + "\n";
         }
     }
 

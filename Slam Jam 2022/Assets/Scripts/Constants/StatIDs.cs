@@ -30,4 +30,6 @@ public enum Stat
     ProjectilePierceAmount = 'p',
     Regenerateion ='r',
     SpellDamage = 'l',
+    MaxHealthIsOne,
+    DodgeChance
 }
