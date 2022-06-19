@@ -97,10 +97,13 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         RectTransform transform = GetComponent<RectTransform>();
         Vector3 nodePos = transform.anchoredPosition;
 
-        if (Input.mousePosition.x < Screen.width * 3 / 4)
-            nodePos.x += 300;
+        if (Input.mousePosition.x < Screen.width * 2 / 3)
+            nodePos.x += info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
         else
-            nodePos.x -= 300;
+            nodePos.x -= info.GetChild(0).GetComponent<RectTransform>().rect.width / 2 + transform.rect.width;
+
+        if (Input.mousePosition.y < Screen.height / 4)
+            nodePos.y += info.GetChild(0).GetComponent<RectTransform>().rect.height + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) - transform.rect.height;
 
         info.GetComponent<RectTransform>().anchoredPosition = nodePos;
     }
