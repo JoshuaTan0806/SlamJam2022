@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb2fb554d6741942b64a5cc164ef625, type: 3}
-  m_Name: Damage M
+  m_Script: {fileID: 11500000, guid: 1245a00b0724822469d3432710cb25e6, type: 3}
+  m_Name: UltraInstinct
   m_EditorClassIdentifier: 
-  Name: 6% Damage
-  stat: 100
-  increase: 6
+  castCost: 3
+  castCooldown: 5
+  spellType: 1
+  buffLifeTime: 1
+  buffs:
+  - stat: 83
+    val: 10
+  - stat: 115
+    val: 50

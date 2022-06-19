@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 3 0 Damage
   m_EditorClassIdentifier: 
+  Name: 
   icon: {fileID: 21300000, guid: 616f0bfc94f49fb48a0ff369d43044cc, type: 3}
   coordinates: {x: 3, y: 0}
   size: 1
   isStartingNode: 0
   powerUps:
-  - {fileID: 11400000, guid: f887ddc63e5b7d147b920799c97f08b8, type: 2}
+  - Description: 5 Damage
+    Stat: 68
+    value: 5
   connectedNodes:
   - {fileID: 11400000, guid: c2a0c876866db3242b19b817a0bc43b7, type: 2}
   - {fileID: 11400000, guid: 75a944c234cd1f448bf3e2b3ef691c61, type: 2}
+  isActive: 0
   NodeToConnect: {fileID: 0}
