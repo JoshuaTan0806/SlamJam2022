@@ -21,6 +21,7 @@ public class AICastSpell : AITriggeredState
     [SerializeField] float idealCastDistance;
 
     bool casted = false;
+    Vector3 currentDestination;
 
     AIManager ai;
 
@@ -37,7 +38,8 @@ public class AICastSpell : AITriggeredState
         }
         else
         {
-            Agent.SetDestination(ai.AiTarget.transform.position);
+            Agent.stoppingDistance = idealCastDistance - 0.2f;
+            SetDestination();
         }
     }
 
@@ -47,6 +49,11 @@ public class AICastSpell : AITriggeredState
 
         if (casted)
             return;
+
+        if(Vector3.Distance(currentDestination, target.transform.position) > 1.5f)
+        {
+            SetDestination();
+        }
 
         if (Vector3.Distance(target.transform.position, ai.transform.position) < idealCastDistance)
         {
@@ -69,5 +76,11 @@ public class AICastSpell : AITriggeredState
             stats.PerformAfterDelay(FinishState, afterCastCooldown);
         else
             FinishState();
+    }
+
+    void SetDestination()
+    {
+        currentDestination = ai.AiTarget.transform.position;
+        Agent.SetDestination(currentDestination);
     }
 }

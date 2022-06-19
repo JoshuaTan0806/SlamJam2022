@@ -15,6 +15,6 @@ MonoBehaviour:
   castCost: 20
   castCooldown: 1
   spellType: 0
-  summon: {fileID: 335435155, guid: 7b71bfc350ffd7b4aa23107240542ee8, type: 3}
+  summon: {fileID: 7411295714980197463, guid: 1e6eddb54df54c9469f2fc39af2eef22, type: 3}
   maxSummons: -1
   numToSummon: 1

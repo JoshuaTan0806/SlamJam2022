@@ -78,7 +78,7 @@ public class Projectile : MonoBehaviour
 
 	void HitEnemy(PlayerStats stats)
 	{
-		stats.AddStat(Stat.CurrentSaturation, damage);
+		stats.TakeDamage(damage + summonable.Summoner.GetStat(Stat.SpellDamage));
 
 		immuneEnemies.Add(stats);
 		this.PerformAfterDelay(() => immuneEnemies.Remove(stats), 0.5f);

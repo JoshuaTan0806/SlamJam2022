@@ -5,58 +5,66 @@ using UnityEngine;
 
 public class AIEyes : MonoBehaviour
 {
-    [Tooltip("How close to the AI something can be before it is automatically noticed")]
-    [SerializeField] float autoViewDist = 15;
+	[Tooltip("How close to the AI something can be before it is automatically noticed")]
+	[SerializeField] float autoViewDist = 15;
 
-    [Range(1, 359)]
-    [SerializeField] float fieldOfView = 45;
-    float dotView;
-    [SerializeField] float viewDistance = 50;
+	[Range(1, 359)]
+	[SerializeField] float fieldOfView = 45;
+	float dotView;
 
-    [Space]
+	[SerializeField] float viewDistance = 50;
 
-    [Tooltip("What layers can block our view")]
-    [SerializeField] LayerMask visionMask;
+	[Space]
 
-    private void Awake()
-    {
-        dotView = Mathf.Cos(fieldOfView);
-    }
+	[Tooltip("What layers can block our view")]
+	[SerializeField] LayerMask visionMask;
 
-    public bool CanSeeTransform(Transform target)
-    {
-        var dist = Vector3.Distance(target.position, transform.position);
+	private void Awake()
+	{
+		dotView = (((Mathf.Abs(fieldOfView) - 180f) * (1f / 90f)) * -1f) - 1f;
+	}
 
-        if (dist < autoViewDist)
-            return true;
+	public bool CanSeeTransform(Transform target)
+	{
+		var dist = Vector3.Distance(target.position, transform.position);
 
-        if (dist > viewDistance)
-            return false;
+		if (dist < autoViewDist)
+			return true;
 
-        //If we are facing towards the target
-        if (Vector3.Dot(transform.forward, Vector3.Normalize(target.position - transform.position)) > dotView)
-            return true;
+		if (dist > viewDistance)
+			return false;
 
-        //If there are no obstructables blocking the view
-        if (Physics.Raycast(transform.position, target.position, dist, visionMask) == false)
-            return true;
+		//If we are facing away from the target
+		if (!IsLookingTowards(target))
+			return false;
 
-        return false;
-    }
+		//If there are no obstructables blocking the view
+		if (Physics.Raycast(transform.position, target.position, dist, visionMask) == false)
+			return true;
 
-    public List<Transform> GetAllInSight()
-    {
-        List<Transform> seen = Physics.OverlapSphere(transform.position, viewDistance, ~visionMask).Select(t => t.transform).ToList();
+		return false;
+	}
 
-        List<Transform> inSight = new List<Transform>();
-        foreach (var s in seen)
-        {
-            if (Vector3.Dot(transform.forward, Vector3.Normalize(s.position - transform.position)) > dotView)
-            {
-                inSight.Add(s);
-            }
-        }
+	public List<Transform> GetAllInSight()
+	{
+		List<Transform> seen = Physics.OverlapSphere(transform.position, viewDistance, ~visionMask).Select(t => t.transform).ToList();
 
-        return inSight;
-    }
+		List<Transform> inSight = new List<Transform>();
+		foreach (var s in seen)
+		{
+			if (IsLookingTowards(s.transform))
+			{
+				inSight.Add(s);
+			}
+		}
+
+		return inSight;
+	}
+
+	bool IsLookingTowards(Transform target)
+	{
+		float dot = Vector3.Dot(transform.forward, Vector3.Normalize(target.position - transform.position));
+
+		return dot > dotView;
+	}
 }

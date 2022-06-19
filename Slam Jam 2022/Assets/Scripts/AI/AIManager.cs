@@ -18,6 +18,7 @@ public class AIManager : MonoBehaviour
 
 	AIState currentState;
 	AIEyes aiEyes;
+	PlayerStats aiStats;
 
 	PlayerStats aiTarget;
 	public PlayerStats AiTarget => aiTarget;
@@ -30,7 +31,10 @@ public class AIManager : MonoBehaviour
 
 	private void Awake()
 	{
+		aiStats = GetComponent<PlayerStats>();
 		aiEyes = GetComponent<AIEyes>();
+
+		GetComponent<UnityEngine.AI.NavMeshAgent>().speed = aiStats.GetStat(Stat.Speed);
 
 		PickIdleState();
 	}
@@ -47,7 +51,7 @@ public class AIManager : MonoBehaviour
 				//If we can't spot an enemy while triggered
 				if(!CanSeeEnemies(out aiTarget))
 				{
-					Debug.Log("Back to idle");
+					//Debug.Log("Back to idle");
 
 					triggered = false;
 					PickIdleState();
@@ -58,7 +62,7 @@ public class AIManager : MonoBehaviour
 				//If we can spot an enemy while idle
 				if(CanSeeEnemies(out aiTarget))
 				{
-					Debug.Log("Back to triggered");
+					//Debug.Log("Back to triggered");
 
 					triggered = true;
 					PickTriggeredState();
@@ -72,7 +76,7 @@ public class AIManager : MonoBehaviour
 
 			if (currentState.StateDuration > 0 && currentState.StateTimer >= currentState.StateDuration)
 			{
-				Debug.Log("State finished");
+				//Debug.Log("State finished");
 
 				if (triggered)
 				{
@@ -190,7 +194,7 @@ public class AIManager : MonoBehaviour
 
 		currentState.TriggerState(this);
 
-		Debug.Log($"State changed to: {currentState.name}");
+		//Debug.Log($"State changed to: {currentState.name}");
 	}
 	#endregion
 
