@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4896933560789280963}
   - component: {fileID: 270342892123141754}
   m_Layer: 5
-  m_Name: Highlight
+  m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveColor: {r: 1, g: 0.84313726, b: 0, a: 1}
   AvailableColor: {r: 0.5849056, g: 0.3641509, b: 0.1462264, a: 1}
-  Highlight: {fileID: 270342892123141754}
+  HighlightedColor: {r: 0, g: 0, b: 1, a: 1}
+  Outline: {fileID: 270342892123141754}
   Icon: {fileID: 6191861179189555908}
   infoPrefab: {fileID: 5572920612741471362, guid: 2d5123c40cbb07745982bda9793355b9, type: 3}
   node: {fileID: 0}
