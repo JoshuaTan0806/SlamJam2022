@@ -28,11 +28,11 @@ public enum Stat
     Speed = 'S',
     PercentSpeed = 's',
     ProjectilePierceAmount = 'p',
-    Regenerateion ='r',
+    Regeneration ='r',
     SpellDamage = 'l',
     SplashDamage, //aoe damage
     SplashArea, //aoe size
-    CascadeChance, //crit chance
+    PercentCascadeChance, //crit chance
     CascadeDamage, //crit damage
     CurrentSpeed, //projectile speed
     CurrentDamage, //projectile damage

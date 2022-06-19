@@ -28,12 +28,12 @@ public class Node : ScriptableObject
 
             if (statStr.Contains("Percent"))
             {
-                statStr = statStr.Replace("Percent", "% ");
+                statStr = statStr.Replace("Percent", "% increased ");
                 Description = value + statStr;
             }
             else
             {
-                Description = value + " " + statStr;
+                Description = value + " to " + statStr;
             }
         }
 

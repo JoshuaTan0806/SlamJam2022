@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Damage
   icon: {fileID: 21300000, guid: 616f0bfc94f49fb48a0ff369d43044cc, type: 3}
-  coordinates: {x: -8, y: 8}
+  coordinates: {x: -12, y: 12}
   size: 2
   isStartingNode: 0
   powerUps:
-  - Description: 5 Damage
+  - Description: 5 to Damage
     Stat: 68
     value: 5
-  - Description: 0 CurrentSaturation
+  - Description: 0 to CurrentSaturation
     Stat: 72
     value: 0
-  - Description: 0 MaxSaturation
+  - Description: 0 to MaxSaturation
     Stat: 80
     value: 0
-  - Description: 0% Damage
+  - Description: 0% increased Damage
     Stat: 100
     value: 0
   connectedNodes:

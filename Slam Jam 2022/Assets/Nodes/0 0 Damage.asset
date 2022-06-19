@@ -18,10 +18,10 @@ MonoBehaviour:
   size: 1
   isStartingNode: 1
   powerUps:
-  - Description: 5 Damage
+  - Description: 5 to Damage
     Stat: 68
     value: 5
   connectedNodes:
   - {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
-  isActive: 1
+  isActive: 0
   NodeToConnect: {fileID: 0}
