@@ -39,7 +39,7 @@ public class Summonable : MonoBehaviour
         summoner.CurrentActiveSummons.Add(this);
 
         var casterAsSummonable = summoner.GetComponent<Summonable>();
-        if (casterAsSummonable)
+        if (casterAsSummonable && casterAsSummonable.summoner)
         {
             casterAsSummonable.Summoner.CurrentActiveSummons.Add(this);
         }
@@ -74,7 +74,7 @@ public class Summonable : MonoBehaviour
         summoner.CurrentActiveSummons.Remove(this);
 
         var casterAsSummonable = summoner.GetComponent<Summonable>();
-        if (casterAsSummonable)
+        if (casterAsSummonable && casterAsSummonable.summoner)
         {
             casterAsSummonable.Summoner.CurrentActiveSummons.Remove(this);
         }

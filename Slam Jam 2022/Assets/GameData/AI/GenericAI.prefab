@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    m_keys: 5000000053000000
+    m_keys: 0000000008000000
     m_values:
     - 100
     - 6
