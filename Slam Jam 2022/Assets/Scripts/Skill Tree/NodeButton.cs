@@ -65,7 +65,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Icon.sprite = node.icon;
         GetComponent<Button>().onClick.AddListener(() => node.ToggleNode());
 
-        GetComponent<RectTransform>().localScale = node.size * Vector3.one;
+        GetComponent<RectTransform>().localScale = SkillTreeManager.NodeTypeToSize[node.nodeType] * Vector3.one;
         GetComponent<RectTransform>().anchoredPosition = node.coordinates * SkillTree.coordinateMultiplier;
     }   
 

@@ -4,13 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 
+public enum NodeType
+{
+    Minor,
+    Notable,
+    Keystone
+}
+
 [CreateAssetMenu(menuName = "Skill Tree/Node")]
 public class Node : ScriptableObject
 {
     public string Name;
     public Sprite icon;
     public Vector2 coordinates;
-    public float size = 1;
+    public NodeType nodeType;
     public bool isStartingNode = false;
     public List<PowerUp> powerUps = new List<PowerUp>();
 
