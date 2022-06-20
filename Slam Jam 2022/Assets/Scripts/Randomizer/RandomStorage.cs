@@ -1,7 +1,7 @@
 //#define STATIC_WEIGHT
 using System.Collections.Generic;
 
-namespace Random
+namespace RandomCollections
 {
     [System.Serializable]
     public class Chance
