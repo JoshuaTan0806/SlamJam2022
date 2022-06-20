@@ -45,7 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _PaintMap:
         m_Texture: {fileID: 2800000, guid: b03970cdaa98d8c43a6b24adec04f4b6, type: 3}
-        m_Scale: {x: 0.25, y: 0.25}
+        m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 1, y: 1}
     - _PerlinNormalMap:
         m_Texture: {fileID: 2800000, guid: 5ab1f4d515f82fe46b685c62a42c4729, type: 3}
@@ -57,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Thickness: 2.2
+    - Thickness: 4.9
     - _Alpha: 0.42
     - _AlphaCut: -5.56
     - _AmbientFactor: 1
@@ -68,9 +68,9 @@ Material:
     - _ColorDiff: -0.55
     - _ColorDiffOffset: -0.32
     - _Coverage: 0.01
-    - _CoverageOffset: -0.21
+    - _CoverageOffset: -0.15
     - _CullMode: 2
-    - _CutHeight: -275
+    - _CutHeight: -273.64
     - _CutHeight2: 1222
     - _Cutoff: 0.465
     - _Density: 0.00024
