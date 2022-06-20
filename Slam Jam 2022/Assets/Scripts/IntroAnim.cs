@@ -5,10 +5,10 @@ using UnityEngine;
 public class IntroAnim : MonoBehaviour
 {
     public GameObject introPanel;
+    public LevelLoader levelLoader;
 
     public void IntroFinished()
     {
-        //loading screen and or progress bar
-        //load start scene
+        levelLoader.LoadLevel(1);
     }
 }
