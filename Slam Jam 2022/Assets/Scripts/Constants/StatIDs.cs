@@ -23,9 +23,9 @@ public static class StatIDs
         {Stat.TotalDamage, "Total Pressure"},
         {Stat.FlatDamage, "Flat Pressure"},
         {Stat.PercentDamage, "Percent Pressure"},
-        {Stat.TotalSpeed, "Total Current"},
-        {Stat.FlatSpeed, "Flat Current"},
-        {Stat.PercentSpeed, "Percent Current"},
+        {Stat.TotalSpeed, "Total Viscosity"},
+        {Stat.FlatSpeed, "Flat Viscosity"},
+        {Stat.PercentSpeed, "Percent Viscosity"},
         {Stat.TotalSplashDamage, "Total Splash Damage"},
         {Stat.PercentSplashDamage, "Percent Splash Damage"},
         {Stat.TotalSplashArea, "Total Splash Area"},
@@ -47,7 +47,21 @@ public static class StatIDs
         {Stat.PercentProjectileDamage, "Percent Torrent Damage"},
         {Stat.TotalDamageReduction, "Total Insolubility"},
         {Stat.FlatDamageReduction, "Flat Insolubility"},
-        {Stat.PercentDamageReduction, "Percent Insolubility"}
+        {Stat.PercentDamageReduction, "Percent Insolubility"},
+        {Stat.TotalKnockback, "Total Blast"},
+        {Stat.PercentKnockback, "Percent Blast"},
+        {Stat.TotalKnockbackReduction, "Total Buoyancy"},
+        {Stat.PercentKnockbackReduction, "Percent Buoyancy"},
+        {Stat.TotalDamageReflect, "Total Acidity"},
+        {Stat.PercentDamageReflect, "Percent Acidity"},
+        {Stat.TotalMinionDamage, "Total Surface Tension" },
+        {Stat.PercentMinionDamage, "Percent Surface Tension"},
+        {Stat.TotalCastSpeed, "Total Absorption"},
+        {Stat.PercentCastSpeed, "Percent Absorption"},
+        {Stat.TotalAdditionalProjectiles, "Total Percolation" },
+        {Stat.FlatAdditionalProjectiles, "Flat Percolation"},
+        {Stat.TotalSpellCostMultiplier, "Total Liquefiability"},
+        {Stat.PercentSpellCostMultiplier, "Percent Liquefiability" }
     };
 }
 /// <summary>
@@ -60,35 +74,49 @@ public enum Stat
 {
     TotalHealth,
     CurrentHealth, 
-    FlatHealth, //FlatPermeability
-    PercentHealth, //PercentPermeability,
+    FlatHealth,
+    PercentHealth,
     TotalDamage,
-    FlatDamage, // FlatPressure
-    PercentDamage, //PercentPressure
+    FlatDamage, 
+    PercentDamage, 
     TotalSpeed,
-    FlatSpeed, // FlatCurrent
+    FlatSpeed, 
     PercentSpeed,
     TotalSplashDamage,
-    PercentSplashDamage,  //PercentSplashPressure
+    PercentSplashDamage,
     TotalSplashArea,
-    PercentSplashArea, //aoe size
+    PercentSplashArea, 
     TotalCriticalStrikeChance,
-    FlatCriticalStrikeChance, //FlatCascadeChance, 
-    PercentCriticalStrikeChance, //PercentCascadeChance, 
+    FlatCriticalStrikeChance,  
+    PercentCriticalStrikeChance,  
     TotalCriticalStrikeMultiplier,
-    FlatCriticalStrikeMultiplier, //FlatCascadeMultiplier
-    PercentCriticalStrikeMultiplier, //PercentCascadeMultiplier, 
+    FlatCriticalStrikeMultiplier, 
+    PercentCriticalStrikeMultiplier, 
     TotalRegeneration,
-    FlatRegeneration, //Density
+    FlatRegeneration, 
     PercentRegeneration,
     TotalProjectileSpeed,
     FlatProjectileSpeed,
     PercentProjectileSpeed,
     TotalProjectileDamage,
-    FlatProjectileDamage, //torrent
+    FlatProjectileDamage, 
     PercentProjectileDamage,
-    TotalDamageReduction, //TotalInsolubility
+    TotalDamageReduction, 
     FlatDamageReduction,
-    PercentDamageReduction
+    PercentDamageReduction,
+    TotalKnockback,
+    PercentKnockback,
+    TotalKnockbackReduction,
+    PercentKnockbackReduction,
+    TotalDamageReflect,
+    PercentDamageReflect,
+    TotalMinionDamage,
+    PercentMinionDamage,
+    TotalCastSpeed,
+    PercentCastSpeed,
+    TotalAdditionalProjectiles,
+    FlatAdditionalProjectiles,
+    TotalSpellCostMultiplier,
+    PercentSpellCostMultiplier,
 }
 
