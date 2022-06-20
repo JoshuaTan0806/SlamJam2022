@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager instance;
+    [SerializeField] Button openSkillTree;
     [SerializeField] List<Node> nodes;
     public static List<Node> allNodes;
 
@@ -17,6 +19,8 @@ public class SkillTreeManager : MonoBehaviour
 
         allNodes = new List<Node>();
         allNodes = nodes;
+
+        openSkillTree.onClick.AddListener(() => ToggleSkillTree());
     }
 
     private void Start()
@@ -64,14 +68,5 @@ public class SkillTreeManager : MonoBehaviour
                 nodes[i].IsActive = false;
             }
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ToggleSkillTree();
-
-        if (Input.GetKeyDown(KeyCode.R))
-            ResetSkillTree();
     }
 }

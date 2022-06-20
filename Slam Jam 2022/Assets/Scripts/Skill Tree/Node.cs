@@ -31,9 +31,10 @@ public class Node : ScriptableObject
                 statStr = statStr.Replace("Percent", "% increased ");
                 Description = value + statStr;
             }
-            else
+            else if(statStr.Contains("Flat"))
             {
-                Description = value + " to " + statStr;
+                statStr = statStr.Replace("Flat", " to ");
+                Description = value + statStr;
             }
         }
 
