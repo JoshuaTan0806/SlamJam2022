@@ -21,9 +21,11 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     public AudioMixer audioMixer;
+    public AudioSource SFXAudio;
 
     public Slider masterSlider;
     public Slider sfxSlider;
+    bool playSFX = false;
     public Slider musicSlider;
 
     public float tempTimeScale = 0f;
@@ -32,23 +34,43 @@ public class MenuManager : MonoBehaviour
     public bool gameStarted = false;
     public GameObject pauseMenuUI;
     public GameObject SoundUI;
+    public LevelLoader levelLoader;
+    public GameObject introPanel;
 
     public void Start()
     {
         Time.timeScale = 0f;
         CheckMixerValues();
+        playSFX = false;
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetButtonDown("Cancel") && gameIsPaused==false) Pause();
         else if (Input.GetButtonDown("Cancel") && gameStarted ==true) Resume();
+        
+    if (Input.GetMouseButtonUp(0) && playSFX == true)
+        {
+            SFXAudio.Play();
+            playSFX = false;
+        }
+    }*/
+
+    private void Update()
+    {
+
     }
 
     public void NewGame()
     {
-        //Intro panel then start game
-        
+        if (PlayerPrefs.HasKey("SkillPoints"))
+        {
+            levelLoader.LoadLevel(1);
+        }
+        else
+        {
+            introPanel.SetActive(true);
+        }
     }   
 
     public void QuitGame()
@@ -101,5 +123,23 @@ public class MenuManager : MonoBehaviour
     public void RestartGame()
     {
 
+    }
+
+    public void SetMaster(float volume)
+    {
+        audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("masterVolume", volume);
+    }
+
+    public void SetMusic(float volume)
+    {
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+    public void SetSFX(float volume)
+    {
+        audioMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        playSFX = true;
     }
 }

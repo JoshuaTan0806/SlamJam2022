@@ -6,25 +6,31 @@ using TMPro;
 
 public class SkillTree : MonoBehaviour
 {
+    public static float coordinateMultiplier = 100;
     [SerializeField] GameObject Node;
     [SerializeField] RectTransform NodeHolder;
+    [SerializeField] GameObject line;
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] TextMeshProUGUI skillPointsLabel;
     public static TMP_InputField inputField;
-
+    [SerializeField] Button close;
+    [SerializeField] Button reset;
+    [SerializeField] float maxX;
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] float scrollMultiplier;
 
-    float minX, maxX, minY, maxY;
+    List<NodeButton> NodeButtons = new List<NodeButton>();
+    List<Node> AddedNodes = new List<Node>();
 
     private void Awake()
     {
         Populate();
-        InitialiseBoundaries();
         SetSkillPointsText();
         inputField = GetComponentInChildren<TMP_InputField>();
         Player.OnSkillPointsChanged += SetSkillPointsText;
+        reset.onClick.AddListener(() => SkillTreeManager.instance.ResetSkillTree());
+        close.onClick.AddListener(() => SkillTreeManager.instance.ToggleSkillTree());
     }
 
     private void OnDestroy()
@@ -37,52 +43,31 @@ public class SkillTree : MonoBehaviour
         skillPointsLabel.SetText("Spill points: " + Player.instance.skillPoints.ToString());
     }
 
-    void InitialiseBoundaries()
-    {
-        minX = Mathf.Infinity;
-        maxX = Mathf.NegativeInfinity;
-        minY = Mathf.Infinity;
-        maxY = Mathf.NegativeInfinity;
-
-        for (int i = 0; i < SkillTreeManager.allNodes.Count; i++)
-        {
-            if (SkillTreeManager.allNodes[i].coordinates.x < minX)
-                minX = SkillTreeManager.allNodes[i].coordinates.x;
-            if (SkillTreeManager.allNodes[i].coordinates.x > maxX)
-                maxX = SkillTreeManager.allNodes[i].coordinates.x;
-
-            if (SkillTreeManager.allNodes[i].coordinates.y < minY)
-                minY = SkillTreeManager.allNodes[i].coordinates.y;
-            if (SkillTreeManager.allNodes[i].coordinates.y > maxY)
-                maxY = SkillTreeManager.allNodes[i].coordinates.y;
-        }
-
-        minX *= 1080/30;
-        maxX *= 1080/30;
-        minY *= 1920/30;
-        maxY *= 1920/30;
-    }
-
-    public void Refresh()
-    {
-        Destroy();
-        Populate();
-    }
-
     void Populate()
     {
         for (int i = 0; i < SkillTreeManager.allNodes.Count; i++)
         {
             GameObject g = Instantiate(Node, NodeHolder.transform);
-            g.GetComponentInChildren<NodeButton>().Node = SkillTreeManager.allNodes[i];
-        }
-    }
+            NodeButton n = g.GetComponentInChildren<NodeButton>();
+            n.Node = SkillTreeManager.allNodes[i];
+            NodeButtons.Add(n);
 
-    void Destroy()
-    {
-        for (int i = NodeHolder.transform.childCount - 1; i >= 0; i--)
-        {
-            Destroy(NodeHolder.transform.GetChild(i).gameObject);
+            AddedNodes.Add(SkillTreeManager.allNodes[i]);
+
+            for (int j = 0; j < SkillTreeManager.allNodes[i].connectedNodes.Count; j++)
+            {
+                if (AddedNodes.Contains(SkillTreeManager.allNodes[i].connectedNodes[j]))
+                    continue;
+
+                GameObject l = Instantiate(line, NodeHolder);
+                l.transform.SetAsFirstSibling();
+                RectTransform r = l.GetComponent<RectTransform>();
+                Vector2 linePos = SkillTreeManager.allNodes[i].coordinates + SkillTreeManager.allNodes[i].connectedNodes[j].coordinates;
+                linePos = coordinateMultiplier * linePos / 2;
+                r.anchoredPosition = linePos;
+                r.right = SkillTreeManager.allNodes[i].connectedNodes[j].coordinates - SkillTreeManager.allNodes[i].coordinates;
+                r.localScale = new Vector3(Vector3.Distance(SkillTreeManager.allNodes[i].connectedNodes[j].coordinates, SkillTreeManager.allNodes[i].coordinates) * coordinateMultiplier, r.localScale.y);
+            }
         }
     }
 
@@ -107,20 +92,27 @@ public class SkillTree : MonoBehaviour
     {
         Vector3 oldPos = NodeHolder.anchoredPosition;
         float zoom = NodeHolder.localScale.x;
-        float zoomSquared = zoom * zoom;
+
+        float xCoordinate = (zoom - 0.5f) * 1250;
 
         Vector3 newPos = new Vector3();
+        newPos.x = Mathf.Clamp(oldPos.x, -xCoordinate, xCoordinate);
+        newPos.y = Mathf.Clamp(oldPos.y, -xCoordinate - 300, xCoordinate + 300);
 
-        newPos.x = Mathf.Clamp(oldPos.x, minX * zoomSquared, maxX * zoomSquared);
-        newPos.y = Mathf.Clamp(oldPos.y, minY * zoomSquared, maxY * zoomSquared);
+        NodeHolder.anchoredPosition = newPos;
 
         if (newPos.x != oldPos.x)
             scrollRect.velocity = new Vector3(0, scrollRect.velocity.y);
 
         if (newPos.y != oldPos.y)
             scrollRect.velocity = new Vector3(scrollRect.velocity.x, 0);
+    }
 
-
-        NodeHolder.anchoredPosition = newPos;
+    public void Refresh()
+    {
+        for (int i = 0; i < NodeButtons.Count; i++)
+        {
+            NodeButtons[i].ChangeHighlight();
+        }
     }
 }

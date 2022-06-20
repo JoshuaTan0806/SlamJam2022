@@ -64,34 +64,60 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         Icon.sprite = node.icon;
         GetComponent<Button>().onClick.AddListener(() => node.ToggleNode());
-        
+
         GetComponent<RectTransform>().localScale = node.size * Vector3.one;
-        GetComponent<RectTransform>().anchoredPosition = node.coordinates * 100;
-    }
+        GetComponent<RectTransform>().anchoredPosition = node.coordinates * SkillTree.coordinateMultiplier;
+    }   
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Vector3 offset;
-
-        if (Input.mousePosition.x < Screen.width/2)
-            offset = new Vector3(100, 30, 0);
-        else
-            offset = new Vector3(-100, 30, 0);
-
-        info = Instantiate(infoPrefab, transform.position + offset, Quaternion.identity, transform);
-
-        TMPro.TextMeshProUGUI txt = info.GetComponent<TMPro.TextMeshProUGUI>();
-        txt.text = "";
-        for (int i = 0; i < node.powerUps.Count; i++)
+        if(info)
         {
-            txt.text += node.powerUps[i].Description + "\n";
+            info.SetActive(true);
         }
+        else
+        {
+            info = Instantiate(infoPrefab, transform.parent.parent);
+
+            NodeDescription n = info.GetComponent<NodeDescription>();
+
+            n.SpawnTitle(node.Name);
+
+            for (int i = 0; i < node.powerUps.Count; i++)
+            {
+                n.SpawnDescription(node.powerUps[i].Description);
+            }
+        }
+
+        ResetInfoPos();
+    }
+
+    void ResetInfoPos()
+    {
+        RectTransform infoTransform = info.GetComponent<RectTransform>();
+        infoTransform.localScale = Vector3.one / info.transform.parent.GetComponent<RectTransform>().lossyScale.x / 2;
+
+        RectTransform transform = GetComponent<RectTransform>();
+
+        Vector3 nodePos = transform.anchoredPosition;
+
+        RectTransform infoChildTransform = info.GetChild(0).GetComponent<RectTransform>();
+
+        if (Input.mousePosition.x < Screen.width * 2 / 3)
+            nodePos.x += infoChildTransform.rect.width * infoTransform.localScale.x / 2 + transform.rect.width;
+        else
+            nodePos.x -= infoChildTransform.rect.width * infoTransform.localScale.x / 2 + transform.rect.width;
+
+        if (Input.mousePosition.y < Screen.height / 4)
+            nodePos.y += infoChildTransform.rect.height * infoTransform.localScale.x / 2 + ((info.ChildCount() - 1) * info.GetChild(1).GetComponent<RectTransform>().rect.height) + transform.rect.height;
+
+        infoTransform.anchoredPosition = nodePos;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (info)
-            Destroy(info);
+            info.SetActive(false);
     }
 
     void CheckIfHighlighted(string str)
@@ -116,7 +142,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         isHighlighted = IsHighlighted;
     }
 
-    void ChangeHighlight(bool dummyBool = false)
+    public void ChangeHighlight(bool dummyBool = false)
     {
         if (isHighlighted)
             Outline.color = HighlightedColor;

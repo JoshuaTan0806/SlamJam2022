@@ -51,12 +51,12 @@ public class PlayerStats : MonoBehaviour
     /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
     public void TakeDamage(float damage, bool internalDamage = false)
     {
-        AddStat(Stat.CurrentSaturation, damage);
+        AddStat(Stat.CurrentHealth, damage);
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
-        if (GetStat(Stat.CurrentSaturation) > GetStat(Stat.MaxSaturation))
+        if (GetStat(Stat.CurrentHealth) > GetStat(Stat.TotalHealth))
             Die();
     }
 

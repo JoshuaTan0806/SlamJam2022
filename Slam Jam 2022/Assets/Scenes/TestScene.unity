@@ -222,6 +222,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &785303243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785303244}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &785303244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785303243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1546510970}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350382900
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +470,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2686185577221665439, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
   m_PrefabInstance: {fileID: 2686185576155835269}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1546510970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2686185577221665435, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
+  m_PrefabInstance: {fileID: 2686185576155835269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1546510973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb59516f0f4d764c8fc0c3e0618829a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpillArray: 43010000440100007100000065000000
 --- !u!1001 &2686185576155835269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -459,6 +494,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2686185577221665445, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
+      propertyPath: GroundCheck
+      value: 
+      objectReference: {fileID: 785303244}
+    - target: {fileID: 2686185577221665445, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
+      propertyPath: Ground.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2686185577227262444, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_Name
       value: Player Static

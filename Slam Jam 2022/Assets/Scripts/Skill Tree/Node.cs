@@ -28,12 +28,13 @@ public class Node : ScriptableObject
 
             if (statStr.Contains("Percent"))
             {
-                statStr = statStr.Replace("Percent", "% ");
+                statStr = statStr.Replace("Percent", "% increased ");
                 Description = value + statStr;
             }
-            else
+            else if(statStr.Contains("Flat"))
             {
-                Description = value + " " + statStr;
+                statStr = statStr.Replace("Flat", " to ");
+                Description = value + statStr;
             }
         }
 
@@ -48,7 +49,7 @@ public class Node : ScriptableObject
         }
     }
 
-    [SerializeField, ReadOnly] List<Node> connectedNodes;
+    [ReadOnly] public List<Node> connectedNodes;
 
     public bool IsActive
     {
@@ -63,6 +64,7 @@ public class Node : ScriptableObject
                 isActive = value;
                 ApplyPowerUps(value);
                 OnActiveChanged?.Invoke(value);
+                SkillTreeManager.instance.RefreshSkillTree();
             }
         }
     }
@@ -198,8 +200,6 @@ public class Node : ScriptableObject
     [Button]
     public void ConnectOrRemoveNode()
     {
-        NodeToConnect = null;
-
         if(connectedNodes.Contains(NodeToConnect))
         {
             connectedNodes.Remove(NodeToConnect);
@@ -210,5 +210,7 @@ public class Node : ScriptableObject
             connectedNodes.Add(NodeToConnect);
             NodeToConnect.connectedNodes.Add(this);
         }
+
+        NodeToConnect = null;
     }
 }

@@ -21,15 +21,33 @@ public class StatDictionary : SerializableDictionary<Stat, float> { }
 
 public enum Stat
 {
-    CurrentSaturation = 'H',
-    MaxSaturation = 'P',
-    Damage = 'D',
-    PercentDamage = 'd',
-    Speed = 'S',
-    PercentSpeed = 's',
-    ProjectilePierceAmount = 'p',
-    Regenerateion ='r',
-    SpellDamage = 'l',
-    MaxHealthIsOne,
-    DodgeChance
+    TotalHealth,
+    CurrentHealth, 
+    FlatHealth, //FlatPermeability, //health
+    PercentHealth, //PercentPermeability,
+    TotalDamage,
+    Damage, // FlatPressure, //damage
+    PercentDamage, //PercentPressure,
+    TotalSpeed,
+    FlatSpeed, // FlatCurrent, //speed
+    PercentSpeed,
+    TotalSplashDamage,
+    PercentSplashDamage,  //PercentSplashPressure, //aoe damage
+    TotalSplashArea,
+    PercentSplashArea, //aoe size
+    TotalCriticalStrikeChance,
+    FlatCriticalStrikeChance, //FlatCascadeChance, //crit chance
+    PercentCriticalStrikeChance, //PercentCascadeChance, 
+    TotalCriticalStrikeMultiplier,
+    FlatCriticalStrikeMultiplier, //FlatCascadeMultiplier, //crit damage
+    PercentCriticalStrikeMultiplier, //PercentCascadeMultiplier, 
+    TotalRegeneration,
+    FlatRegeneration, //FlatEvapourationSpeed, //regen
+    PercentRegeneration,
+    TotalProjectileSpeed,
+    FlatProjectileSpeed,
+    PercentProjectileSpeed,
+    TotalProjectileDamage,
+    FlatProjectileDamage, //torrent
+    PercentProjectileDamage
 }
