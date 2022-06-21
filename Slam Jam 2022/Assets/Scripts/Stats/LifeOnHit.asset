@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1d034c561cc12439fd695fa7442a6e, type: 3}
   m_Name: LifeOnHit
   m_EditorClassIdentifier: 
-  InGameName: 
+  InGameName: Exudation
+  Icon: {fileID: 0}
   Stat: 19
   PercentValue: 0
   FlatValue: 0
   FinalMultiplier: 0
   TotalValue: 0
-  CurrentValue: 0

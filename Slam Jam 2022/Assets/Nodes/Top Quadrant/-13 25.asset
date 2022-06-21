@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
-  m_Name: 0 6
+  m_Name: -13 25
   m_EditorClassIdentifier: 
-  Name: Major Surface Tension
+  Name: Water Pump
   icon: {fileID: 0}
-  coordinates: {x: 0, y: 4}
-  nodeType: 1
+  coordinates: {x: 0, y: 25}
+  nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: 5% increased Surface Tension
-    StatType: 0
-    Stat: 15
-    value: 5
+  - Description: Percolation is tripled.
+    StatType: 2
+    Stat: 16
+    value: 3
+  - Description: Torrent Speed is halved.
+    StatType: 2
+    Stat: 8
+    value: 0.5
   connectedNodes: []
   isActive: 0
   NodeToConnect: {fileID: 0}

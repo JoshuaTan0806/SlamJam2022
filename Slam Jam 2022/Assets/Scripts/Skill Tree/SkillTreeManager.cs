@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class SkillTreeManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class SkillTreeManager : MonoBehaviour
     {
         { NodeType.Minor, 0.5f },
         { NodeType.Notable, 1f },
-        { NodeType.Keystone, 3f }
+        { NodeType.Keystone, 2f }
 
     };
 
@@ -77,4 +78,14 @@ public class SkillTreeManager : MonoBehaviour
             }
         }
     }
+
+#if UNITY_EDITOR
+    [Button("Reinitialise Nodes")]
+    public void ReinitialiseNodes()
+    {
+        nodes.Clear();
+        List<Node> nodesInProject = EditorExtensionMethods.GetAllInstances<Node>();
+        nodes = nodesInProject;
+    }
+#endif
 }

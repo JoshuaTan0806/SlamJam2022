@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
-  m_Name: 0 6
+  m_Name: 7 10
   m_EditorClassIdentifier: 
-  Name: Major Surface Tension
+  Name: Minor Scald Chance
   icon: {fileID: 0}
-  coordinates: {x: 0, y: 4}
-  nodeType: 1
+  coordinates: {x: 7, y: 10}
+  nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 5% increased Surface Tension
+  - Description: 2% increased Scald Chance
     StatType: 0
-    Stat: 15
-    value: 5
+    Stat: 5
+    value: 2
   connectedNodes: []
   isActive: 0
   NodeToConnect: {fileID: 0}
