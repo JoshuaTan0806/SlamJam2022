@@ -10,6 +10,7 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] Button openSkillTree;
     public List<Node> nodes;
     public static List<Node> allNodes;
+    static List<Node> startingNodes;
 
     public static Dictionary<NodeType, float> NodeTypeToSize = new Dictionary<NodeType, float>()
     {
@@ -30,6 +31,14 @@ public class SkillTreeManager : MonoBehaviour
         allNodes = nodes;
 
         openSkillTree.onClick.AddListener(() => ToggleSkillTree());
+
+        startingNodes = new List<Node>();
+
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            if (allNodes[i].isStartingNode)
+                startingNodes.Add(allNodes[i]);
+        }
     }
 
     private void Start()
@@ -59,6 +68,17 @@ public class SkillTreeManager : MonoBehaviour
             SkillTree.SetActive(false);
         else
             SkillTree.SetActive(true);
+    }
+
+    public static bool StartingNodeTaken()
+    {
+        for (int i = 0; i < startingNodes.Count; i++)
+        {
+            if (startingNodes[i].IsActive)
+                return true;
+        }
+
+        return false;
     }
 
     public void RefreshSkillTree()

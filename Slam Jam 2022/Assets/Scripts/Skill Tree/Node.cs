@@ -126,7 +126,7 @@ public class Node : ScriptableObject
         if (Player.instance.skillPoints <= 0)
             return false;
 
-        if (isStartingNode)
+        if (isStartingNode && !SkillTreeManager.StartingNodeTaken())
             return true;
 
         for (int i = 0; i < connectedNodes.Count; i++)
