@@ -6,7 +6,7 @@ using TMPro;
 
 public class SkillTree : MonoBehaviour
 {
-    public static float coordinateMultiplier = 100;
+    public static float coordinateMultiplier = 50;
     [SerializeField] GameObject Node;
     [SerializeField] RectTransform NodeHolder;
     [SerializeField] GameObject line;

@@ -7,7 +7,7 @@ public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager instance;
     [SerializeField] Button openSkillTree;
-    [SerializeField] List<Node> nodes;
+    public List<Node> nodes;
     public static List<Node> allNodes;
 
     public static Dictionary<NodeType, float> NodeTypeToSize = new Dictionary<NodeType, float>()
@@ -76,14 +76,5 @@ public class SkillTreeManager : MonoBehaviour
                 nodes[i].IsActive = false;
             }
         }
-    }
-
-
-    [System.Serializable]
-    public class PowerUpData
-    {
-        public Stat Stat;
-        public string Name;
-
     }
 }

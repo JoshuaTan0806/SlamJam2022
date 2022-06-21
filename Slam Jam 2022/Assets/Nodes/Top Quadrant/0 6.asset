@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
-  m_Name: 1 2 Damage
+  m_Name: 0 6
   m_EditorClassIdentifier: 
-  Name: Damage
-  icon: {fileID: 21300000, guid: 7b13e2a7b058be145993c749be8786e0, type: 3}
-  coordinates: {x: 1, y: 2}
-  size: 0.5
-  isStartingNode: 0
+  Name: Major Permeability
+  icon: {fileID: 0}
+  coordinates: {x: 0, y: 6}
+  nodeType: 1
+  isStartingNode: 1
   powerUps:
-  - Description: 5 to Damage
-    Stat: 68
+  - Description: 5% increased Permeability
+    StatType: 0
+    Stat: 0
     value: 5
-  connectedNodes:
-  - {fileID: 11400000, guid: 6f2369701c940494c9c4f559b03ebe27, type: 2}
-  - {fileID: 11400000, guid: f5a149d340fbc6546b0823557197c6c3, type: 2}
+  connectedNodes: []
   isActive: 0
   NodeToConnect: {fileID: 0}

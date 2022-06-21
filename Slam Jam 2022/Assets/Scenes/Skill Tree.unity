@@ -274,19 +274,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openSkillTree: {fileID: 1209584712}
   nodes:
-  - {fileID: 11400000, guid: 4a7efaa10f9caad40a381615870433b5, type: 2}
-  - {fileID: 11400000, guid: cc8bb9d587f87b449b07892f23dda398, type: 2}
-  - {fileID: 11400000, guid: c2a0c876866db3242b19b817a0bc43b7, type: 2}
-  - {fileID: 11400000, guid: 79c5d943a0370804a9014e6e0fe796b3, type: 2}
-  - {fileID: 11400000, guid: 75a944c234cd1f448bf3e2b3ef691c61, type: 2}
-  - {fileID: 11400000, guid: e025aa0b876e3fa42b2e27c57fd39a67, type: 2}
-  - {fileID: 11400000, guid: d35fa7489dce7ca44b797b8881bf52f3, type: 2}
-  - {fileID: 11400000, guid: 6f2369701c940494c9c4f559b03ebe27, type: 2}
-  - {fileID: 11400000, guid: cf9ac56a7676936469b28a4b3c419dd7, type: 2}
-  - {fileID: 11400000, guid: f5a149d340fbc6546b0823557197c6c3, type: 2}
-  - {fileID: 11400000, guid: d96ba6d5a763e1d47900843a44a94f9a, type: 2}
-  - {fileID: 11400000, guid: 7cf7ebfbccdfbbf4bb2b866142f040d2, type: 2}
-  - {fileID: 11400000, guid: c5c0af83f9bdd0e4290573014f427cce, type: 2}
+  - {fileID: 11400000, guid: c68971c78e05e2f48be37e652d25ec1c, type: 2}
+  - {fileID: 11400000, guid: e0b2b44357bc7964384aedbde964d50a, type: 2}
+  - {fileID: 11400000, guid: 2deca49ab7064cc44b5bf6d45f03e74d, type: 2}
+  - {fileID: 11400000, guid: aaea36e8448e938449b80bac4e548192, type: 2}
+  - {fileID: 11400000, guid: 2e83b072ebb501943bd40f412c723821, type: 2}
+  - {fileID: 11400000, guid: 1e091e513e20da443b3ee6f5e0313846, type: 2}
+  - {fileID: 11400000, guid: 253d44dfe9a451f4b96ff4742688e6c8, type: 2}
+  - {fileID: 11400000, guid: 63909be443a02eb4b85ec584e1a810aa, type: 2}
+  - {fileID: 11400000, guid: 4ad624f9696dcac4487dfdb48156e5b2, type: 2}
+  - {fileID: 11400000, guid: 560f58043ff00ff4cbcb89779c5dec82, type: 2}
+  - {fileID: 11400000, guid: f8d4e72f22841f84eb790604995a0e6d, type: 2}
+  - {fileID: 11400000, guid: 887960888448cef49acbe0cb522ce571, type: 2}
   SkillTreePrefab: {fileID: 4741075190369305687, guid: 88adaaaeba908564eadcce2706e9662f, type: 3}
 --- !u!4 &416772727
 Transform:

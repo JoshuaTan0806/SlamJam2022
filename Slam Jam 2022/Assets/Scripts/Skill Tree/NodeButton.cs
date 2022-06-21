@@ -81,7 +81,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
             NodeDescription n = info.GetComponent<NodeDescription>();
 
-            n.SpawnTitle(node.Name);
+            n.SpawnTitle(node.Name + " (" + node.coordinates.x + ", " + node.coordinates.y + ")");
 
             for (int i = 0; i < node.powerUps.Count; i++)
             {
