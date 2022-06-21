@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
-  m_Name: 0 6
+  m_Name: 0 5
   m_EditorClassIdentifier: 
   Name: Major Surface Tension
   icon: {fileID: 0}
