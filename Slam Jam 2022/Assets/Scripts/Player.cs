@@ -62,10 +62,10 @@ public class Player : PlayerStats
         //Add the stats to our current stats
         foreach (var stat in stats.Keys)
         {
-            if (stats.ContainsKey(stat))
-                stats[stat] += stats[stat];
-            else
-                stats[stat] = stats[stat];
+            //if (stats.ContainsKey(stat))
+            //    stats[stat] += stats[stat];
+            //else
+            //    stats[stat] = stats[stat];
         }
     }
 }

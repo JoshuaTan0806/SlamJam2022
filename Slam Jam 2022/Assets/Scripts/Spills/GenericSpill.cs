@@ -26,7 +26,7 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
-        if (caster.GetStat(Stat.Health) + castCost > caster.GetStat(Stat.Health))
+        if(caster.CurrentHealth + castCost * caster.GetStat(Stat.SpellCostMult).TotalValue > caster.GetStat(Stat.Health).TotalValue)
             return false;
 
         if (CastTimer > 0)
@@ -40,7 +40,7 @@ public class GenericSpill : ScriptableObject
         if (!CanCastSpell(caster))
             return false;
 
-        caster.AddStat(Stat.Health, castCost);
+        caster.CurrentHealth -= castCost * caster.GetStat(Stat.SpellCostMult).TotalValue;
 
         spellToggled = !spellToggled;
 

@@ -7,22 +7,27 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] protected StatDictionary stats = new StatDictionary();
 
     public event System.Action OnDamageTaken;
+    [HideInInspector] public float CurrentHealth;
 
     private void Awake()
     {
     }
 
-    public void AddStat(Stat stat, float value)
+    public void AddStat(StatData statData)
     {
-        if (!stats.ContainsKey(stat))
-            stats.Add(stat, value);
+        if(!stats.ContainsKey(statData.Stat))
+        {
+            stats.Add(statData.Stat, statData);
+        }
         else
-            stats[stat] += value;
+        {
+            stats[statData.Stat] = stats[statData.Stat] + statData;
+        }
     }
 
-    public float GetStat(Stat stat)
+    public StatData GetStat(Stat stat)
     {
-        return stats.ContainsKey(stat) ? stats[stat] : 0;
+        return stats.ContainsKey(stat) ? stats[stat] : StatManager.NullStat(stat);
     }
 
     List<Summonable> currentActiveSummons = new List<Summonable>();
@@ -51,14 +56,14 @@ public class PlayerStats : MonoBehaviour
     /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
     public void TakeDamage(float damage, bool internalDamage = false)
     {
-        AddStat(Stat.Health, damage);
+        CurrentHealth -= damage;
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
-        if (GetStat(Stat.Health) > GetStat(Stat.Health))
+        if (CurrentHealth < GetStat(Stat.Health).TotalValue)
             Die();
-    }
+    }  
 
     void Die()
     {

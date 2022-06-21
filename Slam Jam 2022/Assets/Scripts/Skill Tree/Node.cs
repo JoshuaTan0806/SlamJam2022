@@ -25,6 +25,7 @@ public class Node : ScriptableObject
     public class PowerUp
     {
         public string Description;
+        public StatType StatType;
         public Stat Stat;
         public float value;
 
@@ -47,12 +48,12 @@ public class Node : ScriptableObject
 
         public void ApplyPowerUp()
         {
-            Player.instance.AddStat(Stat, value);
+            Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, value));
         }
 
         public void UnapplyPowerUp()
         {
-            Player.instance.AddStat(Stat, -value);
+            Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, -value));
         }
     }
 

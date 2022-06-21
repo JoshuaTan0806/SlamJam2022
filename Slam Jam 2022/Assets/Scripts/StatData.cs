@@ -3,17 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+public enum StatType
+{
+    PercentValue,
+    FlatValue,
+    FinalMultiplier
+}
+
+[CreateAssetMenu(menuName = "Skill Tree/Stats")]
 public class StatData : ScriptableObject
 {
-    public Stat Stat;
+    public string InGameName;
 
+    public Stat Stat;
     public float PercentValue;
     public float FlatValue;
-    public float FinalMultiplier;
-
+    [Min(0)] public float FinalMultiplier;
 
     [ReadOnly] public float TotalValue;
-    [HideInInspector] public float CurrentValue;
+
+    public void ModifyStat(StatType statType, float value)
+    {
+        switch (statType)
+        {
+            case StatType.PercentValue:
+                PercentValue += value;
+                break;
+            case StatType.FlatValue:
+                FlatValue += value;
+                break;
+            case StatType.FinalMultiplier:
+                FinalMultiplier += value;
+                break;
+            default:
+                break;
+        }
+    }
+  
+    public static StatData operator+ (StatData l, StatData r)
+    {
+        if (l.Stat != r.Stat)
+            throw new System.Exception("Adding different stat");
+
+        StatData statData = StatManager.NullStat(l.Stat);
+
+        statData.PercentValue = l.PercentValue + r.PercentValue;
+        statData.FlatValue = l.FlatValue + r.FlatValue;
+        statData.FinalMultiplier = l.FinalMultiplier + r.FinalMultiplier;
+
+        return statData;
+    }
 
     public virtual void CalculateTotal()
     {
@@ -23,5 +62,4 @@ public class StatData : ScriptableObject
 
         TotalValue = newValue;
     }
-
 }

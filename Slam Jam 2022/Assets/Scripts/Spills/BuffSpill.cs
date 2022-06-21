@@ -10,6 +10,7 @@ public class BuffSpill : GenericSpill
 	struct Buff
 	{
 		public Stat stat;
+		public StatType statType;
 		public float val;
 	}
 
@@ -57,12 +58,16 @@ public class BuffSpill : GenericSpill
 	void AddStats()
 	{
 		foreach (var b in buffs)
-			caster.AddStat(b.stat, b.val);
+		{
+			caster.AddStat(StatManager.CreateStat(b.stat, b.statType, b.val));
+		}
 	}
 	void FinishSpell()
 	{
 		foreach (var b in buffs)
-			caster.AddStat(b.stat, -b.val);
+        {
+			caster.AddStat(StatManager.CreateStat(b.stat, b.statType, -b.val));
+		}
 
 		casted = false;
 	}

@@ -179,56 +179,56 @@ namespace Items
 
         public void RollStats(byte level, ref StatDictionary dictionary)
         {
-            var l = GetInfo(level);
+            //var l = GetInfo(level);
 
-            tempStats.Clear();
+            //tempStats.Clear();
 
-            int amount = UnityEngine.Random.Range(l.possibleNumberOfStats.x, l.possibleNumberOfStats.y + 1);
+            //int amount = UnityEngine.Random.Range(l.possibleNumberOfStats.x, l.possibleNumberOfStats.y + 1);
 
-            List<Stat> s = new List<Stat>();
-            foreach (var k in l.statChances.Keys)
-            {   //Random the stat
-                s.Add(k);
-                tempStats[k] = UnityEngine.Random.Range(l.statChances[k].statRange.x, l.statChances[k].statRange.y);
-            }
-            //If use previous levels stats, get them
-            if (l.usePreviousLevel)
-            {   
-                bool checkPrevious = true;
-                int cur = 0;
-                while (checkPrevious)
-                {
-                    cur++;
-                    //Make sure there is a previous level to get
-                    byte n = (byte)(level - cur);
+            //List<Stat> s = new List<Stat>();
+            //foreach (var k in l.statChances.Keys)
+            //{   //Random the stat
+            //    s.Add(k);
+            //    tempStats[k] = UnityEngine.Random.Range(l.statChances[k].statRange.x, l.statChances[k].statRange.y);
+            //}
+            ////If use previous levels stats, get them
+            //if (l.usePreviousLevel)
+            //{   
+            //    bool checkPrevious = true;
+            //    int cur = 0;
+            //    while (checkPrevious)
+            //    {
+            //        cur++;
+            //        //Make sure there is a previous level to get
+            //        byte n = (byte)(level - cur);
 
-                    if (!levelInfo.ContainsKey(n))
-                        break;
+            //        if (!levelInfo.ContainsKey(n))
+            //            break;
 
-                    var temp = GetInfo(n);
-                    //Add it stats
-                    foreach (var k in temp.statChances.Keys)
-                    {   //Already got that stat
-                        if (tempStats.ContainsKey(k))
-                            continue;
-                        //Random the stat
-                        s.Add(k);
-                        tempStats[k] = UnityEngine.Random.Range(temp.statChances[k].statRange.x, temp.statChances[k].statRange.y);
-                    }
-                    //Keep going until a level says not to use the previous stats.
-                    checkPrevious = temp.usePreviousLevel;
-                }
-            }
-            //Get random stats
-            while (amount > 0)
-            {
-                int rand = UnityEngine.Random.Range(0, s.Count);
-                //Add stat
-                dictionary.Add(s[rand], tempStats[s[rand]]);
-                s.RemoveAt(rand);
+            //        var temp = GetInfo(n);
+            //        //Add it stats
+            //        foreach (var k in temp.statChances.Keys)
+            //        {   //Already got that stat
+            //            if (tempStats.ContainsKey(k))
+            //                continue;
+            //            //Random the stat
+            //            s.Add(k);
+            //            tempStats[k] = UnityEngine.Random.Range(temp.statChances[k].statRange.x, temp.statChances[k].statRange.y);
+            //        }
+            //        //Keep going until a level says not to use the previous stats.
+            //        checkPrevious = temp.usePreviousLevel;
+            //    }
+            //}
+            ////Get random stats
+            //while (amount > 0)
+            //{
+            //    int rand = UnityEngine.Random.Range(0, s.Count);
+            //    //Add stat
+            //    dictionary.Add(s[rand], tempStats[s[rand]]);
+            //    s.RemoveAt(rand);
 
-                amount--;
-            }
+            //    amount--;
+            //}
         }
 
         private ItemLevelInfo GetInfo(byte level)
