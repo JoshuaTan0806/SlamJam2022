@@ -8,6 +8,8 @@ public class PlayerStats : MonoBehaviour
 
     public event System.Action OnDamageTaken;
     [HideInInspector] public float CurrentHealth;
+    public event System.Action OnDeath;
+    public bool Dead { get; protected set; }
 
     private void Awake()
     {
@@ -56,6 +58,9 @@ public class PlayerStats : MonoBehaviour
     /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
     public void TakeDamage(float damage, bool internalDamage = false)
     {
+        if (Dead)
+            return;
+
         CurrentHealth -= damage;
 
         if (!internalDamage)
@@ -67,6 +72,7 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-
+        Dead = true;
+        OnDeath?.Invoke();
     }
 }
