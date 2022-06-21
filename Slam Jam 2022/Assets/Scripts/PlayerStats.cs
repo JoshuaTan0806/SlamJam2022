@@ -7,9 +7,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] protected StatDictionary stats = new StatDictionary();
 
     public event System.Action OnDamageTaken;
-    public event System.Action OnDeath;
 
-    public bool Dead { get; protected set; }
+    private void Awake()
+    {
+    }
 
     public void AddStat(Stat stat, float value)
     {
@@ -50,21 +51,17 @@ public class PlayerStats : MonoBehaviour
     /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
     public void TakeDamage(float damage, bool internalDamage = false)
     {
-        if (Dead)
-            return;
-
-        AddStat(Stat.CurrentHealth, damage);
+        AddStat(Stat.Health, damage);
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
-        if (GetStat(Stat.CurrentHealth) > GetStat(Stat.TotalHealth))
+        if (GetStat(Stat.Health) > GetStat(Stat.Health))
             Die();
     }
 
     void Die()
     {
-        Dead = true;
-        OnDeath?.Invoke();
+
     }
 }
