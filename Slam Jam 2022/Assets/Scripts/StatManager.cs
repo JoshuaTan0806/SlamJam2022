@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class StatManager : MonoBehaviour
 {
-    public static StatDictionary StatDictionary = new StatDictionary();
+    public static StatDictionary StatDictionary;
     [SerializeField] List<StatData> AllStats;
 
     private void Awake()
     {
+        StatDictionary = new StatDictionary();
+
         for (int i = 0; i < AllStats.Count; i++)
         {
-            StatDictionary.Add(AllStats[i].Stat, Instantiate(AllStats[i]));
+            if (!StatDictionary.ContainsKey(AllStats[i].Stat))
+                StatDictionary.Add(AllStats[i].Stat, Instantiate(AllStats[i]));
         }
     }
 
@@ -26,7 +30,6 @@ public class StatManager : MonoBehaviour
 
         switch (statType)
         {
-
             case StatType.PercentValue:
                 statData.ModifyStat(StatType.PercentValue, value);
                 break;
