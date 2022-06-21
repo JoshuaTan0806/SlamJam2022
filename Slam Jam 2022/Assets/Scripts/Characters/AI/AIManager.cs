@@ -41,6 +41,9 @@ public class AIManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (aiStats.Dead)
+			return;
+
 		sightTimer -= Time.deltaTime;
 		if (sightTimer <= 0)
 		{

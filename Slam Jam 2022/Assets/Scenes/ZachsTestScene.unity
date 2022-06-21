@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    m_keys: 50000000
+    m_keys: 00000000
     m_values:
     - 100
   _skillPoints: 0

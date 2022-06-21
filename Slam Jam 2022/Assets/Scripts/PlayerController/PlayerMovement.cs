@@ -17,15 +17,20 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController = null;
     private GameObject playerModel = null;
 
+    Player player;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        player = GetComponent<Player>();
         playerModel = GetComponentInChildren<Animator>().gameObject;
     }
 
     void Update()
     {
+        if (player.Dead)
+            return;
+
         isGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, Ground);
         if(isGrounded && velocity.y < 0)
         {
