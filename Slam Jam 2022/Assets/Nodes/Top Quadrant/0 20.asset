@@ -12,20 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 0 20
   m_EditorClassIdentifier: 
-  Name: Major Torrent Damage
+  Name: Major Permeability
   icon: {fileID: 0}
   coordinates: {x: 0, y: 20}
   nodeType: 1
   isStartingNode: 0
   powerUps:
-  - Description: Torrent Damage is tripled.
-    StatType: 2
-    Stat: 9
-    value: 3
-  - Description: Torrent Speed is halved.
-    StatType: 2
-    Stat: 8
-    value: 0.5
+  - Description: 5% increased Permeability
+    StatType: 0
+    Stat: 0
+    value: 5
   connectedNodes: []
   isActive: 0
   NodeToConnect: {fileID: 0}
