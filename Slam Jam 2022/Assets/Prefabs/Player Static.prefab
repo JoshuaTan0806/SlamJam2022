@@ -459,7 +459,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772108, y: 1}
+    m_SensorSize: {x: 1.9238281, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -567,3 +567,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 420334, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
   m_PrefabInstance: {fileID: 2686185575812042090}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2686185575811962486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 187164, guid: 278fbc8682262ca4fa2ece1a816e7f66, type: 3}
+  m_PrefabInstance: {fileID: 2686185575812042090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6078394303485421130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686185575811962486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76cd0f35020f1b4ab0dae3b8b0f56e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
