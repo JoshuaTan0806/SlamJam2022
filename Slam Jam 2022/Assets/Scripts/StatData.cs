@@ -14,7 +14,7 @@ public enum StatType
 public class StatData : ScriptableObject
 {
     public string InGameName;
-
+    public Sprite Icon;
     public Stat Stat;
     public float PercentValue;
     public float FlatValue;

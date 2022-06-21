@@ -251,4 +251,29 @@ public class Node : ScriptableObject
 
         NodeToConnect = null;
     }
+
+    [Button("Auto Generate Name")]
+    public void AutoGenerateName()
+    {
+        switch (nodeType)
+        {
+            case NodeType.Minor:
+                Name = "Minor " + StatManager.StatDictionary[powerUps[0].Stat].InGameName;
+                break;
+            case NodeType.Notable:
+                Name = "Major " + StatManager.StatDictionary[powerUps[0].Stat].InGameName;
+                break;
+            case NodeType.Keystone:
+                Name = "Rune of Water: [Name]";
+                break;
+            default:
+                break;
+        }
+    }
+
+    [Button("Auto Generate Icon")]
+    public void AutoGenerateIcon()
+    {
+        icon = StatManager.StatDictionary[powerUps[0].Stat].Icon;
+    }
 }
