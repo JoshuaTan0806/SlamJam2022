@@ -27,6 +27,19 @@ namespace Items
         /// </summary>
         public static System.Action onItemsRefresh = null;
         /// <summary>
+        /// Clears all items from the inventory
+        /// </summary>
+        public static void Clear()
+        {
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                    if (_equipped[x, y])
+                    {
+                        Object.Destroy(_equipped[x, y]);
+                        _equipped[x, y] = null;
+                    }
+        }
+        /// <summary>
         /// Equips an item
         /// </summary>
         /// <param name="item">The item to equip. Set to null to unequip</param>

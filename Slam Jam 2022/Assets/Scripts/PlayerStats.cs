@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [System.Serializable]
+    public class BaseStatDict : SerializableDictionary<Stat, float> { }
+
     [SerializeField] protected StatDictionary stats = new StatDictionary();
+
+    [Space]
+
+    [SerializeField] protected BaseStatDict baseStats = new BaseStatDict();
 
     public event System.Action OnDamageTaken;
     [HideInInspector] public float CurrentHealth;
     public event System.Action OnDeath;
     public bool Dead { get; protected set; }
 
-    private void Awake()
+    private void Start()
     {
+        foreach (var s in baseStats)
+        {
+            AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
+        }
+        CurrentHealth = 0;
     }
 
     public void AddStat(StatData statData)
@@ -61,12 +73,12 @@ public class PlayerStats : MonoBehaviour
         if (Dead)
             return;
 
-        CurrentHealth -= damage;
+        CurrentHealth += damage;
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
-        if (CurrentHealth < GetStat(Stat.Health).TotalValue)
+        if (CurrentHealth > GetStat(Stat.Health).TotalValue)
             Die();
     }  
 
