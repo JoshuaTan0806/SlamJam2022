@@ -22,6 +22,8 @@ MonoBehaviour:
     StatType: 0
     Stat: 16
     value: 10
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: e0b2b44357bc7964384aedbde964d50a, type: 2}
+  - {fileID: 11400000, guid: 1e091e513e20da443b3ee6f5e0313846, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

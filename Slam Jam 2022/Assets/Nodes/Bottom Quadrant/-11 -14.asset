@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Minor Torrent Speed
   icon: {fileID: 0}
-  coordinates: {x: -11, y: 14}
+  coordinates: {x: -11, y: -14}
   nodeType: 0
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,9 @@ MonoBehaviour:
     StatType: 0
     Stat: 8
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 2c865b1250f0da044932f912a7d41e95, type: 2}
+  - {fileID: 11400000, guid: 745f91b316ab24149b002a101f3290fb, type: 2}
+  - {fileID: 11400000, guid: d50caae91c5ba4b4cb86f2faa25c9901, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

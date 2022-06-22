@@ -22,6 +22,12 @@ MonoBehaviour:
     StatType: 0
     Stat: 0
     value: 0
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: a97e185173003d94683927b273d234f3, type: 2}
+  - {fileID: 11400000, guid: bf32c9110f6d8704eafd32432f8bb36f, type: 2}
+  - {fileID: 11400000, guid: e685f1d106536fe41acdc144d0d3689a, type: 2}
+  - {fileID: 11400000, guid: de28e5cbec85d524780e9ab11bfa6001, type: 2}
+  - {fileID: 11400000, guid: 94fecf151c1f2c34bbb0f885055ca7b9, type: 2}
+  - {fileID: 11400000, guid: 1747ed7380e8d2b4998bc7bf48a30756, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

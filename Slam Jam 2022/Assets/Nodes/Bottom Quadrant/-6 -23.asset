@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Minor Percolation
   icon: {fileID: 0}
-  coordinates: {x: -6, y: 23}
+  coordinates: {x: -6, y: -23}
   nodeType: 0
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,8 @@ MonoBehaviour:
     StatType: 0
     Stat: 16
     value: 10
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: b400cd9e3473dac49a2ab73aca6cfe2d, type: 2}
+  - {fileID: 11400000, guid: 819c3f007ba2eb24e953a09927a9e54d, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}
