@@ -38,6 +38,30 @@ namespace Items
 #endif
         #endregion
 
+        #region Stats
+#if UNITY_EDITOR
+        [OnCollectionChanged("RefreshStatProbability")]
+#endif
+        [BoxGroup("Stats")]
+        public StatChanceDictionary statChances = new StatChanceDictionary();
+
+#if UNITY_EDITOR
+        [Button]
+        [BoxGroup("Stats")]
+        private void RefreshStatProbability()
+        {
+            float total = 0;
+
+            foreach (var value in statChances.Values)
+                total += value.weight;
+
+            if (total != 0)
+                foreach (var value in statChances.Values)
+                    value.probability = (value.weight / total) * 100f;
+        }
+#endif
+        #endregion
+
         public ItemLevelInfoDictionary levelInfo = new ItemLevelInfoDictionary();
         /// <summary>
         /// Rolls a random type
@@ -179,56 +203,31 @@ namespace Items
 
         public void RollStats(byte level, ref StatDictionary dictionary)
         {
-            //var l = GetInfo(level);
+            var info = GetInfo(level);
 
-            //tempStats.Clear();
+            tempStats.Clear();
 
-            //int amount = UnityEngine.Random.Range(l.possibleNumberOfStats.x, l.possibleNumberOfStats.y + 1);
+            int amount = UnityEngine.Random.Range(info.possibleNumberOfStats.x, info.possibleNumberOfStats.y + 1);
+            int l = level;
+            List<Stat> s = new List<Stat>();
+            foreach (var k in statChances.Keys)
+            {   //Don't roll stats of lower level
+                if (statChances[k].levelUnlocked < l)
+                    continue;
+                //Random the stat
+                s.Add(k);
+                tempStats[k] = StatManager.CreateStat(k, StatType.FlatValue, statChances[k].RollStat(l));
+            }
+            //Get random stats
+            while (amount > 0)
+            {
+                int rand = UnityEngine.Random.Range(0, s.Count);
+                //Add stat
+                dictionary.Add(s[rand], tempStats[s[rand]]);
+                s.RemoveAt(rand);
 
-            //List<Stat> s = new List<Stat>();
-            //foreach (var k in l.statChances.Keys)
-            //{   //Random the stat
-            //    s.Add(k);
-            //    tempStats[k] = UnityEngine.Random.Range(l.statChances[k].statRange.x, l.statChances[k].statRange.y);
-            //}
-            ////If use previous levels stats, get them
-            //if (l.usePreviousLevel)
-            //{   
-            //    bool checkPrevious = true;
-            //    int cur = 0;
-            //    while (checkPrevious)
-            //    {
-            //        cur++;
-            //        //Make sure there is a previous level to get
-            //        byte n = (byte)(level - cur);
-
-            //        if (!levelInfo.ContainsKey(n))
-            //            break;
-
-            //        var temp = GetInfo(n);
-            //        //Add it stats
-            //        foreach (var k in temp.statChances.Keys)
-            //        {   //Already got that stat
-            //            if (tempStats.ContainsKey(k))
-            //                continue;
-            //            //Random the stat
-            //            s.Add(k);
-            //            tempStats[k] = UnityEngine.Random.Range(temp.statChances[k].statRange.x, temp.statChances[k].statRange.y);
-            //        }
-            //        //Keep going until a level says not to use the previous stats.
-            //        checkPrevious = temp.usePreviousLevel;
-            //    }
-            //}
-            ////Get random stats
-            //while (amount > 0)
-            //{
-            //    int rand = UnityEngine.Random.Range(0, s.Count);
-            //    //Add stat
-            //    dictionary.Add(s[rand], tempStats[s[rand]]);
-            //    s.RemoveAt(rand);
-
-            //    amount--;
-            //}
+                amount--;
+            }
         }
 
         private ItemLevelInfo GetInfo(byte level)
@@ -323,44 +322,9 @@ namespace Items
 #endif
             #endregion
 
-            #region Stats
-
-            [BoxGroup("Stats")]
-            [Tooltip("To also include the previous levels")]
-            public bool usePreviousLevel = false;
             [BoxGroup("Stats")]
             public Vector2Int possibleNumberOfStats;
-#if UNITY_EDITOR
-            [OnCollectionChanged("RefreshStatProbability")]
-#endif
-            [BoxGroup("Stats")]
-            public StatChanceDictionary statChances = new StatChanceDictionary();
 
-#if UNITY_EDITOR
-            [Button]
-            [BoxGroup("Stats")]
-            private void RefreshStatProbability()
-            {
-                float total = 0;
-
-                foreach (var value in statChances.Values)
-                    total += value.weight;
-
-                if (total != 0)
-                    foreach (var value in statChances.Values)
-                        value.probability = (value.weight / total) * 100f;
-            }
-#endif
-#endregion
-
-            [Serializable]
-            public class StatChance : Chance
-            {
-                public Vector2 statRange = Vector2.up;
-            }
-
-            [Serializable]
-            public class StatChanceDictionary : SerializableDictionary<Stat, StatChance> {}
             [Serializable]
             public class ConnectionChances : SerializableDictionary<byte, Chance> {}
             [Serializable]
@@ -378,6 +342,38 @@ namespace Items
             public float probability = 0;
 #endif
         }
+
+        [Serializable]
+        public class StatChance : Chance
+        {
+            [Tooltip("How much each stat gains per level")]
+            public float gainPerLevel = 1;
+            /// <summary>
+            /// The level the stat is available
+            /// </summary>
+            public int levelUnlocked = 0;
+
+            [Tooltip("Base range of values")]
+            public Vector2 baseValues = Vector2.up;
+
+            [Tooltip("The highest this stat is allowed to go")]
+            public float cap = 0;
+
+            public float RollStat(int level)
+            {
+                float bonus = gainPerLevel * level;
+
+                float val = UnityEngine.Random.Range(baseValues.x + bonus, baseValues.y + bonus);
+
+                if (cap > 0 && val > cap)
+                    val = cap;
+
+                return val;
+            }
+        }
+
+        [Serializable]
+        public class StatChanceDictionary : SerializableDictionary<Stat, StatChance> { }
 
         [Serializable]
         public class ItemLevelInfoDictionary : SerializableDictionary<byte, ItemLevelInfo> { }
