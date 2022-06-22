@@ -116,7 +116,7 @@ public class Node : ScriptableObject
     [ReadOnly, SerializeField] bool isActive;
 
     [Header("Connect Nodes")]
-    [SerializeField] Node NodeToConnect;
+    [SerializeField] Vector2 NodeToConnect;
 
     public bool CanBeToggledOn()
     {
@@ -239,22 +239,42 @@ public class Node : ScriptableObject
         GameManager.Save();
     }
 
+#if UNITY_EDITOR
     [Button]
     public void ConnectOrRemoveNode()
     {
-        if(connectedNodes.Contains(NodeToConnect))
+        List<Node> nodes = EditorExtensionMethods.GetAllInstances<Node>();
+        Node nodeToConnect = null;
+
+        for (int i = 0; i < nodes.Count; i++)
         {
-            connectedNodes.Remove(NodeToConnect);
-            NodeToConnect.connectedNodes.Remove(this);
+            if(nodes[i].coordinates == NodeToConnect)
+            {
+                nodeToConnect = nodes[i];
+                break;
+            }
+        }
+
+        if(nodeToConnect == null)
+        {
+            Debug.LogError("No node with those coordinates");
+            return;
+        }
+
+        if(connectedNodes.Contains(nodeToConnect))
+        {
+            connectedNodes.Remove(nodeToConnect);
+            nodeToConnect.connectedNodes.Remove(this);
         }
         else
         {
-            connectedNodes.Add(NodeToConnect);
-            NodeToConnect.connectedNodes.Add(this);
+            connectedNodes.Add(nodeToConnect);
+            nodeToConnect.connectedNodes.Add(this);
         }
 
-        NodeToConnect = null;
+        NodeToConnect = Vector2.zero;
     }
+#endif
 
     void AutoGenerateName()
     {

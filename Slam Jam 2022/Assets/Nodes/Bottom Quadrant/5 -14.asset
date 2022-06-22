@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Major Torrent Damage
   icon: {fileID: 0}
-  coordinates: {x: 5, y: 14}
+  coordinates: {x: 5, y: -14}
   nodeType: 1
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,11 @@ MonoBehaviour:
     StatType: 0
     Stat: 9
     value: 5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 8d156597a4c6d164e83177fe51cacd8b, type: 2}
+  - {fileID: 11400000, guid: 1f1ed3c55f65cb5479eb00b77ccfd2a8, type: 2}
+  - {fileID: 11400000, guid: 6078f74b54dc2d141b4067cfac067b03, type: 2}
+  - {fileID: 11400000, guid: 56be27fe58d897540b7d3beffcede31f, type: 2}
+  - {fileID: 11400000, guid: 28428f1af52b53a44b9db779259021fc, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Major Surface Tension
   icon: {fileID: 0}
-  coordinates: {x: 10, y: 18}
+  coordinates: {x: 10, y: -18}
   nodeType: 1
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,8 @@ MonoBehaviour:
     StatType: 0
     Stat: 15
     value: 5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 56be27fe58d897540b7d3beffcede31f, type: 2}
+  - {fileID: 11400000, guid: d51893b11030a4c4fa1f6f17b7987690, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

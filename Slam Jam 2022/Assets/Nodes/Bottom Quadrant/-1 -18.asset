@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Minor Surface Tension
   icon: {fileID: 0}
-  coordinates: {x: -1, y: 18}
+  coordinates: {x: -1, y: -18}
   nodeType: 0
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,8 @@ MonoBehaviour:
     StatType: 0
     Stat: 15
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: cfe6a3305e284904aae2a255b140a912, type: 2}
+  - {fileID: 11400000, guid: dcd6e505f49b60c478fd4f77a06d6c6b, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

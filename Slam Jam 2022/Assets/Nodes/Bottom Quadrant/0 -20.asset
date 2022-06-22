@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Major Permeability
   icon: {fileID: 0}
-  coordinates: {x: 0, y: 20}
+  coordinates: {x: 0, y: -20}
   nodeType: 1
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,9 @@ MonoBehaviour:
     StatType: 0
     Stat: 0
     value: 5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: acb88d1cd6ff2aa449e7fa5354004366, type: 2}
+  - {fileID: 11400000, guid: 3e42b3ceb86dc944888033ebc745aa54, type: 2}
+  - {fileID: 11400000, guid: 04820a5fd2156d1458ee8966314bc3b6, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

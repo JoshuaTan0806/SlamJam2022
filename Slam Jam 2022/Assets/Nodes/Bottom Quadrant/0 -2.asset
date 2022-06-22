@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Constant Flux
   icon: {fileID: 0}
-  coordinates: {x: 0, y: 3}
+  coordinates: {x: 0, y: -2}
   nodeType: 2
   isStartingNode: 0
   powerUps:
@@ -26,6 +26,7 @@ MonoBehaviour:
     StatType: 2
     Stat: 17
     value: 0.5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 0a0d9f61b662ac747a38069b1151de4a, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

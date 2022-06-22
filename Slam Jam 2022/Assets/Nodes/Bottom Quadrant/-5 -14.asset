@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Major Percolation
   icon: {fileID: 0}
-  coordinates: {x: -5, y: 14}
+  coordinates: {x: -5, y: -14}
   nodeType: 1
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,10 @@ MonoBehaviour:
     StatType: 0
     Stat: 16
     value: 30
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: b6a45bee204d22e49aacf9da5c47fe80, type: 2}
+  - {fileID: 11400000, guid: 8534ae41f985d524ba56dba2cf55a661, type: 2}
+  - {fileID: 11400000, guid: bbc049e61903f154588c2c8d38846f95, type: 2}
+  - {fileID: 11400000, guid: dcd6e505f49b60c478fd4f77a06d6c6b, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

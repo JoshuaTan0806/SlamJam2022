@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Minor Scald Chance
   icon: {fileID: 0}
-  coordinates: {x: 11, y: 14}
+  coordinates: {x: 11, y: -14}
   nodeType: 0
   isStartingNode: 0
   powerUps:
@@ -22,6 +22,8 @@ MonoBehaviour:
     StatType: 0
     Stat: 5
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 70fcc61ef46542d48aff679a03956046, type: 2}
+  - {fileID: 11400000, guid: afb621d22d914424a9e253b4e063ea43, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}
