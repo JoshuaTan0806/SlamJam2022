@@ -21,8 +21,6 @@ public class Player : PlayerStats
     [SerializeField] int _skillPoints;
     public static System.Action OnSkillPointsChanged;
 
-    [SerializeField] StatDictionary baseStats = new StatDictionary();
-
     private void Awake()
     {
         if (instance == null)
@@ -39,7 +37,6 @@ public class Player : PlayerStats
     {
         stats.Clear();
         //Combine stats
-        AddStats(baseStats);
         AddStats(Items.ItemInventory.GetItemStats());
 
         RecalculateStats();
