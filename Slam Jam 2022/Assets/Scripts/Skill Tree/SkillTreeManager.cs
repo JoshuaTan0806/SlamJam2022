@@ -11,6 +11,7 @@ public class SkillTreeManager : MonoBehaviour
     public List<Node> nodes;
     public static List<Node> allNodes;
     static List<Node> startingNodes;
+    public static bool showCoordinates = false;
 
     public static Dictionary<NodeType, float> NodeTypeToSize = new Dictionary<NodeType, float>()
     {
@@ -70,6 +71,12 @@ public class SkillTreeManager : MonoBehaviour
             SkillTree.SetActive(true);
     }
 
+    public void RefreshSkillTree()
+    {
+        if (SkillTree != null)
+            SkillTree.GetComponent<SkillTree>().Refresh();
+    }
+
     public static bool StartingNodeTaken()
     {
         for (int i = 0; i < startingNodes.Count; i++)
@@ -79,12 +86,6 @@ public class SkillTreeManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void RefreshSkillTree()
-    {
-        if (SkillTree != null)
-            SkillTree.GetComponent<SkillTree>().Refresh();
     }
 
     public void ResetSkillTree()
@@ -106,6 +107,23 @@ public class SkillTreeManager : MonoBehaviour
         nodes.Clear();
         List<Node> nodesInProject = EditorExtensionMethods.GetAllInstances<Node>();
         nodes = nodesInProject;
+    }
+
+    [Button("Hook up all nodes")]
+    public void HookUpAllNodes()
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            for (int j = 0; j < nodes[i].connectedNodes.Count; j++)
+            {
+                if(!nodes[i].connectedNodes[j].connectedNodes.Contains(nodes[i]))
+                {
+                    nodes[i].connectedNodes[j].connectedNodes.Add(nodes[i]);
+                }
+            }
+
+            EditorExtensionMethods.SaveAsset(nodes[i]);
+        }
     }
 #endif
 }

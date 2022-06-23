@@ -264,12 +264,16 @@ public class Node : ScriptableObject
         if(connectedNodes.Contains(nodeToConnect))
         {
             connectedNodes.Remove(nodeToConnect);
-            nodeToConnect.connectedNodes.Remove(this);
+
+            if (nodeToConnect.connectedNodes.Contains(this))
+                nodeToConnect.connectedNodes.Remove(this);
         }
         else
         {
             connectedNodes.Add(nodeToConnect);
-            nodeToConnect.connectedNodes.Add(this);
+
+            if (!nodeToConnect.connectedNodes.Contains(this))
+                nodeToConnect.connectedNodes.Add(this);
         }
 
         NodeToConnect = Vector2.zero;

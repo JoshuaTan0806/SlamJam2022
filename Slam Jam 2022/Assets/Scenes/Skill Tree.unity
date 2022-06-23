@@ -1301,11 +1301,11 @@ MonoBehaviour:
   stats:
     m_keys: 
     m_values: []
-  CurrentHealth: 0
-  _skillPoints: 3
   baseStats:
     m_keys: 
     m_values: []
+  CurrentHealth: 0
+  _skillPoints: 3
 --- !u!114 &2067215178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,6 +1319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
+    m_keys: 
+    m_values: []
+  baseStats:
     m_keys: 
     m_values: []
   CurrentHealth: 0

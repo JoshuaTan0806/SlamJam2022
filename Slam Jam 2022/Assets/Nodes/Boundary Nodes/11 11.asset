@@ -26,5 +26,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7dc2c7c55b67e514f99b4844a64fca7c, type: 2}
   - {fileID: 11400000, guid: 7700dbffee7eca341bfaeee71528b40e, type: 2}
   - {fileID: 11400000, guid: 00127d5da91b27642ba7165eee6ccf06, type: 2}
+  - {fileID: 11400000, guid: 9428ae06c88c3134ab9d1af4be9aad41, type: 2}
   isActive: 0
   NodeToConnect: {x: 0, y: 0}

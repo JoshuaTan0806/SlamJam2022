@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Dead Calm
   icon: {fileID: 0}
-  coordinates: {x: -20, y: -20}
+  coordinates: {x: -21, y: -21}
   nodeType: 2
   isStartingNode: 0
   powerUps:
@@ -26,6 +26,7 @@ MonoBehaviour:
     StatType: 2
     Stat: 2
     value: 0.5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 991b576870b6a5d48955d29043403b68, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

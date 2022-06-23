@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sniper
   icon: {fileID: 0}
-  coordinates: {x: 13, y: 25}
+  coordinates: {x: 13, y: -25}
   nodeType: 2
   isStartingNode: 0
   powerUps:
@@ -26,6 +26,7 @@ MonoBehaviour:
     StatType: 2
     Stat: 16
     value: 0.5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 225fbcbb84fcbcf4da12cefb2df3cd80, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

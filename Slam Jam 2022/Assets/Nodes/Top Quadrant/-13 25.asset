@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Water Pump
   icon: {fileID: 0}
-  coordinates: {x: 0, y: 25}
+  coordinates: {x: -13, y: 25}
   nodeType: 2
   isStartingNode: 0
   powerUps:
@@ -26,6 +26,7 @@ MonoBehaviour:
     StatType: 2
     Stat: 8
     value: 0.5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 177b7a316c1ba354fb6c230d50474edb, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}
