@@ -18,7 +18,7 @@ MonoBehaviour:
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: Viscosity is tripled.
+  - Description: Viscosity Resistance is tripled.
     StatType: 2
     Stat: 5
     value: 3

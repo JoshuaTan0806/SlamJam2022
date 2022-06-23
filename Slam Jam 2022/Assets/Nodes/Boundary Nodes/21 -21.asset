@@ -18,11 +18,11 @@ MonoBehaviour:
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: qwe
+  - Description: 1
     StatType: 2
     Stat: 12
     value: -3
-  - Description: Viscosity is halved.
+  - Description: Viscosity Resistance is halved.
     StatType: 2
     Stat: 5
     value: 0.5
