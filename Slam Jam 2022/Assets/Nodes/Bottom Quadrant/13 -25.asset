@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 13 -25
   m_EditorClassIdentifier: 
-  Name: Sniper
-  icon: {fileID: 0}
+  Name: Fountain of Life
+  icon: {fileID: 21300000, guid: 95d7767d60b0d7e42be7af95b85a5f63, type: 3}
   coordinates: {x: 13, y: -25}
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: Torrent Damage is doubled.
+  - Description: Friction is doubled.
     StatType: 2
-    Stat: 9
+    Stat: 11
     value: 2
-  - Description: Percolation is halved.
+  - Description: Absorption is halved.
     StatType: 2
-    Stat: 16
+    Stat: 10
     value: 0.5
   connectedNodes:
   - {fileID: 11400000, guid: 225fbcbb84fcbcf4da12cefb2df3cd80, type: 2}

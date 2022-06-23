@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 14 -5
   m_EditorClassIdentifier: 
-  Name: Major Permeability
-  icon: {fileID: 0}
+  Name: Major Splash Area
+  icon: {fileID: 21300000, guid: d6b346816973c494da2131dbf2bb817b, type: 3}
   coordinates: {x: 14, y: -5}
   nodeType: 1
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 5% increased Splash Area
     StatType: 0
-    Stat: 0
-    value: 0
+    Stat: 7
+    value: 5
   connectedNodes:
   - {fileID: 11400000, guid: f9f6b832fab1c7648b357b4b83068d2c, type: 2}
   - {fileID: 11400000, guid: 04cda94480cf90f4fae02f75edae01dd, type: 2}
