@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NodeDescription : MonoBehaviour
+public class MenuHolder : MonoBehaviour
 {
     [SerializeField] GameObject Title;
     [SerializeField] GameObject Description;

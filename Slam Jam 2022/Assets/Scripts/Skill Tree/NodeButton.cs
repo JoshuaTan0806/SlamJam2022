@@ -79,7 +79,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             info = Instantiate(infoPrefab, transform.parent.parent);
 
-            NodeDescription n = info.GetComponent<NodeDescription>();
+            MenuHolder n = info.GetComponent<MenuHolder>();
 
             if (SkillTreeManager.showCoordinates)
                 n.SpawnTitle(node.Name + " (" + node.coordinates.x + ", " + node.coordinates.y + ")");
