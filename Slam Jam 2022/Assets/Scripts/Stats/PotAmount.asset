@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b1d034c561cc12439fd695fa7442a6e, type: 3}
-  m_Name: MinionDmg
+  m_Name: PotAmount
   m_EditorClassIdentifier: 
-  InGameName: Intramolecular Force
-  Stat: 14
+  InGameName: Absorption
+  Icon: {fileID: 21300000, guid: b00871527acc73942a3b837b841c6f41, type: 3}
+  Stat: 10
   PercentValue: 0
   FlatValue: 0
   FinalMultiplier: 0
   TotalValue: 0
-  CurrentValue: 0

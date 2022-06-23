@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LifeOnHit
   m_EditorClassIdentifier: 
   InGameName: Exudation
-  Icon: {fileID: 0}
-  Stat: 19
+  Icon: {fileID: 21300000, guid: 2066a244b6f1d464bbafc25ff0d9a29f, type: 3}
+  Stat: 4
   PercentValue: 0
   FlatValue: 0
   FinalMultiplier: 0
