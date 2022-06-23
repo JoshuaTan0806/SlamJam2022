@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -21 21
   m_EditorClassIdentifier: 
-  Name: Water Cannon
-  icon: {fileID: 0}
+  Name: Sniper
+  icon: {fileID: 21300000, guid: 70ea107574aee204d8d17beddaa5bbad, type: 3}
   coordinates: {x: -21, y: 21}
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: Buoyant Force is doubled.
+  - Description: Torrent Speed is tripled.
     StatType: 2
-    Stat: 11
-    value: 2
-  - Description: Buoyancy is halved.
+    Stat: 16
+    value: 3
+  - Description: Surface Tension is halved.
     StatType: 2
-    Stat: 12
+    Stat: 3
     value: 0.5
   connectedNodes:
   - {fileID: 11400000, guid: bfdb55f1a58049e40b7f5619dac47427, type: 2}

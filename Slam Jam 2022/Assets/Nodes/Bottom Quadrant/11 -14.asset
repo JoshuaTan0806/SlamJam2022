@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 11 -14
   m_EditorClassIdentifier: 
-  Name: Minor Scald Chance
-  icon: {fileID: 0}
+  Name: Minor Buoyancy
+  icon: {fileID: 21300000, guid: 85745b23f0ac7c14fad09ee533b6cb62, type: 3}
   coordinates: {x: 11, y: -14}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Scald Chance
+  - Description: 2% increased Buoyancy
     StatType: 0
-    Stat: 5
+    Stat: 8
     value: 2
   connectedNodes:
   - {fileID: 11400000, guid: 70fcc61ef46542d48aff679a03956046, type: 2}

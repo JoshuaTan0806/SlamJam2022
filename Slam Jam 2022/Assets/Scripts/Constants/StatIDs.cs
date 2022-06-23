@@ -26,7 +26,7 @@ public enum Stat
     ProjDmg,
     AddProj,
     CastSpd,
-    LifeGainOnHit,
+    Lifesteal,
     Spd,
     AOEDmg,
     AOEArea,

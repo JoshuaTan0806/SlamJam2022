@@ -49,7 +49,10 @@ public class Node : ScriptableObject
             switch (StatType)
             {
                 case StatType.PercentValue:
-                    Description = value + "% increased " + StatManager.StatDictionary[Stat].InGameName;
+                    if (value > 0)
+                        Description = value + "% increased " + StatManager.StatDictionary[Stat].InGameName;
+                    else
+                        Description = -value + "% decreased " + StatManager.StatDictionary[Stat].InGameName;
                     break;
                 case StatType.FlatValue:
                     Description = value + " to " + StatManager.StatDictionary[Stat].InGameName;

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: -11 14
   m_EditorClassIdentifier: 
   Name: Minor Torrent Speed
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 70ea107574aee204d8d17beddaa5bbad, type: 3}
   coordinates: {x: -11, y: 14}
   nodeType: 0
   isStartingNode: 0
   powerUps:
   - Description: 2% increased Torrent Speed
     StatType: 0
-    Stat: 8
+    Stat: 16
     value: 2
   connectedNodes:
   - {fileID: 11400000, guid: 3715843287d7d7d4b9102f2accaa1033, type: 2}

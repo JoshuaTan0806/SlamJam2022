@@ -22,7 +22,7 @@ MonoBehaviour:
     StatType: 2
     Stat: 6
     value: 2
-  - Description: 0% increased Permeability
+  - Description: 0% decreased Permeability
     StatType: 0
     Stat: 0
     value: 0
