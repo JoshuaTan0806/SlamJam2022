@@ -46,8 +46,6 @@ public class Node : ScriptableObject
             if (StatManager.StatDictionary == null || !StatManager.StatDictionary.ContainsKey(Stat))
                 return;
 
-            string statStr = StatManager.StatDictionary[Stat].name;
-
             switch (StatType)
             {
                 case StatType.PercentValue:
@@ -306,8 +304,7 @@ public class Node : ScriptableObject
         if (StatManager.StatDictionary == null || !StatManager.StatDictionary.ContainsKey(powerUps[0].Stat))
             return;
 
-        if (nodeType == NodeType.Minor || nodeType == NodeType.Notable)
-            icon = StatManager.StatDictionary[powerUps[0].Stat].Icon;
+        icon = StatManager.StatDictionary[powerUps[0].Stat].Icon;
     }
 
     void AutoGenerateCoordinates()

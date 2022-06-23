@@ -116,6 +116,12 @@ public class SkillTree : MonoBehaviour
         {
             NodeButtons[i].ChangeHighlight();
         }
+
+        if(statHolderReference)
+        {
+            ToggleStatsMenu(false);
+            ToggleStatsMenu(true);
+        }
     }
 
     public GameObject statHolderPrefab;
@@ -148,6 +154,43 @@ public class SkillTree : MonoBehaviour
                 {
                     statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
                 }
+            }
+        }
+    }
+
+    void ToggleStatsMenu(bool on)
+    {
+        if (on)
+        {
+            statHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
+            MenuHolder statsHolder = statHolderReference.GetComponent<MenuHolder>();
+            statsHolder.SpawnTitle("Stats");
+
+            foreach (KeyValuePair<Stat, StatData> stat in StatManager.StatDictionary)
+            {
+                StatData statData = Player.instance.GetStat(stat.Key);
+
+                if (statData.FlatValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.PercentValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.FinalMultiplier != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+            }
+        }
+        else
+        {
+            if (statHolderReference)
+            {
+                Destroy(statHolderReference);
             }
         }
     }

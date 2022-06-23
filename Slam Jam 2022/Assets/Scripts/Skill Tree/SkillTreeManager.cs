@@ -15,14 +15,20 @@ public class SkillTreeManager : MonoBehaviour
 
     public static Dictionary<NodeType, float> NodeTypeToSize = new Dictionary<NodeType, float>()
     {
-        { NodeType.Minor, 0.5f },
-        { NodeType.Notable, 1f },
+        { NodeType.Minor, 0.85f },
+        { NodeType.Notable, 1.5f },
         { NodeType.Keystone, 2f }
 
     };
 
     private void Awake()
     {
+        showCoordinates = false;
+
+#if UNITY_EDITOR
+        showCoordinates = true;
+#endif
+
         if (instance == null)
             instance = this;
         else
