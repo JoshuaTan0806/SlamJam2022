@@ -20,11 +20,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        foreach (var s in StatManager.StatDictionary)
-        {
-            AddStat(StatManager.CreateStat(s.Key, StatType.FinalMultiplier, 1));
-        }
-
         foreach (var s in baseStats)
         {
             AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));

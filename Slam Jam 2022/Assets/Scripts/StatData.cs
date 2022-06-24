@@ -33,7 +33,7 @@ public class StatData : ScriptableObject
                 FlatValue += value;
                 break;
             case StatType.FinalMultiplier:
-                FinalMultiplier += value;
+                FinalMultiplier *= value;
                 break;
             default:
                 break;
@@ -49,7 +49,7 @@ public class StatData : ScriptableObject
 
         statData.PercentValue = l.PercentValue + r.PercentValue;
         statData.FlatValue = l.FlatValue + r.FlatValue;
-        statData.FinalMultiplier = l.FinalMultiplier + r.FinalMultiplier;
+        statData.FinalMultiplier = l.FinalMultiplier * r.FinalMultiplier;
 
         return statData;
     }

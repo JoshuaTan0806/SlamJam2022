@@ -17,5 +17,5 @@ MonoBehaviour:
   Stat: 7
   PercentValue: 0
   FlatValue: 0
-  FinalMultiplier: 0
+  FinalMultiplier: 1
   TotalValue: 0
