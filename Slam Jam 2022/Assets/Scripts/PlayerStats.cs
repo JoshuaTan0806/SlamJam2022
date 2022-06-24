@@ -37,6 +37,8 @@ public class PlayerStats : MonoBehaviour
         {
             stats[statData.Stat] = stats[statData.Stat] + statData;
         }
+
+        stats[statData.Stat].CalculateTotal();
     }
 
     public StatData GetStat(Stat stat)
