@@ -125,21 +125,21 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    public void SetMaster(float volume)
+    public void SetMaster()
     {
-        audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("masterVolume", volume);
+        audioMixer.SetFloat("MasterVol", Mathf.Log10(masterSlider.value) * 20);
+        PlayerPrefs.SetFloat("masterVolume", masterSlider.value);
     }
 
-    public void SetMusic(float volume)
+    public void SetMusic()
     {
-        audioMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("musicVolume", volume);
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) * 20);
+        PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
     }
-    public void SetSFX(float volume)
+    public void SetSFX()
     {
-        audioMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("SFXVolume", volume);
+        audioMixer.SetFloat("SFXVol", Mathf.Log10(sfxSlider.value) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
         playSFX = true;
     }
 }
