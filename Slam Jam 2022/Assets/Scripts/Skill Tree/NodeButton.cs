@@ -53,11 +53,15 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         SkillTree.inputField.onValueChanged.AddListener(delegate { CheckIfHighlighted(SkillTree.inputField.text); });
         ChangeHighlight();
         node.OnActiveChanged += ChangeHighlight;
+        node.OnActiveChanged += Pop;
+        node.OnActiveChanged += PlaySFX;
     }
 
     private void OnDestroy()
     {
         node.OnActiveChanged -= ChangeHighlight;
+        node.OnActiveChanged -= Pop;
+        node.OnActiveChanged -= PlaySFX;
     }
 
     void Initialise()
@@ -155,5 +159,25 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             Outline.color = AvailableColor;
         else
             Outline.color = Color.white;
+    }
+
+    void PlaySFX(bool confirm)
+    {
+        if (confirm)
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
+        else
+            SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
+    }
+
+    void Pop(bool dummy)
+    {
+        GetComponent<RectTransform>().localScale = SkillTreeManager.NodeTypeToSize[node.nodeType] * Vector3.one * 1.2f;
+        StartCoroutine(Unpop());
+    }
+
+    IEnumerator Unpop()
+    {
+        yield return new WaitForSeconds(0.05f);
+        GetComponent<RectTransform>().localScale = SkillTreeManager.NodeTypeToSize[node.nodeType] * Vector3.one;
     }
 }

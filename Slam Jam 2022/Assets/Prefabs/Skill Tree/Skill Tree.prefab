@@ -741,6 +741,7 @@ GameObject:
   - component: {fileID: 3787811904221934167}
   - component: {fileID: 9195289488952068402}
   - component: {fileID: 8603103755816579001}
+  - component: {fileID: 6340905619211375312}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -940,6 +941,19 @@ MonoBehaviour:
   roundedOutlineFilled: {fileID: 0}
   roundedOutlineText: {fileID: 0}
   roundedOutlineTextHighligted: {fileID: 0}
+--- !u!114 &6340905619211375312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976469708423722009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9882f6dc01936469314e615c0c3c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 439a23386bb18384fb8dde3138a90fa3, type: 3}
 --- !u!1 &2363838495981340524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,6 +2515,7 @@ GameObject:
   - component: {fileID: 2910588259195824488}
   - component: {fileID: 6789655815664884185}
   - component: {fileID: 3807224005191603348}
+  - component: {fileID: 1490578612444328730}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -2700,3 +2715,16 @@ MonoBehaviour:
   roundedOutlineFilled: {fileID: 0}
   roundedOutlineText: {fileID: 0}
   roundedOutlineTextHighligted: {fileID: 0}
+--- !u!114 &1490578612444328730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174717583845968204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9882f6dc01936469314e615c0c3c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 81c67b94316cc9040b180c2b943a638b, type: 3}
