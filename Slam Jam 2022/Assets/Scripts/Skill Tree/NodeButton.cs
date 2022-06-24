@@ -171,7 +171,7 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Pop(bool dummy)
     {
-        GetComponent<RectTransform>().localScale = SkillTreeManager.NodeTypeToSize[node.nodeType] * Vector3.one * 1.1f;
+        GetComponent<RectTransform>().localScale = SkillTreeManager.NodeTypeToSize[node.nodeType] * Vector3.one * 1.2f;
         StartCoroutine(Unpop());
     }
 
