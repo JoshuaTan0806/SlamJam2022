@@ -54,12 +54,14 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         ChangeHighlight();
         node.OnActiveChanged += ChangeHighlight;
         node.OnActiveChanged += Pop;
+        node.OnActiveChanged += PlaySFX;
     }
 
     private void OnDestroy()
     {
         node.OnActiveChanged -= ChangeHighlight;
         node.OnActiveChanged -= Pop;
+        node.OnActiveChanged -= PlaySFX;
     }
 
     void Initialise()
@@ -157,6 +159,14 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             Outline.color = AvailableColor;
         else
             Outline.color = Color.white;
+    }
+
+    void PlaySFX(bool confirm)
+    {
+        if (confirm)
+            SoundManager.instance.PlaySound(SoundManager.instance.confirmSFX);
+        else
+            SoundManager.instance.PlaySound(SoundManager.instance.cancelSFX);
     }
 
     void Pop(bool dummy)

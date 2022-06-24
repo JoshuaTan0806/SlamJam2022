@@ -129,9 +129,13 @@ public class SkillTree : MonoBehaviour
     public void ToggleStatsMenu()
     {
         if (statHolderReference)
+        {
+            SoundManager.instance.PlaySound(SoundManager.instance.cancelSFX);
             Destroy(statHolderReference);
+        }
         else
         {
+            SoundManager.instance.PlaySound(SoundManager.instance.confirmSFX);
             statHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
             MenuHolder statsHolder = statHolderReference.GetComponent<MenuHolder>();
             statsHolder.SpawnTitle("Stats");
@@ -162,6 +166,7 @@ public class SkillTree : MonoBehaviour
     {
         if (on)
         {
+            SoundManager.instance.PlaySound(SoundManager.instance.confirmSFX);
             statHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
             MenuHolder statsHolder = statHolderReference.GetComponent<MenuHolder>();
             statsHolder.SpawnTitle("Stats");
@@ -190,6 +195,7 @@ public class SkillTree : MonoBehaviour
         {
             if (statHolderReference)
             {
+                SoundManager.instance.PlaySound(SoundManager.instance.cancelSFX);
                 Destroy(statHolderReference);
             }
         }
