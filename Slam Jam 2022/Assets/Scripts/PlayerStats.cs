@@ -24,6 +24,7 @@ public class PlayerStats : MonoBehaviour
         {
             AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
         }
+
         CurrentHealth = 0;
     }
 

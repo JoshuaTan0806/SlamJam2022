@@ -1226,7 +1226,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2067215179}
-  - component: {fileID: 2067215178}
   - component: {fileID: 2067215177}
   m_Layer: 0
   m_Name: Player
@@ -1251,29 +1250,23 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   baseStats:
-    m_keys: 
-    m_values: []
+    m_keys: 00000000070000000300000009000000080000000f000000100000000e0000000c0000000b0000000a0000000400000002000000
+    m_values:
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 3
+    - 100
+    - 100
   CurrentHealth: 0
   _skillPoints: 3
---- !u!114 &2067215178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067215176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6022e50241b57e48923a888fbcf2307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    m_keys: 
-    m_values: []
-  baseStats:
-    m_keys: 
-    m_values: []
-  CurrentHealth: 0
 --- !u!4 &2067215179
 Transform:
   m_ObjectHideFlags: 0
