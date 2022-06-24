@@ -14,8 +14,6 @@ public class BuffSpill : GenericSpill
 		public float val;
 	}
 
-	[ShowIf("spellType", SpellType.SingleCast), Min(1)]
-	[SerializeField] float buffLifeTime = 1;
 	float spellActiveLifeTime;
 
 	[SerializeField] Buff[] buffs;
@@ -80,7 +78,7 @@ public class BuffSpill : GenericSpill
 		{
 			spellActiveLifeTime += Time.deltaTime;
 
-			if(spellActiveLifeTime > buffLifeTime)
+			if(spellActiveLifeTime > spellDuration)
 			{
 				FinishSpell();
 			}

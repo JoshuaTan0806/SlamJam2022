@@ -15,9 +15,12 @@ MonoBehaviour:
   castCost: 3
   castCooldown: 5
   spellType: 1
-  buffLifeTime: 1
+  spellDuration: 0
+  particles: {fileID: 0}
   buffs:
-  - stat: 83
+  - stat: 5
+    statType: 1
     val: 10
-  - stat: 115
-    val: 50
+  - stat: 8
+    statType: 0
+    val: -20
