@@ -164,9 +164,9 @@ public class NodeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     void PlaySFX(bool confirm)
     {
         if (confirm)
-            SoundManager.instance.PlaySound(SoundManager.instance.confirmSFX);
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
         else
-            SoundManager.instance.PlaySound(SoundManager.instance.cancelSFX);
+            SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
     }
 
     void Pop(bool dummy)

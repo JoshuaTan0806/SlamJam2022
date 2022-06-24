@@ -15,6 +15,6 @@ public class AddButtonSFX : MonoBehaviour
 
     void PlaySound()
     {
-        SoundManager.instance.PlaySound(clip);
+        SoundManager.instance.PlaySFX(clip);
     }
 }

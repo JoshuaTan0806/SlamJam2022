@@ -5,14 +5,19 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    AudioSource audioSource;
+
+    [SerializeField]
+    AudioSource SFXSource;
+
+    [SerializeField]
+    AudioSource BGMSource;
 
     public AudioClip confirmSFX;
     public AudioClip cancelSFX;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -20,13 +25,17 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        SFXSource.clip = clip;
+        SFXSource.Play();
+    }
+
+    public void PlayBGM(AudioClip clip)
+    {
+        BGMSource.clip = clip;
+        BGMSource.Play();
     }
 }
