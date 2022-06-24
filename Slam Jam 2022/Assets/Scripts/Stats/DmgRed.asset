@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DmgRed
   m_EditorClassIdentifier: 
   InGameName: Insolubility
-  Stat: 10
+  Icon: {fileID: 21300000, guid: e8796757ae3c82d45867399bd6103f47, type: 3}
+  Stat: 9
   PercentValue: 0
   FlatValue: 0
   FinalMultiplier: 0
   TotalValue: 0
-  CurrentValue: 0

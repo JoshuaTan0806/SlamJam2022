@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 10 18
   m_EditorClassIdentifier: 
-  Name: Major Surface Tension
-  icon: {fileID: 0}
+  Name: Major Permeability
+  icon: {fileID: 21300000, guid: 62c2cd7afeb409d4da8ff472e8eca16f, type: 3}
   coordinates: {x: 10, y: 18}
   nodeType: 1
   isStartingNode: 0
   powerUps:
-  - Description: 5% increased Surface Tension
+  - Description: 5% increased Permeability
     StatType: 0
-    Stat: 15
+    Stat: 0
     value: 5
   connectedNodes:
   - {fileID: 11400000, guid: d8c0fdb1ed8921f448a5a67a0a2e1b20, type: 2}

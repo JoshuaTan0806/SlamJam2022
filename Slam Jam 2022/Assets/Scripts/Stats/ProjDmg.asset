@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ProjDmg
   m_EditorClassIdentifier: 
   InGameName: Torrent Damage
-  Stat: 9
+  Icon: {fileID: 21300000, guid: 662b560303d61234882e4874c0c48932, type: 3}
+  Stat: 1
   PercentValue: 0
   FlatValue: 0
   FinalMultiplier: 0
   TotalValue: 0
-  CurrentValue: 0

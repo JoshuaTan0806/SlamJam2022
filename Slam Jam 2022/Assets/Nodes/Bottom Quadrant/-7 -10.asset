@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -7 -10
   m_EditorClassIdentifier: 
-  Name: Minor Torrent Speed
-  icon: {fileID: 0}
+  Name: Minor Insolubility
+  icon: {fileID: 21300000, guid: e8796757ae3c82d45867399bd6103f47, type: 3}
   coordinates: {x: -7, y: -10}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Speed
+  - Description: 2% increased Insolubility
     StatType: 0
-    Stat: 8
+    Stat: 9
     value: 2
   connectedNodes:
   - {fileID: 11400000, guid: 834767ec3d170b0479dff5cb250a65d9, type: 2}

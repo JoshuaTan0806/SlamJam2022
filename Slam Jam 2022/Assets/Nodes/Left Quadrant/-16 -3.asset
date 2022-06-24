@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -16 -3
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
+  Name: Minor Acidity
+  icon: {fileID: 21300000, guid: 9d3ef275d02ea744d910a448697704f1, type: 3}
   coordinates: {x: -16, y: -3}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Acidity
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 13
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: c93109379f9883c479311153032bd4da, type: 2}
+  - {fileID: 11400000, guid: 917c634fac05fe045a2d5c7546f9e33a, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}
