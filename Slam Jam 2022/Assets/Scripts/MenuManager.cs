@@ -15,7 +15,15 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+          //  DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     #endregion
@@ -30,8 +38,8 @@ public class MenuManager : MonoBehaviour
 
     public float tempTimeScale = 0f;
 
-    public bool gameIsPaused = true;
-    public bool gameStarted = false;
+    public bool gameIsPaused = false;
+   // public bool gameStarted = false;
     public GameObject pauseMenuUI;
     public GameObject SoundUI;
     public LevelLoader levelLoader;
@@ -39,27 +47,27 @@ public class MenuManager : MonoBehaviour
 
     public void Start()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         CheckMixerValues();
         playSFX = false;
     }
 
-    /*private void Update()
-    {
-        if (Input.GetButtonDown("Cancel") && gameIsPaused==false) Pause();
-        else if (Input.GetButtonDown("Cancel") && gameStarted ==true) Resume();
-        
-    if (Input.GetMouseButtonUp(0) && playSFX == true)
-        {
-            SFXAudio.Play();
-            playSFX = false;
-        }
-    }*/
-
     private void Update()
     {
+        if(SceneManager.GetActiveScene().buildIndex > 0)
+        {
+            if (Input.GetButtonDown("Cancel") && gameIsPaused == false) Pause();
+            else if (Input.GetButtonDown("Cancel") && gameIsPaused == true) Resume();
+        }
 
+        
+    //if (Input.GetMouseButtonUp(0) && playSFX == true)
+     //   {
+     //       SFXAudio.Play();
+     //       playSFX = false;
+     //   }
     }
+
 
     public void NewGame()
     {
@@ -106,8 +114,8 @@ public class MenuManager : MonoBehaviour
         if (tempTimeScale == 0f) { tempTimeScale = 1; }
         Time.timeScale = tempTimeScale;
         gameIsPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.visible = false;
     }
 
     public void Pause()
