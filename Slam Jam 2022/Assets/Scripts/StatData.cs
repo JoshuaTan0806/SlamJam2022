@@ -18,7 +18,7 @@ public class StatData : ScriptableObject
     public Stat Stat;
     public float PercentValue;
     public float FlatValue;
-    [Min(0)] public float FinalMultiplier;
+    [Min(0)] public float FinalMultiplier = 1;
 
     [ReadOnly] public float TotalValue;
 
