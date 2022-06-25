@@ -16,23 +16,28 @@ public class SpillInputManager : MonoBehaviour
     private void Start()
     {
         InputCheck();
-        //SpillCheck();
+        SpillCheck();
         
         for (int i = 0; i < SpillArray.Length; i++)
         {
-           
+            SpillArray[i] = new SpillInput();
         }
     }
 
+    /// <summary>
+    /// Checks through all spillInputs and removes overlapping inputs
+    /// </summary>
     private void InputCheck()
     {
+        //Saves a copy of every input that cannot be used again
         KeyCode[] inputsTaken = new KeyCode[SpillArray.Length];
 
         //Check for input overlaps and remove them
-        for (int i = 0; i >= SpillArray.Length; i++)
+        for (int i = 0; i < SpillArray.Length; i++)
         {
-            for(int e = 0; e >= inputsTaken.Length; e++)
+            for(int e = 0; e < inputsTaken.Length; e++)
             {
+                //Have we already used this input here?
                 if(SpillArray[i].input == inputsTaken[e])
                 {
                     SpillArray[i].input = KeyCode.None;
@@ -46,13 +51,30 @@ public class SpillInputManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ties the spills the player has equipped to an input
+    /// </summary>
     private void SpillCheck()
     {
-        IReadOnlyCollection<GenericSpill> spillList = ItemInventory.GetSpills();
+        var spillList = ItemInventory.GetSpills();
 
-        for (int i = 0; i >= spillList.Count; i++)
+        //Loop through every spill the player has equipped
+        foreach(var spill in spillList)
         {
-            //SpillArray[i].Spill = spillList.
+            //Loop through every spillInput
+            for (int i = 0; i < SpillArray.Length; i++)
+            {
+                //Have we already equipped that spill in this function?
+                if (spill == SpillArray[i].Spill)
+                    break;
+
+                //Is there a spill equipped to that one already?
+                if (SpillArray[i].Spill == null)
+                {
+                    SpillArray[i].Spill = spill;
+                    break;
+                }
+            }
         }
     }
 }
