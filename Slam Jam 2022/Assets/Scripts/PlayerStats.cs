@@ -34,6 +34,8 @@ public class PlayerStats : MonoBehaviour
         }
 
         CurrentHealth = 0;
+
+        StartCoroutine(Regen());
     }
 
     public void AddStat(StatData statData)
@@ -73,18 +75,46 @@ public class PlayerStats : MonoBehaviour
         return minions;
     }
 
+    IEnumerator Regen()
+    {
+        while (!Dead)
+        {
+            yield return new WaitForSeconds(1);
+            if (CurrentHealth - stats[Stat.Regen].TotalValue > 0)
+            {
+                CurrentHealth -= stats[Stat.Regen].TotalValue;
+
+                Collider[] collider = Physics.OverlapSphere(transform.position, 3);
+
+                for (int i = 0; i < collider.Length; i++)
+                {
+                    if (collider[i].TryGetComponent(out PlayerStats stats))
+                        stats.TakeDamage(GetStat(Stat.DmgReflect).TotalValue);
+                }
+            }
+            else
+                CurrentHealth = 0;
+        }
+    }
+
 
     /// <summary>
     /// Takes damage
     /// </summary>
     /// <param name="damage">How much damage we take</param>
     /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
-    public void TakeDamage(float damage, bool internalDamage = false)
+    public void TakeDamage(float damage, bool internalDamage = false, GameObject objectHit = null)
     {
         if (Dead)
             return;
 
-        CurrentHealth += damage;
+        if(objectHit != null)
+        {
+            Vector3 knockbackVector = objectHit.transform.position - transform.position;
+            transform.GetComponent<Rigidbody>().AddForce(knockbackVector * (objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.Knockback).TotalValue));
+        }
+
+        CurrentHealth += damage * Mathf.Clamp(2 - stats[Stat.DmgReduc].TotalValue, 0.2f, 1);
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();

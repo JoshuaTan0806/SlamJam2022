@@ -35,7 +35,7 @@ public class Summonable : MonoBehaviour
     {
         this.summoner = summoner;
         this.spill = spill;
-
+            
         summoner.CurrentActiveSummons.Add(this);
 
         var casterAsSummonable = summoner.GetComponent<Summonable>();
