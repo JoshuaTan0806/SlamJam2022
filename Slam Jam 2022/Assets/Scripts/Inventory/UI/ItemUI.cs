@@ -52,7 +52,10 @@ namespace Items.UI
             if (hasItem)
             {
                 foreach (var stat in item.GetStats().Values)
-                    statParent.SpawnDescription(stat.InGameName + ": " + stat.TotalValue);
+                    if (stat.FlatValue > 0)
+                        statParent.SpawnDescription(stat.InGameName + ": +" + stat.FlatValue.ToString("N0"));
+                    else
+                        statParent.SpawnDescription(stat.InGameName + ": " + stat.PercentValue.ToString("N0") + "%");
             }
 
             statParent.gameObject.SetActive(false);
