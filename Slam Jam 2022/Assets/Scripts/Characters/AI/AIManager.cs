@@ -45,7 +45,7 @@ public class AIManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (aiStats.Dead)
+		if (aiStats.Dead || Player.instance.Dead)
 			return;
 
 		sightTimer -= Time.deltaTime;
