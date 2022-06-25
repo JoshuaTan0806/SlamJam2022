@@ -21,6 +21,7 @@ namespace Items
 #endif
         [BoxGroup("Type")]
         public TypeChances itemTypeChances = new TypeChances();
+        public TypeIcon icons = new TypeIcon();
 #if UNITY_EDITOR
         [Button]
         [BoxGroup("Type")]
@@ -78,7 +79,7 @@ namespace Items
 
             total = 0;
 
-            foreach(var k in itemTypeChances.Keys)
+            foreach (var k in itemTypeChances.Keys)
             {
                 total += itemTypeChances[k].weight;
 
@@ -88,6 +89,15 @@ namespace Items
 
             throw new Exception("Type failed to roll somehow?");
         }
+
+        public Sprite GetIcon(ItemType t)
+        {
+            if (icons.ContainsKey(t))
+                return icons[t];
+
+            return null;
+        }
+
         /// <summary>
         /// Rolls a random skill for an item of level level
         /// </summary>
@@ -185,7 +195,7 @@ namespace Items
                 ConnectionType type = ConnectionType.RED;
                 rand = UnityEngine.Random.Range(0, total);
                 temp = 0;
-                foreach(var k in l.typeChances.Keys)
+                foreach (var k in l.typeChances.Keys)
                 {
                     temp += l.typeChances[k].weight;
 
@@ -239,7 +249,7 @@ namespace Items
             else
             {
                 byte closest = 0;
-                foreach(byte key in levelInfo.Keys)
+                foreach (byte key in levelInfo.Keys)
                 {
                     if (key < level && key > closest)
                         closest = key;
@@ -326,7 +336,7 @@ namespace Items
             public Vector2Int possibleNumberOfStats;
 
             [Serializable]
-            public class ConnectionChances : SerializableDictionary<byte, Chance> {}
+            public class ConnectionChances : SerializableDictionary<byte, Chance> { }
             [Serializable]
             public class ConnectionTypeChances : SerializableDictionary<ConnectionType, Chance> { }
         }
@@ -381,6 +391,9 @@ namespace Items
         public class ItemLevelInfoDictionary : SerializableDictionary<byte, ItemLevelInfo> { }
         [Serializable]
         public class TypeChances : SerializableDictionary<ItemType, Chance> { }
+
+        [Serializable]
+        public class TypeIcon : SerializableDictionary<ItemType, Sprite> {}
         #endregion
     }
 }
