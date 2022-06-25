@@ -26,6 +26,7 @@ public class Node : ScriptableObject
         AutoGenerateCoordinates();
         AutoGenerateIcon();
         AutoGenerateName();
+        AutoGenerateValue();
 
         for (int i = 0; i < powerUps.Count; i++)
         {
@@ -80,7 +81,7 @@ public class Node : ScriptableObject
                     break;
             }
         }
-
+ 
         public void ApplyPowerUp()
         {
             Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, value));
@@ -321,4 +322,16 @@ public class Node : ScriptableObject
             coordinates.y = int.Parse(coords[1]);
         }
     }
+
+    void AutoGenerateValue()
+    {
+        for (int i = 0; i < powerUps.Count; i++)
+        {
+            if (nodeType == NodeType.Minor)
+                powerUps[i].value = 10;
+            else if(nodeType == NodeType.Notable)
+                powerUps[i].value = 25;
+        }
+    }
+
 }

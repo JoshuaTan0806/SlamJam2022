@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 1
   isStartingNode: 0
   powerUps:
-  - Description: 5% increased Acidity
+  - Description: 25% increased Acidity
     StatType: 0
     Stat: 13
-    value: 5
+    value: 25
   connectedNodes:
   - {fileID: 11400000, guid: d455dc7f168253f4a8ded7d2d82ecf19, type: 2}
   - {fileID: 11400000, guid: fd1c9fa65298e444b8a0d5147cd35d01, type: 2}

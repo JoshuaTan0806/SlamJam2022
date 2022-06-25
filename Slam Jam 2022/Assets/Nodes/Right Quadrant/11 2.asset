@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Splash Damage
+  - Description: 10% increased Splash Damage
     StatType: 0
     Stat: 6
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 6ec5926bc1a4c9c488201dc12257ad96, type: 2}
   - {fileID: 11400000, guid: b3b5f3ebad65c4d43a52a107c3b3f87c, type: 2}

@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Liquefiability
+  - Description: 10% increased Liquefiability
     StatType: 0
     Stat: 12
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 6d71c992619e9c54fa22d2c5569fb05c, type: 2}
   - {fileID: 11400000, guid: 3365898179d2cdb4e8eca9e331fbc292, type: 2}

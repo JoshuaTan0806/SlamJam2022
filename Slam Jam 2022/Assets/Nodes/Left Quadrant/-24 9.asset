@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Dehydration Rate
+  - Description: 10% increased Dehydration Rate
     StatType: 0
     Stat: 14
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 4eea87ed066590d4ea7aca9be4c97104, type: 2}
   - {fileID: 11400000, guid: 31c5148d2d1ea7a4fa08454c76094979, type: 2}

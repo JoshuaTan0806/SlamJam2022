@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Buoyant Force
+  - Description: 10% increased Buoyant Force
     StatType: 0
     Stat: 15
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 13384564bff84f14b98497fc496e2667, type: 2}
   - {fileID: 11400000, guid: 8e51c792311b26548a5daa584594ac17, type: 2}

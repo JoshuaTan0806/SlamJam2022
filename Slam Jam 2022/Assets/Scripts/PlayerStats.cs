@@ -25,6 +25,14 @@ public class PlayerStats : MonoBehaviour
             AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
         }
 
+        foreach (var s in StatManager.StatDictionary)
+        {
+            if (!stats.ContainsKey(s.Key))
+            {
+                AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, 1));
+            }
+        }
+
         CurrentHealth = 0;
     }
 

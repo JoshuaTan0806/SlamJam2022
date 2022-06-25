@@ -154,7 +154,7 @@ public class SkillTree : MonoBehaviour
                     statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
                 }
 
-                if (statData.FinalMultiplier != 0)
+                if (statData.FinalMultiplier != 1)
                 {
                     statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
                 }

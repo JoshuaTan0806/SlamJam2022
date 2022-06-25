@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Surface Tension
+  - Description: 10% increased Surface Tension
     StatType: 0
     Stat: 3
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 2f1a200fa96fe6b4baf1f78f6770fbf4, type: 2}
   - {fileID: 11400000, guid: fa732a60fe21b9b46873509e13c8c7f1, type: 2}

@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Exudation
+  - Description: 10% increased Exudation
     StatType: 0
     Stat: 4
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 354cf3bf33c9706468aa2430895b8a9c, type: 2}
   - {fileID: 11400000, guid: ba77e44819b4425429023f4261cac949, type: 2}
