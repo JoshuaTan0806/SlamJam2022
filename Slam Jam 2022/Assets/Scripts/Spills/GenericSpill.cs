@@ -37,7 +37,7 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
-        if(caster.CurrentHealth + castCost * Mathf.Clamp(2 - caster.GetStat(Stat.SpellCostMult).TotalValue, 0, 2) > caster.GetStat(Stat.Health).TotalValue)
+        if (caster.CurrentHealth + castCost * CastMultiplier(caster) > caster.GetStat(Stat.Health).TotalValue)
             return false;
 
         if (CastTimer > 0)
@@ -46,12 +46,30 @@ public class GenericSpill : ScriptableObject
         return true;
     }
 
+    float CastMultiplier(PlayerStats caster)
+    {
+        if (caster.GetStat(Stat.SpellCostMult).TotalValue == 0)
+            return 1;
+        else
+            return 1 - 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
+    }
+
+    float CastSpeed(PlayerStats caster)
+    {
+        if (caster.GetStat(Stat.CastSpd).TotalValue == 0)
+            return 0;
+        else
+            return 1 / caster.GetStat(Stat.CastSpd).TotalValue;
+    }
+
     public virtual bool Cast(PlayerStats caster)
     {
         if (!CanCastSpell(caster))
             return false;
 
-        caster.CurrentHealth += castCost * Mathf.Clamp(2 - caster.GetStat(Stat.SpellCostMult).TotalValue, 0, 2);
+        castTimer = CastSpeed(caster);
+
+        caster.CurrentHealth += castCost * CastMultiplier(caster);
         spellToggled = !spellToggled;
 
         if (particles)
