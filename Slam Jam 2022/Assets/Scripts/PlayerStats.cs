@@ -97,12 +97,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (castCooldown >= 0)
-            castCooldown -= Time.deltaTime;
-    }
-
     /// <summary>
     /// Takes damage
     /// </summary>
