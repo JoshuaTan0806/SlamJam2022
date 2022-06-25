@@ -39,7 +39,11 @@ public class Player : PlayerStats
     {
         stats.Clear();
         //Combine stats
-        AddStats(Items.ItemInventory.GetItemStats());
+
+        foreach (var item in Items.ItemInventory.GetItemStats())
+        {
+            AddStat(item.Value);
+        }
 
         RecalculateStats();
     }
@@ -49,23 +53,6 @@ public class Player : PlayerStats
     private void RecalculateStats()
     {
         //Read the stats from stats and re-calculate any stats
-    }
-    /// <summary>
-    /// Adds a stat dictionary to our current stats
-    /// </summary>
-    /// <param name="stats"></param>
-    private void AddStats(StatDictionary stats)
-    {
-        if (stats == null)
-            return;
-        //Add the stats to our current stats
-        foreach (var stat in stats.Keys)
-        {
-            //if (stats.ContainsKey(stat))
-            //    stats[stat] += stats[stat];
-            //else
-            //    stats[stat] = stats[stat];
-        }
     }
 
     private void Update()
