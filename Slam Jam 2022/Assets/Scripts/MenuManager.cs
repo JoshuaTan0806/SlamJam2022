@@ -79,6 +79,7 @@ public class MenuManager : MonoBehaviour
         {
             introPanel.SetActive(true);
         }
+        GameManager.NewGame();
     }   
 
     public void QuitGame()
