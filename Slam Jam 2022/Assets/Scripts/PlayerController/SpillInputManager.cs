@@ -11,7 +11,7 @@ public class SpillInputManager : MonoBehaviour
     /// Create an array of a maximum of 9 spill inputs that cannot overlap
     /// Get the spills from the player's inventory and attach it to an input
     /// </summary>
-    SpillInput[] SpillArray = new SpillInput[9];
+    SpillInput[] SpillArray = new SpillInput[4];
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class SpillInputManager : MonoBehaviour
         
         for (int i = 0; i < SpillArray.Length; i++)
         {
-            SpillArray[i] = new SpillInput();
+            SpillArray[i].Player = GetComponent<PlayerStats>();
         }
     }
 
