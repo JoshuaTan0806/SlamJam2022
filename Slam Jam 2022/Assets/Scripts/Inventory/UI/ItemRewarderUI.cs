@@ -15,6 +15,7 @@ namespace Items.UI
 
         private void OnEnable()
         {
+            ItemRewarder.GrantReward(0);
             GrantRewards();
         }
 
@@ -36,11 +37,16 @@ namespace Items.UI
                 item.item = ItemData.CreateRandomItem(next);
 
                 item.RefreshUI();
-                item.onEquip += _onItemClaimed.Invoke;
+                item.onEquip += OnEquip;
             }
 
             _onItemClaimed -= GrantRewards;
             _onItemClaimed += GrantRewards;
+        }
+
+        private void OnEquip()
+        {
+            _onItemClaimed?.Invoke();
         }
     }
 }
