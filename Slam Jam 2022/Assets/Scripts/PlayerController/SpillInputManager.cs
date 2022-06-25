@@ -77,16 +77,16 @@ public static class SpillInputManager
                 {
                     switch (e)
                     {
-                        case 1:
+                        case 0:
                             SpillArray[e].input = KeyCode.Q;
                             break;
-                        case 2:
+                        case 1:
                             SpillArray[e].input = KeyCode.E;
                             break;
-                        case 3:
+                        case 2:
                             SpillArray[e].input = KeyCode.R;
                             break;
-                        case 4:
+                        case 3:
                             SpillArray[e].input = KeyCode.F;
                             break;
                     }
