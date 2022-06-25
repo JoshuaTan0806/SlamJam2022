@@ -395,6 +395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvetoryMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 1263962863020163536, guid: 789c933a4c6a55746a658c17d949fa51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5446080001827701197, guid: 789c933a4c6a55746a658c17d949fa51, type: 3}
       propertyPath: m_RootOrder
       value: 0
