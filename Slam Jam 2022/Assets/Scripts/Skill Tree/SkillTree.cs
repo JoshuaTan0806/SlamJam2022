@@ -189,9 +189,11 @@ public class SkillTree : MonoBehaviour
         if(statKeyHolderReference)
         {
             Destroy(statKeyHolderReference);
+            SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
         }
         else
         {
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
             statKeyHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
             MenuHolder statsHolder = statKeyHolderReference.GetComponent<MenuHolder>();
             statsHolder.SpawnTitle("Keys");
