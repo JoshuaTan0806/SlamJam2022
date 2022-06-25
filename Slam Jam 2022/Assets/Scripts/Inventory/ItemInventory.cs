@@ -125,11 +125,11 @@ namespace Items
                     //Refresh bonus stats
                     foreach (var stat in itemStats.Keys)
                     {   //If has, add
-                        //if (_combinedItemStats.ContainsKey(stat))
-                        //    _combinedItemStats[stat] += itemStats[stat];
-                        ////Else set
-                        //else
-                        //    _combinedItemStats[stat] = itemStats[stat];
+                        if (_combinedItemStats.ContainsKey(stat))
+                            _combinedItemStats[stat] += itemStats[stat];
+                        //Else set
+                        else
+                            _combinedItemStats[stat] = Object.Instantiate(itemStats[stat]);
                     }
                 }
 

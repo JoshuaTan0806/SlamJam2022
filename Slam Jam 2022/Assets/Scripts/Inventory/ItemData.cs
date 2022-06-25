@@ -165,8 +165,8 @@ namespace Items
         /// <summary>
         /// Sets the level of the item
         /// </summary>
-        /// <param name="index">The level of the item</param>
-        public void SetLevel(int index)
+        /// <param name="level">The level of the item</param>
+        public void SetLevel(int level)
         {
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
