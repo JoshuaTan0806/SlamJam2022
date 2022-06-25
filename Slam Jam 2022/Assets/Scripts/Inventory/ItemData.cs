@@ -26,7 +26,7 @@ namespace Items
         /// The type of item this is
         /// </summary>
         [SerializeField]
-        private ItemType type = ItemType.NULL;
+        private ItemType type;
         /// <summary>
         /// The type of item this is
         /// </summary>
@@ -245,7 +245,12 @@ namespace Items
     /// </summary>
     public enum ItemType
     {
-        NULL = 0
+        Helmet = 0,
+        Armour = 1,
+        Sword = 2,
+        Belt,
+        Staff,
+        Shoes
     }
     /// <summary>
     /// The connections items can have

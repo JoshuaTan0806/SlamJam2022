@@ -13,14 +13,80 @@ MonoBehaviour:
   m_Name: ItemBuilder
   m_EditorClassIdentifier: 
   itemTypeChances:
-    m_keys: 
-    m_values: []
+    m_keys: 010000000000000002000000030000000400000005000000
+    m_values:
+    - weight: 1
+      probability: 16.666666
+    - weight: 1
+      probability: 16.666666
+    - weight: 1
+      probability: 16.666666
+    - weight: 1
+      probability: 16.666666
+    - weight: 1
+      probability: 16.666666
+    - weight: 1
+      probability: 16.666666
   icons:
-    m_keys: 
-    m_values: []
+    m_keys: 000000000100000002000000030000000400000005000000
+    m_values:
+    - {fileID: 21300000, guid: e2c71ef013ffbe843aa024e756ff4dec, type: 3}
+    - {fileID: 21300000, guid: 5604130c3074dc3419d6f832ea194715, type: 3}
+    - {fileID: 21300000, guid: 3881a589da314734096a8ebe09c4e236, type: 3}
+    - {fileID: 21300000, guid: a75ddb2acfe03174c87f41bd9fc3f406, type: 3}
+    - {fileID: 21300000, guid: 247cb504efaf4474bbaeb4346701b99c, type: 3}
+    - {fileID: 21300000, guid: 138796f6771a1ba4c9a72797e7dabeb6, type: 3}
   statChances:
-    m_keys: 
-    m_values: []
+    m_keys: 000000000100000004000000
+    m_values:
+    - weight: 1
+      probability: 33.333332
+      gainPerLevel: 2
+      levelUnlocked: 0
+      baseValues: {x: 1, y: 100}
+      cap: 0
+      type: 1
+    - weight: 1
+      probability: 33.333332
+      gainPerLevel: 1
+      levelUnlocked: 0
+      baseValues: {x: 1, y: 100}
+      cap: 0
+      type: 1
+    - weight: 1
+      probability: 33.333332
+      gainPerLevel: 1
+      levelUnlocked: 0
+      baseValues: {x: 1, y: 100}
+      cap: 0
+      type: 1
   levelInfo:
-    m_keys: 
-    m_values: []
+    m_keys: 00
+    m_values:
+    - skillChance: 1
+      includeLowerLevel: 0
+      levelRange: 0
+      possibleSkills:
+      - {fileID: 11400000, guid: c40e75c62cf14eb49b6ba12c81a844b2, type: 2}
+      - {fileID: 11400000, guid: 6f01f0efc603a86428c3e38021625916, type: 2}
+      - {fileID: 11400000, guid: 6c0064095bbb2454aa3d4842fb8f726e, type: 2}
+      - {fileID: 11400000, guid: 1a541615d5a29a846a547d65d16100ae, type: 2}
+      connectionChance:
+        m_keys: 0001020304
+        m_values:
+        - weight: 1
+          probability: 20
+        - weight: 1
+          probability: 20
+        - weight: 1
+          probability: 20
+        - weight: 1
+          probability: 20
+        - weight: 1
+          probability: 20
+      typeChances:
+        m_keys: 07000000
+        m_values:
+        - weight: 1
+          probability: 100
+      possibleNumberOfStats: {x: 1, y: 4}
