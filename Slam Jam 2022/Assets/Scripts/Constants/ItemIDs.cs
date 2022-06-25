@@ -40,6 +40,8 @@ public static class ItemIDs
                 return Color.blue;
             case ConnectionType.GREEN:
                 return Color.green;
+            case ConnectionType.ANY_ALSO_WHITE:
+                return Color.white;
             default:
                 throw NOT_IMPLEMENTED_CONNECTION;
         }

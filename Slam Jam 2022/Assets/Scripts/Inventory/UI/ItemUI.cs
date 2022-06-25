@@ -36,7 +36,9 @@ namespace Items.UI
             for (int i = 0; i < connectionObjects.Length; i++)
             {
                 connectionObjects[i].gameObject.SetActive(hasItem);
-                connectionObjects[i].color = ItemIDs.ToColor((ConnectionType)i);
+
+                if (hasItem)
+                    connectionObjects[i].color = ItemIDs.ToColor((ConnectionType)i);
             }
 
             mainIcon.sprite = hasItem ? ItemBuilder.Instance.GetIcon(item.Type) : null;
@@ -47,6 +49,7 @@ namespace Items.UI
             // Build Stats
 
             statParent.SetActive(false);
+            gameObject.SetActive(hasItem);
         }
 
         private void Update()
