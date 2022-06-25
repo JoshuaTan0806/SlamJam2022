@@ -70,10 +70,10 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   baseStats:
-    m_keys: 0000000002000000
+    m_keys: 0000000005000000
     m_values:
     - 100
-    - 7
+    - 5
   CurrentHealth: 0
 --- !u!114 &4811475236929372847
 MonoBehaviour:
@@ -93,7 +93,7 @@ MonoBehaviour:
     m_values: 01000000
   triggeredActions:
     m_keys:
-    - {fileID: 11400000, guid: 64584ed71fa08e7439db8de37460a3b1, type: 2}
+    - {fileID: 11400000, guid: 971a7fc2fe6d1f943a70ea14b6fc180e, type: 2}
     m_values: 01000000
   IsAlly: 0
 --- !u!195 &4811475236929372846
