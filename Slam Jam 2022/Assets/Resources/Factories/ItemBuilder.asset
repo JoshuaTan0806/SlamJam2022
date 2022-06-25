@@ -15,6 +15,9 @@ MonoBehaviour:
   itemTypeChances:
     m_keys: 
     m_values: []
+  icons:
+    m_keys: 
+    m_values: []
   statChances:
     m_keys: 
     m_values: []

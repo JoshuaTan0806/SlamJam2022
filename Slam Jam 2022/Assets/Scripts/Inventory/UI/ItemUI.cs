@@ -12,6 +12,7 @@ namespace Items.UI
 
         [Header("UI")]
         public Image mainIcon = null;
+        public Image spillIcon = null;
         [Tooltip("Should be in order N, E, S, W")]
         public Image[] connectionObjects = new Image[4];
         public GameObject statParent = null;
@@ -39,6 +40,9 @@ namespace Items.UI
             }
 
             mainIcon.sprite = hasItem ? ItemBuilder.Instance.GetIcon(item.Type) : null;
+
+            spillIcon.transform.parent.gameObject.SetActive(hasItem);
+            spillIcon.sprite = hasItem ? item.Spill.icon : null;
 
             // Build Stats
 
@@ -113,8 +117,9 @@ namespace Items.UI
 
         private void ToggleInteractability(bool enabled)
         {
-            foreach (var ui in GetComponentsInChildren<Graphic>())
-                ui.raycastTarget = enabled;
+            //foreach (var ui in GetComponentsInChildren<Graphic>())
+            //    ui.raycastTarget = enabled;
+            GetComponent<Graphic>().raycastTarget = enabled;
         }
         #endregion
         public void OnPointerExit(PointerEventData eventData)
