@@ -10,6 +10,8 @@ namespace Items.UI
     {
         [SerializeField]
         private ItemSlotUI _slotPrefab = null;
+        [SerializeField]
+        private ItemBinUI _bin = null;
 
         private void Start()
         {
@@ -35,6 +37,7 @@ namespace Items.UI
         public void ToggleInventory()
         {
             gameObject.SetActive(!gameObject.activeSelf);
+            _bin.gameObject.SetActive(!_bin.gameObject.activeSelf);
         }
     }
 }
