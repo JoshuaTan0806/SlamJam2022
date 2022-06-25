@@ -16,6 +16,7 @@ namespace Items.UI
         [Tooltip("Should be in order N, E, S, W")]
         public Image[] connectionObjects = new Image[4];
         public MenuHolder statParent = null;
+        public System.Action onEquip = null;
 
         private RectTransform _rt = null;
         private Transform _originalParent = null;
@@ -106,6 +107,8 @@ namespace Items.UI
                     _prevSlot.SetSlot(null);
 
                 _prevSlot = slot;
+                onEquip?.Invoke();
+                onEquip = null;
             }
 
 
