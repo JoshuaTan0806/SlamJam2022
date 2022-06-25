@@ -15,7 +15,7 @@ namespace Items.UI
         public Image spillIcon = null;
         [Tooltip("Should be in order N, E, S, W")]
         public Image[] connectionObjects = new Image[4];
-        public GameObject statParent = null;
+        public MenuHolder statParent = null;
 
         private RectTransform _rt = null;
         private Transform _originalParent = null;
@@ -47,8 +47,13 @@ namespace Items.UI
             spillIcon.sprite = hasItem ? item.Spill.icon : null;
 
             // Build Stats
+            if (hasItem)
+            {
+                foreach (var stat in item.GetStats().Values)
+                    statParent.SpawnDescription(stat.InGameName + ": " + stat.TotalValue);
+            }
 
-            statParent.SetActive(false);
+            statParent.gameObject.SetActive(false);
             gameObject.SetActive(hasItem);
         }
 
@@ -56,7 +61,7 @@ namespace Items.UI
         {
             _appearTimer += Time.deltaTime;
             bool show = _appearTimer > 0.75f;
-            statParent.SetActive(show);
+            statParent.gameObject.SetActive(show);
             //Once it shows, disable Update
             if (show)
                 enabled = false;
@@ -127,7 +132,7 @@ namespace Items.UI
         #endregion
         public void OnPointerExit(PointerEventData eventData)
         {
-            statParent.SetActive(false);
+            statParent.gameObject.SetActive(false);
             enabled = false;
         }
 

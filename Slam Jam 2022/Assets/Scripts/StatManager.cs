@@ -2,21 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatManager : MonoBehaviour
+[CreateAssetMenu(fileName = "StatManager", menuName = "StatManager", order = 1)]
+public class StatManager : Factories.FactoryBase
 {
     public static StatDictionary StatDictionary;
     [SerializeField] List<StatData> AllStats;
-
-    private void Awake()
-    {
-        StatDictionary = new StatDictionary();
-
-        for (int i = 0; i < AllStats.Count; i++)
-        {
-            if (!StatDictionary.ContainsKey(AllStats[i].Stat))
-                StatDictionary.Add(AllStats[i].Stat, Instantiate(AllStats[i]));
-        }
-    }
 
     public static StatData NullStat(Stat stat)
     {
@@ -43,5 +33,16 @@ public class StatManager : MonoBehaviour
         }
 
         return statData;
+    }
+
+    public override void Initialize()
+    {
+        StatDictionary = new StatDictionary();
+
+        for (int i = 0; i < AllStats.Count; i++)
+        {
+            if (!StatDictionary.ContainsKey(AllStats[i].Stat))
+                StatDictionary.Add(AllStats[i].Stat, Instantiate(AllStats[i]));
+        }
     }
 }
