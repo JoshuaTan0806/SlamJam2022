@@ -97,6 +97,11 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (castCooldown >= 0)
+            castCooldown -= Time.deltaTime;
+    }
 
     /// <summary>
     /// Takes damage
@@ -108,20 +113,23 @@ public class PlayerStats : MonoBehaviour
         if (Dead)
             return;
 
-        if(objectHit != null)
+        if (objectHit != null)
         {
             Vector3 knockbackVector = objectHit.transform.position - transform.position;
             transform.GetComponent<Rigidbody>().AddForce(knockbackVector * (objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.Knockback).TotalValue));
         }
 
-        CurrentHealth += damage * Mathf.Clamp(2 - stats[Stat.DmgReduc].TotalValue, 0.2f, 1);
+        if (stats[Stat.DmgReduc].TotalValue == 0)
+            CurrentHealth += damage;
+        else
+            CurrentHealth += damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
         if (CurrentHealth > GetStat(Stat.Health).TotalValue)
             Die();
-    }  
+    }
 
     void Die()
     {
