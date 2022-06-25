@@ -46,6 +46,8 @@ namespace Items
         /// <param name="slot">The slot to equip to</param>
         public static void EquipItem(ItemData item, Vector2Int slot)
         {
+            UnapplyItemStats();
+
             _equipped[slot.x, slot.y] = item;
             //Not instanced
             if (item && !item.IsInstance)
@@ -57,7 +59,8 @@ namespace Items
         /// Refreshs the bonuses you get from items
         /// </summary>
         public static void RefreshItemBonuses()
-        {   //Rebuild bonus stats from items
+        {
+            //Rebuild bonus stats from items
             _combinedItemStats.Clear();
             _skills.Clear();
 
@@ -136,6 +139,17 @@ namespace Items
             onItemsRefresh.SafeInvoke();
             SpillInputManager.UpdateSpills();
         }
+        /// <summary>
+        /// Remove Stats of currently equipped items
+        /// </summary>
+        public static void UnapplyItemStats()
+        {
+            foreach (var item in _combinedItemStats)
+            {
+                Player.instance.RemoveStat(item.Value);
+            }
+        }
+
         /// <summary>
         /// Get an item from the inventory.
         /// </summary>

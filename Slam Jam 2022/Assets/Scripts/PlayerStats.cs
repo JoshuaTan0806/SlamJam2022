@@ -52,6 +52,21 @@ public class PlayerStats : MonoBehaviour
         stats[statData.Stat].CalculateTotal();
     }
 
+    public void RemoveStat(StatData statData)
+    {
+        if (!stats.ContainsKey(statData.Stat))
+        {
+            stats.Add(statData.Stat, StatManager.NullStat(statData.Stat));
+            stats[statData.Stat] = stats[statData.Stat] - statData;
+        }
+        else
+        {
+            stats[statData.Stat] = stats[statData.Stat] - statData;
+        }
+
+        stats[statData.Stat].CalculateTotal();
+    }
+
     public StatData GetStat(Stat stat)
     {
         return stats.ContainsKey(stat) ? stats[stat] : StatManager.NullStat(stat);
