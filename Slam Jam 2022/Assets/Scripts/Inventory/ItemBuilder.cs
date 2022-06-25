@@ -216,7 +216,7 @@ namespace Items
                     continue;
                 //Random the stat
                 s.Add(k);
-                tempStats[k] = StatManager.CreateStat(k, StatType.FlatValue, statChances[k].RollStat(l));
+                tempStats[k] = StatManager.CreateStat(k, statChances[k].type, statChances[k].RollStat(l));
             }
             //Get random stats
             while (amount > 0)
@@ -358,6 +358,8 @@ namespace Items
 
             [Tooltip("The highest this stat is allowed to go")]
             public float cap = 0;
+
+            public StatType type = StatType.FlatValue;
 
             public float RollStat(int level)
             {
