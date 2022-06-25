@@ -23,24 +23,20 @@ public class StatDictionary : SerializableDictionary<Stat, StatData> { }
 public enum Stat
 {
     Health,
-    Dmg,
+    ProjDmg,
+    AddProj,
+    CastSpd,
+    Lifesteal,
     Spd,
     AOEDmg,
-    AOE,
-    CritChance,
-    CritMult,
-    Regen,
-    ProjSpd,
-    ProjDmg,
-    DmgRed,
-    Knockback,
-    KnockbackRed,
-    DmgRef,
-    MinionDmg,
-    CastSpd,
-    AddProj,
+    AOEArea,
+    KnockbackReduc,
+    DmgReduc,
+    PotAmount,
+    PotMult,
     SpellCostMult,
-    PotionMult,
-    LifeOnHit
+    DmgReflect,
+    Regen,
+    Knockback,
+    ProjSpd
 }
-

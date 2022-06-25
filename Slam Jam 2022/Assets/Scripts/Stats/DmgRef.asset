@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DmgRef
   m_EditorClassIdentifier: 
   InGameName: Acidity
+  Icon: {fileID: 21300000, guid: 9d3ef275d02ea744d910a448697704f1, type: 3}
   Stat: 13
   PercentValue: 0
   FlatValue: 0
-  FinalMultiplier: 0
+  FinalMultiplier: 1
   TotalValue: 0
-  CurrentValue: 0

@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -2 -11
   m_EditorClassIdentifier: 
-  Name: Minor Percolation
-  icon: {fileID: 0}
-  coordinates: {x: -2, y: 11}
+  Name: Minor Absorption
+  icon: {fileID: 21300000, guid: b00871527acc73942a3b837b841c6f41, type: 3}
+  coordinates: {x: -2, y: -11}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 10% increased Percolation
+  - Description: 10% increased Absorption
     StatType: 0
-    Stat: 16
+    Stat: 10
     value: 10
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 8534ae41f985d524ba56dba2cf55a661, type: 2}
+  - {fileID: 11400000, guid: ae6a5e3f9c583e04ca01437ec61a9fdc, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

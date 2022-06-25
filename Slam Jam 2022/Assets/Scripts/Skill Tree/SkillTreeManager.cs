@@ -11,17 +11,24 @@ public class SkillTreeManager : MonoBehaviour
     public List<Node> nodes;
     public static List<Node> allNodes;
     static List<Node> startingNodes;
+    public static bool showCoordinates = false;
 
     public static Dictionary<NodeType, float> NodeTypeToSize = new Dictionary<NodeType, float>()
     {
-        { NodeType.Minor, 0.5f },
-        { NodeType.Notable, 1f },
+        { NodeType.Minor, 0.85f },
+        { NodeType.Notable, 1.5f },
         { NodeType.Keystone, 2f }
 
     };
 
     private void Awake()
     {
+        showCoordinates = false;
+
+#if UNITY_EDITOR
+        showCoordinates = true;
+#endif
+
         if (instance == null)
             instance = this;
         else
@@ -70,6 +77,12 @@ public class SkillTreeManager : MonoBehaviour
             SkillTree.SetActive(true);
     }
 
+    public void RefreshSkillTree()
+    {
+        if (SkillTree != null)
+            SkillTree.GetComponent<SkillTree>().Refresh();
+    }
+
     public static bool StartingNodeTaken()
     {
         for (int i = 0; i < startingNodes.Count; i++)
@@ -79,12 +92,6 @@ public class SkillTreeManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void RefreshSkillTree()
-    {
-        if (SkillTree != null)
-            SkillTree.GetComponent<SkillTree>().Refresh();
     }
 
     public void ResetSkillTree()
@@ -106,6 +113,23 @@ public class SkillTreeManager : MonoBehaviour
         nodes.Clear();
         List<Node> nodesInProject = EditorExtensionMethods.GetAllInstances<Node>();
         nodes = nodesInProject;
+    }
+
+    [Button("Hook up all nodes")]
+    public void HookUpAllNodes()
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            for (int j = 0; j < nodes[i].connectedNodes.Count; j++)
+            {
+                if(!nodes[i].connectedNodes[j].connectedNodes.Contains(nodes[i]))
+                {
+                    nodes[i].connectedNodes[j].connectedNodes.Add(nodes[i]);
+                }
+            }
+
+            EditorExtensionMethods.SaveAsset(nodes[i]);
+        }
     }
 #endif
 }

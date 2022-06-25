@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 6 -23
   m_EditorClassIdentifier: 
-  Name: Minor Torrent Damage
-  icon: {fileID: 0}
-  coordinates: {x: 6, y: 23}
+  Name: Minor Friction
+  icon: {fileID: 21300000, guid: 95d7767d60b0d7e42be7af95b85a5f63, type: 3}
+  coordinates: {x: 6, y: -23}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Damage
+  - Description: 2% increased Friction
     StatType: 0
-    Stat: 9
+    Stat: 11
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 7299811ecb0d05547865b1e4772fbfd0, type: 2}
+  - {fileID: 11400000, guid: 225fbcbb84fcbcf4da12cefb2df3cd80, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

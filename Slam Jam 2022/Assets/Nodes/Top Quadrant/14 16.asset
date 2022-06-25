@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 14 16
   m_EditorClassIdentifier: 
-  Name: Minor Scald Chance
-  icon: {fileID: 0}
+  Name: Minor Exudation
+  icon: {fileID: 21300000, guid: 2066a244b6f1d464bbafc25ff0d9a29f, type: 3}
   coordinates: {x: 14, y: 16}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Scald Chance
+  - Description: 2% increased Exudation
     StatType: 0
-    Stat: 5
+    Stat: 4
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 7dc2c7c55b67e514f99b4844a64fca7c, type: 2}
+  - {fileID: 11400000, guid: 19d3a777a0cdeab4f8f56388aae7cc9e, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

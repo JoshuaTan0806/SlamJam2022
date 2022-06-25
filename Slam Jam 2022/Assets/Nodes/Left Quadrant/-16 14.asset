@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -16 14
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
-  coordinates: {x: -12, y: -9}
+  Name: Minor Torrent Speed
+  icon: {fileID: 21300000, guid: 70ea107574aee204d8d17beddaa5bbad, type: 3}
+  coordinates: {x: -16, y: 14}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Torrent Speed
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 16
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: 81e2ad078b11ae642a214135ba61c428, type: 2}
+  - {fileID: 11400000, guid: bfdb55f1a58049e40b7f5619dac47427, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

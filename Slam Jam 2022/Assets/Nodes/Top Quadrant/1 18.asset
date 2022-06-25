@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 1 18
   m_EditorClassIdentifier: 
-  Name: Minor Surface Tension
-  icon: {fileID: 0}
+  Name: Minor Percolation
+  icon: {fileID: 21300000, guid: fa57b5ab7a2953b46807366785a9d860, type: 3}
   coordinates: {x: 1, y: 18}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Surface Tension
+  - Description: 10% increased Percolation
     StatType: 0
-    Stat: 15
-    value: 2
-  connectedNodes: []
+    Stat: 2
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: 45c230d9f987a7d44a834c06c77dc411, type: 2}
+  - {fileID: 11400000, guid: 540b302e524acf44ab33c0bd9ff6f342, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: 18 -18
   m_EditorClassIdentifier: 
   Name: Major Buoyancy
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 85745b23f0ac7c14fad09ee533b6cb62, type: 3}
   coordinates: {x: 18, y: -18}
   nodeType: 1
   isStartingNode: 0
   powerUps:
   - Description: 5% increased Buoyancy
     StatType: 0
-    Stat: 12
+    Stat: 8
     value: 5
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: afb621d22d914424a9e253b4e063ea43, type: 2}
+  - {fileID: 11400000, guid: 30c85f8e899eb1548948796f590743ee, type: 2}
+  - {fileID: 11400000, guid: 900da7547e7665f49bd4f045b7642968, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

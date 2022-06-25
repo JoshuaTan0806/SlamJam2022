@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -22 3
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
-  coordinates: {x: -12, y: -9}
+  Name: Minor Dehydration Rate
+  icon: {fileID: 21300000, guid: 7fb6f201922591f478fe287b4bf5f109, type: 3}
+  coordinates: {x: -22, y: 3}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Dehydration Rate
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 14
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: b4c4827178c61764fafef674932683bd, type: 2}
+  - {fileID: 11400000, guid: 4eea87ed066590d4ea7aca9be4c97104, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

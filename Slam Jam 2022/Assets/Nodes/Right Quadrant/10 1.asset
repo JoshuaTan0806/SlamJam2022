@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 10 1
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
+  Name: Minor Splash Damage
+  icon: {fileID: 21300000, guid: c19ab7c7d7851334e9c1a5453fd70ad6, type: 3}
   coordinates: {x: 10, y: 1}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Splash Damage
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 6
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: bc953122aa3838c46bc7bbdc601c081f, type: 2}
+  - {fileID: 11400000, guid: 0ff425656c420994794ac048dbfcba1c, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

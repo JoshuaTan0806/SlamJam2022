@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: 6 -3
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
+  Name: Minor Viscosity Resistance
+  icon: {fileID: 21300000, guid: 616f0bfc94f49fb48a0ff369d43044cc, type: 3}
   coordinates: {x: 6, y: -3}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Viscosity Resistance
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 5
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: f78f1028104ce7d4ead08aa9eaea6870, type: 2}
+  - {fileID: 11400000, guid: 7b42ea7cf8041f74388bd16d4dbfd1e6, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

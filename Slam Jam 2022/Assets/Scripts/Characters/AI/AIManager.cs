@@ -34,9 +34,13 @@ public class AIManager : MonoBehaviour
 		aiStats = GetComponent<PlayerStats>();
 		aiEyes = GetComponent<AIEyes>();
 
-		GetComponent<UnityEngine.AI.NavMeshAgent>().speed = aiStats.GetStat(Stat.Spd).TotalValue;
-
 		PickIdleState();
+	}
+
+	private void Start()
+	{
+		this.PerformAtEndOfFrame(() => 
+		GetComponent<UnityEngine.AI.NavMeshAgent>().speed = aiStats.GetStat(Stat.Spd).TotalValue);
 	}
 
 	private void Update()

@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -3 6
   m_EditorClassIdentifier: 
-  Name: Minor Torrent Speed
-  icon: {fileID: 0}
+  Name: Minor Surface Tension
+  icon: {fileID: 21300000, guid: c78c1a5b64148a940a33af39a4687fba, type: 3}
   coordinates: {x: -3, y: 6}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Speed
+  - Description: 2% increased Surface Tension
     StatType: 0
-    Stat: 8
+    Stat: 3
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 8dfb51ec713b70d449ec686017344e4d, type: 2}
+  - {fileID: 11400000, guid: a726970036d79c441bc030fd2beb700b, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

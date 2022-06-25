@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -14 -16
   m_EditorClassIdentifier: 
-  Name: Minor Torrent Speed
-  icon: {fileID: 0}
-  coordinates: {x: -14, y: 16}
+  Name: Minor Liquefiability
+  icon: {fileID: 21300000, guid: a7c7d1c6e6ff35e4fb1fd64202c4b68d, type: 3}
+  coordinates: {x: -14, y: -16}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Speed
+  - Description: 2% increased Liquefiability
     StatType: 0
-    Stat: 8
+    Stat: 12
     value: 2
-  connectedNodes: []
+  connectedNodes:
+  - {fileID: 11400000, guid: 59620655ab8290a4cbff3fbef15497e4, type: 2}
+  - {fileID: 11400000, guid: 991b576870b6a5d48955d29043403b68, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}

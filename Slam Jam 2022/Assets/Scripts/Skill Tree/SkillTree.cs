@@ -15,10 +15,11 @@ public class SkillTree : MonoBehaviour
     public static TMP_InputField inputField;
     [SerializeField] Button close;
     [SerializeField] Button reset;
-    [SerializeField] float maxX;
+    [SerializeField] Button statsButton;
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] float scrollMultiplier;
+    [SerializeField] GameObject StatholderPos;
 
     List<NodeButton> NodeButtons = new List<NodeButton>();
     List<Node> AddedNodes = new List<Node>();
@@ -31,6 +32,7 @@ public class SkillTree : MonoBehaviour
         Player.OnSkillPointsChanged += SetSkillPointsText;
         reset.onClick.AddListener(() => SkillTreeManager.instance.ResetSkillTree());
         close.onClick.AddListener(() => SkillTreeManager.instance.ToggleSkillTree());
+        statsButton.onClick.AddListener(() => ToggleStatsMenu());
     }
 
     private void OnDestroy()
@@ -113,6 +115,89 @@ public class SkillTree : MonoBehaviour
         for (int i = 0; i < NodeButtons.Count; i++)
         {
             NodeButtons[i].ChangeHighlight();
+        }
+
+        if(statHolderReference)
+        {
+            ToggleStatsMenu(false);
+            ToggleStatsMenu(true);
+        }
+    }
+
+    public GameObject statHolderPrefab;
+    GameObject statHolderReference;
+    public void ToggleStatsMenu()
+    {
+        if (statHolderReference)
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
+            Destroy(statHolderReference);
+        }
+        else
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
+            statHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
+            MenuHolder statsHolder = statHolderReference.GetComponent<MenuHolder>();
+            statsHolder.SpawnTitle("Stats");
+
+            foreach (KeyValuePair<Stat, StatData> stat in StatManager.StatDictionary)
+            {
+                StatData statData = Player.instance.GetStat(stat.Key);
+
+                if (statData.FlatValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.PercentValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.FinalMultiplier != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+            }
+        }
+    }
+
+    void ToggleStatsMenu(bool on)
+    {
+        if (on)
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
+            statHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
+            MenuHolder statsHolder = statHolderReference.GetComponent<MenuHolder>();
+            statsHolder.SpawnTitle("Stats");
+
+            foreach (KeyValuePair<Stat, StatData> stat in StatManager.StatDictionary)
+            {
+                StatData statData = Player.instance.GetStat(stat.Key);
+
+                if (statData.FlatValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.PercentValue != 0)
+                {
+                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+
+                if (statData.FinalMultiplier != 0)
+                {
+                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                }
+            }
+        }
+        else
+        {
+            if (statHolderReference)
+            {
+                SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
+                Destroy(statHolderReference);
+            }
         }
     }
 }

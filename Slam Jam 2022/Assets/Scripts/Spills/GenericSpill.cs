@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,8 +22,16 @@ public class GenericSpill : ScriptableObject
     public float CastTimer => castTimer;
 
     [SerializeField] protected SpellType spellType;
+
+    [ShowIf("spellType", SpellType.SingleCast)]
+    [SerializeField] protected float spellDuration;
+
     protected bool spellToggled;
     public bool SpellToggled => spellToggled;
+
+    [Header("FX")]
+    [SerializeField] protected GameObject particles;
+    protected GameObject particleInstance;
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
@@ -41,8 +50,50 @@ public class GenericSpill : ScriptableObject
             return false;
 
         caster.CurrentHealth -= castCost * caster.GetStat(Stat.SpellCostMult).TotalValue;
-
         spellToggled = !spellToggled;
+
+        if (particles)
+        {
+            if (spellType == SpellType.SingleCast)
+            {
+                particleInstance = Instantiate(particles, caster.transform);
+
+                var ps = particleInstance.GetComponentInChildren<ParticleSystem>();
+                ps.Play();
+
+                if (spellDuration > 0)
+                {
+                    caster.PerformAfterDelay(() =>
+                    {
+                        ps.enableEmission = false;
+
+                        Destroy(particleInstance, 2);
+
+                    }, spellDuration);
+                }
+                else
+                {
+                    Destroy(particleInstance, 5);
+                }
+            }
+            else
+            {
+                if (SpellToggled)
+                {
+                    particleInstance = Instantiate(particles, caster.transform);
+
+                    var ps = particleInstance.GetComponentInChildren<ParticleSystem>();
+                    ps.Play();
+                }
+                else
+                {
+                    var ps = particleInstance.GetComponentInChildren<ParticleSystem>();
+
+                    ps.enableEmission = false;
+                    Destroy(particleInstance, 2);
+                }
+            }
+        }
 
         return true;
     }

@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
   m_Name: -12 -9
   m_EditorClassIdentifier: 
-  Name: Minor Permeability
-  icon: {fileID: 0}
+  Name: Minor Liquefiability
+  icon: {fileID: 21300000, guid: a7c7d1c6e6ff35e4fb1fd64202c4b68d, type: 3}
   coordinates: {x: -12, y: -9}
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 0% increased Permeability
+  - Description: 2% increased Liquefiability
     StatType: 0
-    Stat: 0
-    value: 0
-  connectedNodes: []
+    Stat: 12
+    value: 2
+  connectedNodes:
+  - {fileID: 11400000, guid: fd1c9fa65298e444b8a0d5147cd35d01, type: 2}
+  - {fileID: 11400000, guid: 2c865b1250f0da044932f912a7d41e95, type: 2}
+  - {fileID: 11400000, guid: cf7c335f45fabe14baeb19f2dbb80d5c, type: 2}
   isActive: 0
-  NodeToConnect: {fileID: 0}
+  NodeToConnect: {x: 0, y: 0}
