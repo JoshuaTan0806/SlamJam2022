@@ -31,5 +31,10 @@ namespace Items.UI
                     slot.GetSlottedItem();
                 }
         }
+
+        public void ToggleInventory()
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
     }
 }
