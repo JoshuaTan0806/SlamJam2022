@@ -3084,6 +3084,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577241025990, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.182354
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686185577241025990, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.4498253
       objectReference: {fileID: 0}
@@ -8625,6 +8629,10 @@ PrefabInstance:
     - target: {fileID: 3685431335722013995, guid: e6471a40dd924934c865362f5e6f0c1c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871601403709651167, guid: e6471a40dd924934c865362f5e6f0c1c, type: 3}
+      propertyPath: m_text
+      value: Close Inventory
       objectReference: {fileID: 0}
     - target: {fileID: 5254179984365690217, guid: e6471a40dd924934c865362f5e6f0c1c, type: 3}
       propertyPath: m_AnchoredPosition.y
