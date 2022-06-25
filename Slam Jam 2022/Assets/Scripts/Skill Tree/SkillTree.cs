@@ -144,19 +144,9 @@ public class SkillTree : MonoBehaviour
             {
                 StatData statData = Player.instance.GetStat(stat.Key);
 
-                if (statData.FlatValue != 0)
+                if (statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.PercentValue != 0)
-                {
-                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.FinalMultiplier != 1)
-                {
-                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
                 }
             }
         }
@@ -175,19 +165,9 @@ public class SkillTree : MonoBehaviour
             {
                 StatData statData = Player.instance.GetStat(stat.Key);
 
-                if (statData.FlatValue != 0)
+                if(statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.PercentValue != 0)
-                {
-                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.FinalMultiplier != 0)
-                {
-                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
                 }
             }
         }
