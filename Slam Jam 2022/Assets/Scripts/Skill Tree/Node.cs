@@ -89,7 +89,10 @@ public class Node : ScriptableObject
 
         public void UnapplyPowerUp()
         {
-            Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, -value));
+            if (StatType == StatType.FinalMultiplier)
+                Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, 1/value));
+            else
+                Player.instance.AddStat(StatManager.CreateStat(Stat, StatType, -value));
         }
     }
 

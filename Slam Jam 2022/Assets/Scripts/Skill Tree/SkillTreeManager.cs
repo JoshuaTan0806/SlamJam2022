@@ -50,9 +50,21 @@ public class SkillTreeManager : MonoBehaviour
 
     private void Start()
     {
-        RefreshSkillTree();
         ToggleSkillTree();
         ToggleSkillTree();
+
+        StartCoroutine(AddStats());
+    }
+
+    IEnumerator AddStats()
+    {
+        yield return new WaitForEndOfFrame();
+
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            if (allNodes[i].IsActive)
+                allNodes[i].ApplyPowerUps(true);
+        }
     }
 
     [SerializeField] GameObject SkillTreePrefab;
