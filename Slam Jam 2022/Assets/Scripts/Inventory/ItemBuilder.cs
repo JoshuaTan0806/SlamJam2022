@@ -21,6 +21,7 @@ namespace Items
 #endif
         [BoxGroup("Type")]
         public TypeChances itemTypeChances = new TypeChances();
+        public TypeIcon icons = new TypeIcon();
 #if UNITY_EDITOR
         [Button]
         [BoxGroup("Type")]
@@ -78,7 +79,7 @@ namespace Items
 
             total = 0;
 
-            foreach(var k in itemTypeChances.Keys)
+            foreach (var k in itemTypeChances.Keys)
             {
                 total += itemTypeChances[k].weight;
 
@@ -88,6 +89,15 @@ namespace Items
 
             throw new Exception("Type failed to roll somehow?");
         }
+
+        public Sprite GetIcon(ItemType t)
+        {
+            if (icons.ContainsKey(t))
+                return icons[t];
+
+            return null;
+        }
+
         /// <summary>
         /// Rolls a random skill for an item of level level
         /// </summary>
@@ -185,7 +195,7 @@ namespace Items
                 ConnectionType type = ConnectionType.RED;
                 rand = UnityEngine.Random.Range(0, total);
                 temp = 0;
-                foreach(var k in l.typeChances.Keys)
+                foreach (var k in l.typeChances.Keys)
                 {
                     temp += l.typeChances[k].weight;
 
@@ -216,14 +226,18 @@ namespace Items
                     continue;
                 //Random the stat
                 s.Add(k);
-                tempStats[k] = StatManager.CreateStat(k, StatType.FlatValue, statChances[k].RollStat(l));
+                tempStats[k] = StatManager.CreateStat(k, statChances[k].type, statChances[k].RollStat(l));
             }
             //Get random stats
             while (amount > 0)
             {
+                if (s.Count == 0)
+                    break;
+
                 int rand = UnityEngine.Random.Range(0, s.Count);
                 //Add stat
                 dictionary.Add(s[rand], tempStats[s[rand]]);
+                tempStats.Remove(s[rand]);
                 s.RemoveAt(rand);
 
                 amount--;
@@ -239,7 +253,7 @@ namespace Items
             else
             {
                 byte closest = 0;
-                foreach(byte key in levelInfo.Keys)
+                foreach (byte key in levelInfo.Keys)
                 {
                     if (key < level && key > closest)
                         closest = key;
@@ -326,7 +340,7 @@ namespace Items
             public Vector2Int possibleNumberOfStats;
 
             [Serializable]
-            public class ConnectionChances : SerializableDictionary<byte, Chance> {}
+            public class ConnectionChances : SerializableDictionary<byte, Chance> { }
             [Serializable]
             public class ConnectionTypeChances : SerializableDictionary<ConnectionType, Chance> { }
         }
@@ -359,6 +373,8 @@ namespace Items
             [Tooltip("The highest this stat is allowed to go")]
             public float cap = 0;
 
+            public StatType type = StatType.FlatValue;
+
             public float RollStat(int level)
             {
                 float bonus = gainPerLevel * level;
@@ -379,6 +395,9 @@ namespace Items
         public class ItemLevelInfoDictionary : SerializableDictionary<byte, ItemLevelInfo> { }
         [Serializable]
         public class TypeChances : SerializableDictionary<ItemType, Chance> { }
+
+        [Serializable]
+        public class TypeIcon : SerializableDictionary<ItemType, Sprite> {}
         #endregion
     }
 }

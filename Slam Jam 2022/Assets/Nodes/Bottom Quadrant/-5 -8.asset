@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Insolubility
+  - Description: 10% increased Insolubility
     StatType: 0
     Stat: 9
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 47c421e1bc1747f40bcb777a281e532d, type: 2}
   - {fileID: 11400000, guid: 2afd75ba9d052ac4ba4201dcdc0fb802, type: 2}

@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Damage
+  - Description: 10% increased Torrent Damage
     StatType: 0
     Stat: 1
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: c68971c78e05e2f48be37e652d25ec1c, type: 2}
   - {fileID: 11400000, guid: aaea36e8448e938449b80bac4e548192, type: 2}

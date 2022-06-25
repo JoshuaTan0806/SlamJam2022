@@ -26,7 +26,7 @@ namespace Items
         /// The type of item this is
         /// </summary>
         [SerializeField]
-        private ItemType type = ItemType.NULL;
+        private ItemType type;
         /// <summary>
         /// The type of item this is
         /// </summary>
@@ -57,6 +57,7 @@ namespace Items
         /// </summary>
         [SerializeField]
         private StatDictionary stats = new StatDictionary();
+        private StatDictionary bonusStats = new StatDictionary();
         /// <summary>
         /// The asset to reference
         /// </summary>
@@ -92,57 +93,6 @@ namespace Items
 
         #region Functions
         /// <summary>
-        /// Creates a new instance of this item.
-        /// </summary>
-        /// <returns></returns>
-        public ItemData CreateInstance()
-        {
-            if (IsInstance)
-                throw new System.Exception("Attempting to Instance instanced Item");
-
-            ItemData ret = CreateInstance<ItemData>();
-            ret.type = type;
-            ret._isInstance = true;
-
-            #region Connection Randomisation
-            if (randomiseConnectionDirection)
-            {
-                tempList.Clear();
-                foreach (var dir in possibleConnections.Keys)
-                    tempList.Add(dir);
-
-                //Foreach existing direction
-                for (int i = 0; i < tempList.Count; i++)
-                {   //Randomise it to be one of the existing directions
-                    float rand = Random.Range(0, 1);
-                    //Don't remove
-                    if (rand > removeChance)
-                        ret.possibleConnections.Add(tempList[i], possibleConnections[tempList[i]]);
-                }
-            }
-            else
-                //Just direct copy the dictionary
-                foreach (var dir in possibleConnections.Keys)
-                    ret.possibleConnections[dir] = possibleConnections[dir];
-
-            if (randomiseConnectionType)
-                foreach (ConnectionDirection dir in ret.possibleConnections.Keys)
-                {   //Randomise the type
-                    tempTypeList.Clear();
-                    var type = ret.possibleConnections[dir];
-                    //Build the possible options
-                    foreach (ConnectionType value in System.Enum.GetValues(type.GetType()))
-                        if (type.HasFlag(value))
-                            tempTypeList.Add(value);
-                    //Pick a random option
-                    int rand = Random.Range(0, tempTypeList.Count);
-                    ret.possibleConnections[dir] = tempTypeList[rand];
-                }
-            #endregion
-
-            return ret;
-        }
-        /// <summary>
         /// Generates a completely random item
         /// </summary>
         /// <param name="scale"></param>
@@ -165,12 +115,22 @@ namespace Items
         /// <summary>
         /// Sets the level of the item
         /// </summary>
-        /// <param name="index">The level of the item</param>
-        public void SetLevel(int index)
+        /// <param name="level">The level of the item</param>
+        public void SetLevel(int level)
         {
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
             //Calculate stat bonuses
+            foreach (var stat in stats.Keys)
+            {
+                var s = Instantiate(stats[stat]);
+
+                bonusStats[stat] = s;
+
+                var c = ItemBuilder.Instance.statChances[stat];
+                //Ignore cap
+                s.ModifyStat(c.type, c.gainPerLevel * level);
+            }
         }
         /// <summary>
         /// Scale the items power
@@ -189,7 +149,17 @@ namespace Items
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
 
-            return stats;
+            StatDictionary ret = new StatDictionary();
+
+            foreach (var k in stats.Keys)
+            {
+                if (bonusStats.ContainsKey(k))
+                    ret[k] = stats[k] + bonusStats[k];
+                else
+                    ret[k] = Instantiate(stats[k]);
+            }
+
+            return ret;
         }
         /// <summary>
         /// Converts the item to json
@@ -224,7 +194,12 @@ namespace Items
     /// </summary>
     public enum ItemType
     {
-        NULL = 0
+        Helmet = 0,
+        Armour = 1,
+        Sword = 2,
+        Belt,
+        Staff,
+        Shoes
     }
     /// <summary>
     /// The connections items can have
@@ -239,13 +214,12 @@ namespace Items
     /// <summary>
     /// The type of connections
     /// </summary>
-    [System.Flags]
     public enum ConnectionType
     {
-        RED = 1,
-        BLUE = 2,
-        GREEN = 4,
-        ANY_ALSO_WHITE = 8,
+        RED,
+        BLUE,
+        GREEN,
+        ANY_ALSO_WHITE,
         //Other = 16,
         //Other = 32,
         //Other = 64,

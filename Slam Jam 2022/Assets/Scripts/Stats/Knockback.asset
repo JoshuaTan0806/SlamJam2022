@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Knockback
   m_EditorClassIdentifier: 
   InGameName: Buoyant Force
+  Description: Knockback
   Icon: {fileID: 21300000, guid: 59e5eaa9a6f64f345922d41bf3cc0d50, type: 3}
   Stat: 15
   PercentValue: 0

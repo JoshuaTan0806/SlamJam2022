@@ -12,6 +12,8 @@ public class GenericSpill : ScriptableObject
         Toggle,
     }
 
+    public Sprite icon;
+
     [Tooltip("How much health casting uses")]
     [SerializeField] protected float castCost;
 
@@ -35,9 +37,8 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
-        if(caster is Player)
-            if(caster.CurrentHealth + castCost * caster.GetStat(Stat.SpellCostMult).TotalValue > caster.GetStat(Stat.Health).TotalValue)
-                return false;
+        if (caster.CurrentHealth + castCost * CastMultiplier(caster) > caster.GetStat(Stat.Health).TotalValue)
+            return false;
 
         if (CastTimer > 0)
             return false;
@@ -45,14 +46,30 @@ public class GenericSpill : ScriptableObject
         return true;
     }
 
+    float CastMultiplier(PlayerStats caster)
+    {
+        if (caster.GetStat(Stat.SpellCostMult).TotalValue == 0)
+            return 1;
+        else
+            return 1 - 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
+    }
+
+    float CastSpeed(PlayerStats caster)
+    {
+        if (caster.GetStat(Stat.CastSpd).TotalValue == 0)
+            return 0;
+        else
+            return 1 / caster.GetStat(Stat.CastSpd).TotalValue;
+    }
+
     public virtual bool Cast(PlayerStats caster)
     {
         if (!CanCastSpell(caster))
             return false;
 
-        if(caster is Player)
-            caster.CurrentHealth += castCost * caster.GetStat(Stat.SpellCostMult).TotalValue;
-    
+        castTimer = CastSpeed(caster);
+
+        caster.CurrentHealth += castCost * CastMultiplier(caster);
         spellToggled = !spellToggled;
 
         if (particles)

@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Permeability
+  - Description: 10% increased Permeability
     StatType: 0
     Stat: 0
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 2fd8187587279a847a8c3f40cafba92f, type: 2}
   - {fileID: 11400000, guid: cfa23251b5d60dd468669b3fc004ad1c, type: 2}

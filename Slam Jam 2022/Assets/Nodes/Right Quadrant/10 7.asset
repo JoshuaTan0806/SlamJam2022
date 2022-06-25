@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Viscosity Resistance
+  - Description: 10% increased Viscosity Resistance
     StatType: 0
     Stat: 5
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 119fa7148840dd54c8c3119a17e9715f, type: 2}
   - {fileID: 11400000, guid: 00127d5da91b27642ba7165eee6ccf06, type: 2}

@@ -18,7 +18,7 @@ MonoBehaviour:
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: 1
+  - Description: qwe
     StatType: 2
     Stat: 12
     value: -3

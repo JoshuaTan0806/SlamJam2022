@@ -108,14 +108,14 @@ namespace Items
                         var otherConnections = otherItem.possibleConnections;
                         //Get the opposite direction
                         ConnectionDirection opposite = ItemIDs.GetOppositeDirection(connection);
-                        if (otherConnections.ContainsKey(opposite) 
+                        if (otherConnections.ContainsKey(opposite)
                             //Check connections
                             && (data.possibleConnections[connection] == otherConnections[opposite]
                                 //Check for any conneciton
                                 || data.possibleConnections[connection] == ConnectionType.ANY_ALSO_WHITE
                                 || otherConnections[opposite] == ConnectionType.ANY_ALSO_WHITE))
-                                //Is valid connection
-                                validConnections++;
+                            //Is valid connection
+                            validConnections++;
                     }
                     //Set the level of the item
                     data.SetLevel(validConnections);
@@ -125,15 +125,16 @@ namespace Items
                     //Refresh bonus stats
                     foreach (var stat in itemStats.Keys)
                     {   //If has, add
-                        //if (_combinedItemStats.ContainsKey(stat))
-                        //    _combinedItemStats[stat] += itemStats[stat];
-                        ////Else set
-                        //else
-                        //    _combinedItemStats[stat] = itemStats[stat];
+                        if (_combinedItemStats.ContainsKey(stat))
+                            _combinedItemStats[stat] += itemStats[stat];
+                        //Else set
+                        else
+                            _combinedItemStats[stat] = Object.Instantiate(itemStats[stat]);
                     }
                 }
 
             onItemsRefresh.SafeInvoke();
+            SpillInputManager.UpdateSpills();
         }
         /// <summary>
         /// Get an item from the inventory.
@@ -159,6 +160,17 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         public static ReadOnlyCollection<GenericSpill> GetSpills() => _skills.AsReadOnly();
+
+        public static void UnequipItem(ItemData item)
+        {   //Unequip all instances of the item
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                    if (_equipped[x, y] == item)
+                    {
+                        _equipped[x, y] = null;
+                        //Could break here but want to make sure there are no references
+                    }
+        }
         /// <summary>
         /// Saves the players inventory as a string
         /// </summary>

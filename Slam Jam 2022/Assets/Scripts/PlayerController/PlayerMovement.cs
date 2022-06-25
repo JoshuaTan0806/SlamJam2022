@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float MoveSpeed = 1f;
     public float Gravity = -9.8f;
     Vector3 velocity;
 
@@ -51,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(direction.magnitude >= 0.1f)
         {
-            characterController.Move(direction * MoveSpeed * Time.deltaTime);
+            characterController.Move(direction * GetComponent<Player>().GetStat(Stat.Spd).TotalValue * Time.deltaTime);
             playerModel.transform.forward = direction;
         }
 

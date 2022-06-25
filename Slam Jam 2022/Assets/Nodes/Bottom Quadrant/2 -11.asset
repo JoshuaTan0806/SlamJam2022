@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Friction
+  - Description: 10% increased Friction
     StatType: 0
     Stat: 11
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 1f1ed3c55f65cb5479eb00b77ccfd2a8, type: 2}
   - {fileID: 11400000, guid: b8f13d6f64339ba44b95d6d9413d5d98, type: 2}

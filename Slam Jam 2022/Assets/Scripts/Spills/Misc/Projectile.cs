@@ -7,6 +7,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 	[SerializeField] float projectileSpeed;
+	public float knockBack;
 
 	[Tooltip("How long of a delay before gravity is enabled for this projectile, (-1 for never on, 0 for instantly on, etc)")]
 	[SerializeField] float gravityEnableDelay = -1;
@@ -39,7 +40,7 @@ public class Projectile : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 
 		rb.AddForce(transform.forward * projectileSpeed);
-
+		
 		rb.useGravity = false;
 
 		if (gravityEnableDelay == 0)
@@ -90,12 +91,12 @@ public class Projectile : MonoBehaviour
 					return;
 		}
 
-		HitEnemy(stats);
+		HitEnemy(stats, summonable.Summoner);
 	}
 
-	void HitEnemy(PlayerStats stats)
+	void HitEnemy(PlayerStats stats, PlayerStats caster)
 	{
-		stats.TakeDamage(damage + summonable.Summoner.GetStat(Stat.ProjDmg).TotalValue);
+		stats.TakeDamage(damage + summonable.Summoner.GetStat(Stat.ProjDmg).TotalValue, gameObject);
 
 		immuneEnemies.Add(stats);
 		this.PerformAfterDelay(() => immuneEnemies.Remove(stats), 0.5f);

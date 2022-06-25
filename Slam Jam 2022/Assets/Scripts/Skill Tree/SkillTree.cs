@@ -16,6 +16,7 @@ public class SkillTree : MonoBehaviour
     [SerializeField] Button close;
     [SerializeField] Button reset;
     [SerializeField] Button statsButton;
+    [SerializeField] Button statsKeyButton;
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] float scrollMultiplier;
@@ -32,6 +33,7 @@ public class SkillTree : MonoBehaviour
         Player.OnSkillPointsChanged += SetSkillPointsText;
         reset.onClick.AddListener(() => SkillTreeManager.instance.ResetSkillTree());
         close.onClick.AddListener(() => SkillTreeManager.instance.ToggleSkillTree());
+        statsKeyButton.onClick.AddListener(() => ToggleStatsKeyButton());
         statsButton.onClick.AddListener(() => ToggleStatsMenu());
     }
 
@@ -144,19 +146,9 @@ public class SkillTree : MonoBehaviour
             {
                 StatData statData = Player.instance.GetStat(stat.Key);
 
-                if (statData.FlatValue != 0)
+                if (statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.PercentValue != 0)
-                {
-                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.FinalMultiplier != 0)
-                {
-                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
                 }
             }
         }
@@ -175,19 +167,9 @@ public class SkillTree : MonoBehaviour
             {
                 StatData statData = Player.instance.GetStat(stat.Key);
 
-                if (statData.FlatValue != 0)
+                if(statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(statData.FlatValue + " to " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.PercentValue != 0)
-                {
-                    statsHolder.SpawnDescription(statData.PercentValue + "% increased " + StatManager.StatDictionary[stat.Key].InGameName);
-                }
-
-                if (statData.FinalMultiplier != 0)
-                {
-                    statsHolder.SpawnDescription(statData.FinalMultiplier + "x " + StatManager.StatDictionary[stat.Key].InGameName);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
                 }
             }
         }
@@ -197,6 +179,29 @@ public class SkillTree : MonoBehaviour
             {
                 SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
                 Destroy(statHolderReference);
+            }
+        }
+    }
+
+    GameObject statKeyHolderReference;
+    public void ToggleStatsKeyButton()
+    {
+        if(statKeyHolderReference)
+        {
+            Destroy(statKeyHolderReference);
+            SoundManager.instance.PlaySFX(SoundManager.instance.cancelSFX);
+        }
+        else
+        {
+            SoundManager.instance.PlaySFX(SoundManager.instance.confirmSFX);
+            statKeyHolderReference = Instantiate(statHolderPrefab, StatholderPos.transform);
+            MenuHolder statsHolder = statKeyHolderReference.GetComponent<MenuHolder>();
+            statsHolder.SpawnTitle("Keys");
+
+            foreach (KeyValuePair<Stat, StatData> stat in StatManager.StatDictionary)
+            {
+                statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + StatManager.StatDictionary[stat.Key].Description);
+
             }
         }
     }
