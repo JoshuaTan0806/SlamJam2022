@@ -59,6 +59,46 @@ public static class SpillInputManager
                 }
             }
         }
+
+        //If all inputs are none, give default input bindings
+        for (int i = 0; i < inputsTaken.Length; i++)
+        {
+            int noInput = 0;
+            if (inputsTaken[i] == KeyCode.None)
+                noInput++;
+
+            //I shouldn't think this is cool, but god damn I think using this int like this is cool
+            if(noInput >= 4)
+            {
+                noInput = SpillArray.Length;
+                for (int e = 0; e < SpillArray.Length; e++)
+                {
+                    switch(noInput)
+                    {
+                        case 4:
+                            SpillArray[noInput].input = KeyCode.R;
+                            noInput--;
+                            break;
+                        case 3:
+                            SpillArray[noInput].input = KeyCode.E;
+                            noInput--;
+                            break;
+                        case 2:
+                            SpillArray[noInput].input = KeyCode.W;
+                            noInput--;
+                            break;
+                        case 1:
+                            SpillArray[noInput].input = KeyCode.Q;
+                            noInput--;
+                            break;
+                    }
+                        
+                }
+            }
+
+            if (noInput == 0)
+                break;
+        }
     }
 
     /// <summary>
