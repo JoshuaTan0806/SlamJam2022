@@ -6,12 +6,8 @@ using Items;
 
 public static class SpillInputManager
 {
-    /// <summary>
-    /// The Goal:
-    /// Create an array of a maximum of 9 spill inputs that cannot overlap
-    /// Get the spills from the player's inventory and attach it to an input
-    /// </summary>
     public static SpillInput[] SpillArray = new SpillInput[4];
+    static SpillInput inputClone;
 
     private static void Start()
     {
@@ -26,6 +22,14 @@ public static class SpillInputManager
 
     public static void UpdateSpills()
     {
+        for (int i = 0; i < SpillArray.Length; i++)
+        {
+            if (SpillArray[i] != null)
+                continue;
+
+            SpillArray[i] = Object.Instantiate(inputClone);
+        }
+        
         InputCheck();
         SpillCheck();
     }
