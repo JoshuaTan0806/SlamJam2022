@@ -73,6 +73,21 @@ public class PlayerStats : MonoBehaviour
         return minions;
     }
 
+    private void Update()
+    {
+        if (Dead)
+            return;
+
+        Regen();
+    }
+
+    void Regen()
+    {
+        if (CurrentHealth - stats[Stat.Regen].TotalValue * Time.deltaTime > 0)
+            CurrentHealth -= stats[Stat.Regen].TotalValue * Time.deltaTime;
+        else
+            CurrentHealth = 0;
+    }
 
     /// <summary>
     /// Takes damage
@@ -84,7 +99,7 @@ public class PlayerStats : MonoBehaviour
         if (Dead)
             return;
 
-        CurrentHealth += damage;
+        CurrentHealth += damage * Mathf.Clamp(2 - stats[Stat.DmgReduc].TotalValue, 0.2f, 1);
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
