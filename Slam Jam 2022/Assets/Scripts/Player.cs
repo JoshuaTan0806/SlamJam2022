@@ -37,9 +37,6 @@ public class Player : PlayerStats
     /// </summary>
     private void RefreshBonuses()
     {
-        stats.Clear();
-        //Combine stats
-
         foreach (var item in Items.ItemInventory.GetItemStats())
         {
             AddStat(item.Value);
