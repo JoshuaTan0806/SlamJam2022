@@ -21,6 +21,8 @@ public class Player : PlayerStats
     [SerializeField] int _skillPoints;
     public static System.Action OnSkillPointsChanged;
 
+    public int NumberOfPots;
+
     private void Awake()
     {
         if (instance == null)
@@ -64,5 +66,28 @@ public class Player : PlayerStats
             //else
             //    stats[stat] = stats[stat];
         }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UsePotion();
+        }
+    }
+
+    public void InitialisePotions()
+    {
+        NumberOfPots = Mathf.CeilToInt(GetStat(Stat.PotAmount).TotalValue);
+    }
+
+    void UsePotion()
+    {
+        if (NumberOfPots <= 0)
+            return;
+
+        NumberOfPots--;
+
+        CurrentHealth += GetStat(Stat.Health).TotalValue;
     }
 }
