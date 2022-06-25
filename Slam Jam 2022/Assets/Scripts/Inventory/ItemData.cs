@@ -57,6 +57,7 @@ namespace Items
         /// </summary>
         [SerializeField]
         private StatDictionary stats = new StatDictionary();
+        private StatDictionary bonusStats = new StatDictionary();
         /// <summary>
         /// The asset to reference
         /// </summary>
@@ -171,6 +172,16 @@ namespace Items
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
             //Calculate stat bonuses
+            foreach (var stat in stats.Keys)
+            {
+                var s = Instantiate(stats[stat]);
+
+                bonusStats[stat] = s;
+
+                var c = ItemBuilder.Instance.statChances[stat];
+                //Ignore cap
+                s.ModifyStat(c.type, c.gainPerLevel * level);
+            }
         }
         /// <summary>
         /// Scale the items power
@@ -189,7 +200,17 @@ namespace Items
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
 
-            return stats;
+            StatDictionary ret = new StatDictionary();
+
+            foreach (var k in stats.Keys)
+            {
+                if (bonusStats.ContainsKey(k))
+                    ret[k] = stats[k] + bonusStats[k];
+                else
+                    ret[k] = Instantiate(stats[k]);
+            }
+
+            return ret;
         }
         /// <summary>
         /// Converts the item to json
