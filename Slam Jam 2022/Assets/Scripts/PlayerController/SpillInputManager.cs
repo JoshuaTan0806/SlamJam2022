@@ -4,30 +4,36 @@ using UnityEngine;
 using Items;
 
 
-public class SpillInputManager : MonoBehaviour
+public static class SpillInputManager
 {
     /// <summary>
     /// The Goal:
     /// Create an array of a maximum of 9 spill inputs that cannot overlap
     /// Get the spills from the player's inventory and attach it to an input
     /// </summary>
-    SpillInput[] SpillArray = new SpillInput[4];
+    public static SpillInput[] SpillArray = new SpillInput[4];
 
-    private void Start()
+    private static void Start()
     {
         InputCheck();
         SpillCheck();
         
         for (int i = 0; i < SpillArray.Length; i++)
         {
-            SpillArray[i].Player = GetComponent<PlayerStats>();
+            SpillArray[i].Player = Player.instance;
         }
+    }
+
+    public static void UpdateSpills()
+    {
+        InputCheck();
+        SpillCheck();
     }
 
     /// <summary>
     /// Checks through all spillInputs and removes overlapping inputs
     /// </summary>
-    private void InputCheck()
+    private static void InputCheck()
     {
         //Saves a copy of every input that cannot be used again
         KeyCode[] inputsTaken = new KeyCode[SpillArray.Length];
@@ -54,7 +60,7 @@ public class SpillInputManager : MonoBehaviour
     /// <summary>
     /// Ties the spills the player has equipped to an input
     /// </summary>
-    private void SpillCheck()
+    private static void SpillCheck()
     {
         var spillList = ItemInventory.GetSpills();
 

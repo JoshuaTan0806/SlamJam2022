@@ -134,6 +134,7 @@ namespace Items
                 }
 
             onItemsRefresh.SafeInvoke();
+            SpillInputManager.UpdateSpills();
         }
         /// <summary>
         /// Get an item from the inventory.
