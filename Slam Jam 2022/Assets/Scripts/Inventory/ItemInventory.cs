@@ -108,14 +108,14 @@ namespace Items
                         var otherConnections = otherItem.possibleConnections;
                         //Get the opposite direction
                         ConnectionDirection opposite = ItemIDs.GetOppositeDirection(connection);
-                        if (otherConnections.ContainsKey(opposite) 
+                        if (otherConnections.ContainsKey(opposite)
                             //Check connections
                             && (data.possibleConnections[connection] == otherConnections[opposite]
                                 //Check for any conneciton
                                 || data.possibleConnections[connection] == ConnectionType.ANY_ALSO_WHITE
                                 || otherConnections[opposite] == ConnectionType.ANY_ALSO_WHITE))
-                                //Is valid connection
-                                validConnections++;
+                            //Is valid connection
+                            validConnections++;
                     }
                     //Set the level of the item
                     data.SetLevel(validConnections);
@@ -159,6 +159,17 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         public static ReadOnlyCollection<GenericSpill> GetSpills() => _skills.AsReadOnly();
+
+        public static void UnequipItem(ItemData item)
+        {   //Unequip all instances of the item
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                    if (_equipped[x, y] == item)
+                    {
+                        _equipped[x, y] = null;
+                        //Could break here but want to make sure there are no references
+                    }
+        }
         /// <summary>
         /// Saves the players inventory as a string
         /// </summary>

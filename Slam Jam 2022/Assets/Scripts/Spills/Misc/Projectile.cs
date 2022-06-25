@@ -70,12 +70,12 @@ public class Projectile : MonoBehaviour
 
 		//If we hit an ally summonable
 		var s = other.GetComponent<Summonable>();
-		if (s) 
+		if (s)
 		{
-			if(summonable.Summoner.CurrentActiveSummons.Contains(s))
+			if (summonable.Summoner.CurrentActiveSummons.Contains(s))
 				return;
 
-			
+
 		}
 
 		//If our summoner was a summon
@@ -87,8 +87,9 @@ public class Projectile : MonoBehaviour
 				return;
 
 			//If we hit their summoners other summons
-			if (s && summonerAsSummonable.Summoner.CurrentActiveSummons.Contains(s))
-				return;
+			if (s != null && summonerAsSummonable.Summoner)
+				if (summonerAsSummonable.Summoner.CurrentActiveSummons.Contains(s))
+					return;
 		}
 
 		HitEnemy(stats);
