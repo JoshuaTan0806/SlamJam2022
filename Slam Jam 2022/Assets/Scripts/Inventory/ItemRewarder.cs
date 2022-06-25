@@ -20,5 +20,7 @@ namespace Items
 
             return -1;
         }
+
+        public static void Clear() => s_rewards.Clear();
     }
 }
