@@ -7,13 +7,13 @@ using Items;
 public static class SpillInputManager
 {
     public static SpillInput[] SpillArray = new SpillInput[4];
-    static SpillInput inputClone;
+    static SpillInput inputClone = null;
 
     private static void Start()
     {
         InputCheck();
         SpillCheck();
-        
+
         for (int i = 0; i < SpillArray.Length; i++)
         {
             SpillArray[i].Player = Player.instance;
@@ -22,6 +22,9 @@ public static class SpillInputManager
 
     public static void UpdateSpills()
     {
+        if (!inputClone)
+            inputClone = ScriptableObject.CreateInstance<SpillInput>();
+
         for (int i = 0; i < SpillArray.Length; i++)
         {
             if (SpillArray[i] != null)
@@ -29,7 +32,7 @@ public static class SpillInputManager
 
             SpillArray[i] = Object.Instantiate(inputClone);
         }
-        
+
         InputCheck();
         SpillCheck();
     }
@@ -45,14 +48,14 @@ public static class SpillInputManager
         //Check for input overlaps and remove them
         for (int i = 0; i < SpillArray.Length; i++)
         {
-            for(int e = 0; e < inputsTaken.Length; e++)
+            for (int e = 0; e < inputsTaken.Length; e++)
             {
                 //Have we already used this input here?
-                if(SpillArray[i].input == inputsTaken[e])
+                if (SpillArray[i].input == inputsTaken[e])
                 {
                     SpillArray[i].input = KeyCode.None;
                 }
-                else if(inputsTaken[e] == KeyCode.None)
+                else if (inputsTaken[e] == KeyCode.None)
                 {
                     inputsTaken[e] = SpillArray[i].input;
                     break;
@@ -61,38 +64,33 @@ public static class SpillInputManager
         }
 
         //If all inputs are none, give default input bindings
+        int noInput = 0;
         for (int i = 0; i < inputsTaken.Length; i++)
         {
-            int noInput = 0;
             if (inputsTaken[i] == KeyCode.None)
                 noInput++;
 
-            //I shouldn't think this is cool, but god damn I think using this int like this is cool
-            if(noInput >= 4)
+            if (noInput >= 4)
             {
                 noInput = SpillArray.Length;
                 for (int e = 0; e < SpillArray.Length; e++)
                 {
-                    switch(noInput)
+                    switch (e)
                     {
-                        case 4:
-                            SpillArray[noInput].input = KeyCode.R;
-                            noInput--;
-                            break;
-                        case 3:
-                            SpillArray[noInput].input = KeyCode.E;
-                            noInput--;
+                        case 1:
+                            SpillArray[e].input = KeyCode.Q;
                             break;
                         case 2:
-                            SpillArray[noInput].input = KeyCode.W;
-                            noInput--;
+                            SpillArray[e].input = KeyCode.E;
                             break;
-                        case 1:
-                            SpillArray[noInput].input = KeyCode.Q;
-                            noInput--;
+                        case 3:
+                            SpillArray[e].input = KeyCode.R;
+                            break;
+                        case 4:
+                            SpillArray[e].input = KeyCode.F;
                             break;
                     }
-                        
+
                 }
             }
 
@@ -109,7 +107,7 @@ public static class SpillInputManager
         var spillList = ItemInventory.GetSpills();
 
         //Loop through every spill the player has equipped
-        foreach(var spill in spillList)
+        foreach (var spill in spillList)
         {
             //Loop through every spillInput
             for (int i = 0; i < SpillArray.Length; i++)
