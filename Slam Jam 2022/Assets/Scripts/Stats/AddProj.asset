@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AddProj
   m_EditorClassIdentifier: 
   InGameName: Percolation
+  Description: Additional Projectiles
   Icon: {fileID: 21300000, guid: fa57b5ab7a2953b46807366785a9d860, type: 3}
   Stat: 2
   PercentValue: 0

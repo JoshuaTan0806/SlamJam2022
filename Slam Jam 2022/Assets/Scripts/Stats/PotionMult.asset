@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PotionMult
   m_EditorClassIdentifier: 
   InGameName: Friction
+  Description: Potion Multiplier
   Icon: {fileID: 21300000, guid: 95d7767d60b0d7e42be7af95b85a5f63, type: 3}
   Stat: 11
   PercentValue: 0

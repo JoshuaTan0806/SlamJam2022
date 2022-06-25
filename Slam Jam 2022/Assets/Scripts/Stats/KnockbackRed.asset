@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: KnockbackRed
   m_EditorClassIdentifier: 
   InGameName: Buoyancy
+  Description: Knockback Reduction
   Icon: {fileID: 21300000, guid: 85745b23f0ac7c14fad09ee533b6cb62, type: 3}
   Stat: 8
   PercentValue: 0
