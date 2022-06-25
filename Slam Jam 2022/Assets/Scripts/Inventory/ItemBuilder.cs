@@ -231,9 +231,13 @@ namespace Items
             //Get random stats
             while (amount > 0)
             {
+                if (s.Count == 0)
+                    break;
+
                 int rand = UnityEngine.Random.Range(0, s.Count);
                 //Add stat
                 dictionary.Add(s[rand], tempStats[s[rand]]);
+                tempStats.Remove(s[rand]);
                 s.RemoveAt(rand);
 
                 amount--;

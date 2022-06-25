@@ -97,7 +97,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Takes damage
     /// </summary>
@@ -108,20 +107,23 @@ public class PlayerStats : MonoBehaviour
         if (Dead)
             return;
 
-        if(objectHit != null)
+        if (objectHit != null)
         {
-            Vector3 knockbackVector = objectHit.transform.position - transform.position;
-            transform.GetComponent<Rigidbody>().AddForce(knockbackVector * (objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.Knockback).TotalValue));
+            Vector3 knockbackVector = (objectHit.transform.position - transform.position).normalized;
+            transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
         }
 
-        CurrentHealth += damage * Mathf.Clamp(2 - stats[Stat.DmgReduc].TotalValue, 0.2f, 1);
+        if (stats[Stat.DmgReduc].TotalValue == 0)
+            CurrentHealth += damage;
+        else
+            CurrentHealth += damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
 
         if (!internalDamage)
             OnDamageTaken?.Invoke();
 
         if (CurrentHealth > GetStat(Stat.Health).TotalValue)
             Die();
-    }  
+    }
 
     void Die()
     {
