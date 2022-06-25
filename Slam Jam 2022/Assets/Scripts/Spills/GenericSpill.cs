@@ -12,6 +12,8 @@ public class GenericSpill : ScriptableObject
         Toggle,
     }
 
+    public Sprite icon;
+
     [Tooltip("How much health casting uses")]
     [SerializeField] protected float castCost;
 
