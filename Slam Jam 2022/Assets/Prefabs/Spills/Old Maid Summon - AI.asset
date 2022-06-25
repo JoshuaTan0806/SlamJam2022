@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87beb564d844db140b829b9a8e85721b, type: 3}
   m_Name: Old Maid Summon - AI
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 21349d12706bcc74289a5a0064976dbf, type: 3}
   castCost: 5
   castCooldown: 5
   spellType: 0
+  spellDuration: 0
+  particles: {fileID: 0}
   summon: {fileID: -64244957904412927, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   maxSummons: 1
   numToSummon: 1

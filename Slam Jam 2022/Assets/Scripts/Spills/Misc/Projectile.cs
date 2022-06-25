@@ -75,8 +75,6 @@ public class Projectile : MonoBehaviour
 		{
 			if (summonable.Summoner.CurrentActiveSummons.Contains(s))
 				return;
-
-
 		}
 
 		//If our summoner was a summon

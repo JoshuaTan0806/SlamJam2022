@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Airship.unity
     guid: c6fadf086a124af4cb955341df5cbc27
   - enabled: 1
-    path: Assets/Scenes/ZachsTestScene.unity
-    guid: 5c41d1fbf073f0549a8aca686e8c569a
+    path: Assets/Scenes/SnowLevel.unity
+    guid: 04238bde2a276da40950dc5971731ac7
   m_configObjects: {}

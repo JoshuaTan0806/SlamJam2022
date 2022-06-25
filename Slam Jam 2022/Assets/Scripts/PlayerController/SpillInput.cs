@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpillInput : MonoBehaviour
+[CreateAssetMenu(fileName = "Spill-Input", menuName = "SpillInput", order = 1)]
+public class SpillInput : ScriptableObject
 {
     public KeyCode input;
     GenericSpill spill;
@@ -13,10 +14,10 @@ public class SpillInput : MonoBehaviour
     }
 
     PlayerStats player;
-
-    private void Start()
+    public PlayerStats Player
     {
-        player = GetComponent<PlayerStats>();
+        get { return player; }
+        set { player = value; }
     }
 
     // Update is called once per frame

@@ -4,55 +4,125 @@ using UnityEngine;
 using Items;
 
 
-public class SpillInputManager : MonoBehaviour
+public static class SpillInputManager
 {
-    /// <summary>
-    /// The Goal:
-    /// Create an array of a maximum of 9 spill inputs that cannot overlap
-    /// Get the spills from the player's inventory and attach it to an input
-    /// </summary>
-    SpillInput[] SpillArray = new SpillInput[9];
+    public static SpillInput[] SpillArray = new SpillInput[4];
+    static SpillInput inputClone = null;
 
-    private void Start()
+    private static void Start()
     {
         InputCheck();
-        //SpillCheck();
-        
+        SpillCheck();
+
         for (int i = 0; i < SpillArray.Length; i++)
         {
-           
+            SpillArray[i].Player = Player.instance;
         }
     }
 
-    private void InputCheck()
+    public static void UpdateSpills()
     {
+        if (!inputClone)
+            inputClone = ScriptableObject.CreateInstance<SpillInput>();
+
+        for (int i = 0; i < SpillArray.Length; i++)
+        {
+            if (SpillArray[i] != null)
+                continue;
+
+            SpillArray[i] = Object.Instantiate(inputClone);
+        }
+
+        InputCheck();
+        SpillCheck();
+    }
+
+    /// <summary>
+    /// Checks through all spillInputs and removes overlapping inputs
+    /// </summary>
+    private static void InputCheck()
+    {
+        //Saves a copy of every input that cannot be used again
         KeyCode[] inputsTaken = new KeyCode[SpillArray.Length];
 
         //Check for input overlaps and remove them
-        for (int i = 0; i >= SpillArray.Length; i++)
+        for (int i = 0; i < SpillArray.Length; i++)
         {
-            for(int e = 0; e >= inputsTaken.Length; e++)
+            for (int e = 0; e < inputsTaken.Length; e++)
             {
-                if(SpillArray[i].input == inputsTaken[e])
+                //Have we already used this input here?
+                if (SpillArray[i].input == inputsTaken[e])
                 {
                     SpillArray[i].input = KeyCode.None;
                 }
-                else if(inputsTaken[e] == KeyCode.None)
+                else if (inputsTaken[e] == KeyCode.None)
                 {
                     inputsTaken[e] = SpillArray[i].input;
                     break;
                 }
             }
         }
+
+        //If all inputs are none, give default input bindings
+        int noInput = 0;
+        for (int i = 0; i < inputsTaken.Length; i++)
+        {
+            if (inputsTaken[i] == KeyCode.None)
+                noInput++;
+
+            if (noInput >= 4)
+            {
+                noInput = SpillArray.Length;
+                for (int e = 0; e < SpillArray.Length; e++)
+                {
+                    switch (e)
+                    {
+                        case 0:
+                            SpillArray[e].input = KeyCode.Q;
+                            break;
+                        case 1:
+                            SpillArray[e].input = KeyCode.E;
+                            break;
+                        case 2:
+                            SpillArray[e].input = KeyCode.R;
+                            break;
+                        case 3:
+                            SpillArray[e].input = KeyCode.F;
+                            break;
+                    }
+
+                }
+            }
+
+            if (noInput == 0)
+                break;
+        }
     }
 
-    private void SpillCheck()
+    /// <summary>
+    /// Ties the spills the player has equipped to an input
+    /// </summary>
+    private static void SpillCheck()
     {
-        IReadOnlyCollection<GenericSpill> spillList = ItemInventory.GetSpills();
+        var spillList = ItemInventory.GetSpills();
 
-        for (int i = 0; i >= spillList.Count; i++)
+        //Loop through every spill the player has equipped
+        foreach (var spill in spillList)
         {
-            //SpillArray[i].Spill = spillList.
+            //Loop through every spillInput
+            for (int i = 0; i < SpillArray.Length; i++)
+            {
+                //Have we already equipped that spill in this function?
+                if (spill == SpillArray[i].Spill)
+                    break;
+
+                //Is there a spill equipped to that one already?
+                if (SpillArray[i].Spill == null)
+                {
+                    SpillArray[i].Spill = spill;
+                    break;
+                }
+            }
         }
     }
 }

@@ -85,8 +85,12 @@ MonoBehaviour:
         - weight: 1
           probability: 20
       typeChances:
-        m_keys: 07000000
+        m_keys: 020000000000000001000000
         m_values:
         - weight: 1
-          probability: 100
+          probability: 33.333332
+        - weight: 1
+          probability: 33.333332
+        - weight: 1
+          probability: 33.333332
       possibleNumberOfStats: {x: 1, y: 4}

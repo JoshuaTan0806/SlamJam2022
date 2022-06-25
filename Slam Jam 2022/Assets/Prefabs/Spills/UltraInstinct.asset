@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1245a00b0724822469d3432710cb25e6, type: 3}
   m_Name: UltraInstinct
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300002, guid: 88dca061d041a2a4596563e6a38f66c8, type: 3}
   castCost: 3
   castCooldown: 5
   spellType: 1

@@ -16,6 +16,7 @@ namespace Items.UI
         [Tooltip("Should be in order N, E, S, W")]
         public Image[] connectionObjects = new Image[4];
         public MenuHolder statParent = null;
+        public System.Action onEquip = null;
 
         private RectTransform _rt = null;
         private Transform _originalParent = null;
@@ -23,11 +24,11 @@ namespace Items.UI
         private ItemSlotUI _prevSlot = null;
         private bool _dragging = false;
         private float _appearTimer = 0f;
+        private bool _hover = false;
 
         private void Start()
         {
             _rt = (RectTransform)transform;
-            enabled = false;
         }
 
         public void RefreshUI()
@@ -35,22 +36,26 @@ namespace Items.UI
             bool hasItem = item != null;
             for (int i = 0; i < connectionObjects.Length; i++)
             {
-                connectionObjects[i].gameObject.SetActive(hasItem);
+                ConnectionDirection d = (ConnectionDirection)i;
+                connectionObjects[i].gameObject.SetActive(hasItem ? item.possibleConnections.ContainsKey(d) : false);
 
-                if (hasItem)
-                    connectionObjects[i].color = ItemIDs.ToColor((ConnectionType)i);
+                if (hasItem && item.possibleConnections.ContainsKey(d))
+                    connectionObjects[i].color = ItemIDs.ToColor(item.possibleConnections[d]);
             }
 
             mainIcon.sprite = hasItem ? ItemBuilder.Instance.GetIcon(item.Type) : null;
 
-            spillIcon.transform.parent.gameObject.SetActive(hasItem);
+            spillIcon.transform.parent.gameObject.SetActive(hasItem ? item.Spill : false);
             spillIcon.sprite = hasItem ? item.Spill.icon : null;
 
             // Build Stats
             if (hasItem)
             {
                 foreach (var stat in item.GetStats().Values)
-                    statParent.SpawnDescription(stat.InGameName + ": " + stat.TotalValue);
+                    if (stat.FlatValue > 0)
+                        statParent.SpawnDescription(stat.InGameName + ": +" + stat.FlatValue.ToString("N0"));
+                    else
+                        statParent.SpawnDescription(stat.InGameName + ": " + stat.PercentValue.ToString("N0") + "%");
             }
 
             statParent.gameObject.SetActive(false);
@@ -59,12 +64,15 @@ namespace Items.UI
 
         private void Update()
         {
+            if (!_hover)
+                return;
+
             _appearTimer += Time.deltaTime;
             bool show = _appearTimer > 0.75f;
             statParent.gameObject.SetActive(show);
             //Once it shows, disable Update
             if (show)
-                enabled = false;
+                _hover = false;
         }
 
         #region DragDrop
@@ -76,6 +84,8 @@ namespace Items.UI
 
             gameObject.layer = 2;
             ToggleInteractability(false);
+            _hover = false;
+            statParent.gameObject.SetActive(false);
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -100,6 +110,8 @@ namespace Items.UI
                     _prevSlot.SetSlot(null);
 
                 _prevSlot = slot;
+                onEquip?.Invoke();
+                onEquip = null;
             }
 
 
@@ -133,13 +145,13 @@ namespace Items.UI
         public void OnPointerExit(PointerEventData eventData)
         {
             statParent.gameObject.SetActive(false);
-            enabled = false;
+            _hover = false;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             _appearTimer = 0f;
-            enabled = true;
+            _hover = true;
         }
     }
 }

@@ -15,8 +15,6 @@ namespace Items.UI
 
         private void Start()
         {
-            ItemInventory.EquipItem(ItemData.CreateRandomItem(0), new Vector2Int(0, 0));
-            ItemInventory.EquipItem(ItemData.CreateRandomItem(0), new Vector2Int(2, 2));
             SpawnInventory();
         }
 
