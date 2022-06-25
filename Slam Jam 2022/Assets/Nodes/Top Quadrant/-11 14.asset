@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Torrent Speed
+  - Description: 10% increased Torrent Speed
     StatType: 0
     Stat: 16
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: 3715843287d7d7d4b9102f2accaa1033, type: 2}
   - {fileID: 11400000, guid: f58a4b1f465e1c1468fdeb25a6510f0c, type: 2}

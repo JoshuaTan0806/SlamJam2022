@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 0
   isStartingNode: 0
   powerUps:
-  - Description: 2% increased Splash Area
+  - Description: 10% increased Splash Area
     StatType: 0
     Stat: 7
-    value: 2
+    value: 10
   connectedNodes:
   - {fileID: 11400000, guid: a77768403c4948640b08efe67c825710, type: 2}
   - {fileID: 11400000, guid: bf32c9110f6d8704eafd32432f8bb36f, type: 2}
