@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class DeathScreen : MonoBehaviour
 {
-    private void Awake()
+    [SerializeField] GameObject deathUI;
+
+    LevelLoader loader;
+
+    private void Start()
     {
+        loader = GetComponentInParent<LevelLoader>();
+
+        deathUI.SetActive(false);
+
         Player.instance.OnDeath += Die;
     }
 
@@ -13,6 +21,14 @@ public class DeathScreen : MonoBehaviour
     {
         Player.instance.OnDeath -= Die;
 
+        this.PerformAfterDelay(() => 
+        {
+            deathUI.SetActive(true);
 
+            this.PerformAfterDelay(() => 
+            {
+                loader.LoadLevel(0);
+            }, 4);
+        },1);
     }
 }
