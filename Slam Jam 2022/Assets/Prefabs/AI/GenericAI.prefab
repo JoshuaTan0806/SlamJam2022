@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721b5f127d242894d9051c89d4feb6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoViewDist: 3
-  fieldOfView: 60
-  viewDistance: 10
+  autoViewDist: 5
+  fieldOfView: 45
+  viewDistance: 8
   visionMask:
     serializedVersion: 2
     m_Bits: 384
