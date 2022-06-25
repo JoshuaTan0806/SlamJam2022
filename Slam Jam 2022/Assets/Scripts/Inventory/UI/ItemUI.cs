@@ -5,24 +5,54 @@ using Items;
 
 namespace Items.UI
 {
-    public class ItemUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class ItemUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {
+        [HideInInspector]
         public ItemData item = null;
+
+        [Header("UI")]
+        public Image mainIcon = null;
+        [Tooltip("Should be in order N, E, S, W")]
+        public Image[] connectionObjects = new Image[4];
+        public GameObject statParent = null;
 
         private RectTransform _rt = null;
         private Transform _originalParent = null;
         private Vector2 _pointerOffset = Vector3.zero;
         private ItemSlotUI _prevSlot = null;
         private bool _dragging = false;
+        private float _appearTimer = 0f;
 
         private void Start()
         {
             _rt = (RectTransform)transform;
+            enabled = false;
         }
 
         public void RefreshUI()
         {
+            bool hasItem = item != null;
+            for (int i = 0; i < connectionObjects.Length; i++)
+            {
+                connectionObjects[i].gameObject.SetActive(hasItem);
+                connectionObjects[i].color = ItemIDs.ToColor((ConnectionType)i);
+            }
 
+            mainIcon.sprite = hasItem ? ItemBuilder.Instance.GetIcon(item.Type) : null;
+
+            // Build Stats
+
+            statParent.SetActive(false);
+        }
+
+        private void Update()
+        {
+            _appearTimer += Time.deltaTime;
+            bool show = _appearTimer > 0.75f;
+            statParent.SetActive(show);
+            //Once it shows, disable Update
+            if (show)
+                enabled = false;
         }
 
         #region DragDrop
@@ -87,5 +117,16 @@ namespace Items.UI
                 ui.raycastTarget = enabled;
         }
         #endregion
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            statParent.SetActive(false);
+            enabled = false;
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _appearTimer = 0f;
+            enabled = true;
+        }
     }
 }
