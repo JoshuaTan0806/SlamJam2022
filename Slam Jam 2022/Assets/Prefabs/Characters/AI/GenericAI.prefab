@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6940013771546012771}
   healthText: {fileID: 8563742136811982298}
-  isAI: 0
+  isAI: 1
 --- !u!114 &1221946879049000736
 MonoBehaviour:
   m_ObjectHideFlags: 0
