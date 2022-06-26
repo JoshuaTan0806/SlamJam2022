@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1245a00b0724822469d3432710cb25e6, type: 3}
+  m_Name: Regen
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a685aa7ba5f7a074f8a84237bbab1032, type: 3}
+  castCost: 50
+  castCooldown: 5
+  spellType: 1
+  spellDuration: 3
+  particles: {fileID: 3783109073288717661, guid: c29e0cfd5d4946c408429f11d0c81050, type: 3}
+  buffs:
+  - stat: 14
+    statType: 1
+    val: 10
+  - stat: 5
+    statType: 0
+    val: -70
