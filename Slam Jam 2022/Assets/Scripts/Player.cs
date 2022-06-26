@@ -35,6 +35,13 @@ public class Player : PlayerStats
 
         Items.ItemInventory.onItemsRefresh += RefreshBonuses;
     }
+
+    protected override void Start()
+    {
+        RefreshBonuses();
+
+        base.Start();
+    }
     /// <summary>
     /// Rebuilds the players stats
     /// </summary>
@@ -45,14 +52,11 @@ public class Player : PlayerStats
             AddStat(item.Value);
         }
 
-        RecalculateStats();
-    }
-    /// <summary>
-    /// Calculates the players current stats.
-    /// </summary>
-    private void RecalculateStats()
-    {
-        //Read the stats from stats and re-calculate any stats
+        foreach (var s in SkillTreeManager.instance.nodes)
+        {
+            if (s.IsActive)
+                s.ApplyPowerUps(true);
+        }
     }
 
     private void Update()

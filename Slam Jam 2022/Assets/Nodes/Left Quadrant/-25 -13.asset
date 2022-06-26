@@ -22,8 +22,8 @@ MonoBehaviour:
     StatType: 2
     Stat: 13
     value: 3
-  - Description: 0.5% increased Insolubility
-    StatType: 0
+  - Description: Insolubility is halved.
+    StatType: 2
     Stat: 9
     value: 0.5
   connectedNodes:

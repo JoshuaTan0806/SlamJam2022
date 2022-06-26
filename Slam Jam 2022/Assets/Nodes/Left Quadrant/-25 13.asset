@@ -22,8 +22,8 @@ MonoBehaviour:
     StatType: 2
     Stat: 14
     value: 2
-  - Description: 0.5% increased Viscosity Resistance
-    StatType: 0
+  - Description: Viscosity Resistance is halved.
+    StatType: 2
     Stat: 5
     value: 0.5
   connectedNodes:

@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
 	public event System.Action OnDeath;
 	public bool Dead { get; protected set; }
 
-	private void Start()
+	protected virtual void Start()
 	{
 		foreach (var s in baseStats)
 		{
