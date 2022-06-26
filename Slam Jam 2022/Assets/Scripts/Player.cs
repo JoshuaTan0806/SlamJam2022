@@ -36,9 +36,11 @@ public class Player : PlayerStats
         Items.ItemInventory.onItemsRefresh += RefreshBonuses;
     }
 
-    private void Start()
+    protected override void Start()
     {
         RefreshBonuses();
+
+        base.Start();
     }
     /// <summary>
     /// Rebuilds the players stats
@@ -55,15 +57,6 @@ public class Player : PlayerStats
             if (s.IsActive)
                 s.ApplyPowerUps(true);
         }
-
-        RecalculateStats();
-    }
-    /// <summary>
-    /// Calculates the players current stats.
-    /// </summary>
-    private void RecalculateStats()
-    {
-        //Read the stats from stats and re-calculate any stats
     }
 
     private void Update()

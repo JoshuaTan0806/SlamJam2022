@@ -28,5 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91c03135d27e658419d11612959d850d, type: 2}
   - {fileID: 11400000, guid: 887960888448cef49acbe0cb522ce571, type: 2}
   - {fileID: 11400000, guid: 253d44dfe9a451f4b96ff4742688e6c8, type: 2}
-  isActive: 1
+  isActive: 0
   NodeToConnect: {x: 0, y: 0}

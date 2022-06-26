@@ -22,8 +22,8 @@ MonoBehaviour:
     StatType: 2
     Stat: 15
     value: 2
-  - Description: 0.5% increased Buoyancy
-    StatType: 0
+  - Description: Buoyancy is halved.
+    StatType: 2
     Stat: 8
     value: 0.5
   connectedNodes:

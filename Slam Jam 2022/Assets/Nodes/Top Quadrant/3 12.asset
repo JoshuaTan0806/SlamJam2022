@@ -25,5 +25,5 @@ MonoBehaviour:
   connectedNodes:
   - {fileID: 11400000, guid: 4ad624f9696dcac4487dfdb48156e5b2, type: 2}
   - {fileID: 11400000, guid: 2e83b072ebb501943bd40f412c723821, type: 2}
-  isActive: 1
+  isActive: 0
   NodeToConnect: {x: 0, y: 0}
