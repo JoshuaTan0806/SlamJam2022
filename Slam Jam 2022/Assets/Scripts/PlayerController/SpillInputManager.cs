@@ -97,6 +97,9 @@ public static class SpillInputManager
     {
         var spillList = ItemInventory.GetSpills();
 
+        for (int i = 0; i < SpillArray.Length; i++)
+            SpillArray[i].Spill = null;
+
         //Loop through every spill the player has equipped
         foreach (var spill in spillList)
         {

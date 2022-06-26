@@ -157,7 +157,11 @@ public class SkillTree : MonoBehaviour
 
                 if (statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + Mathf.CeilToInt(statData.TotalValue));
+                    float value = 100 * (statData.TotalValue);
+                    value = Mathf.CeilToInt(value);
+                    value /= 100;
+                    
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + value);
                 }
             }
         }
@@ -176,9 +180,13 @@ public class SkillTree : MonoBehaviour
             {
                 StatData statData = Player.instance.GetStat(stat.Key);
 
-                if(statData.TotalValue != 0)
+                if (statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + Mathf.CeilToInt(statData.TotalValue));
+                    float value = 100 * (statData.TotalValue);
+                    value = Mathf.CeilToInt(value);
+                    value /= 100;
+
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + value);
                 }
             }
         }
