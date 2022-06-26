@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BASECHARACTER
       objectReference: {fileID: 0}
+    - target: {fileID: 3187511919942956778, guid: 9528735ae23be7648b952d9fe3476687, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9528735ae23be7648b952d9fe3476687, type: 3}
 --- !u!1 &2014143190222847982 stripped
