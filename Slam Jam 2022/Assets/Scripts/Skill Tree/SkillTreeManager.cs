@@ -34,6 +34,8 @@ public class SkillTreeManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        DontDestroyOnLoad(gameObject);
+
         allNodes = new List<Node>();
         allNodes = nodes;
 
