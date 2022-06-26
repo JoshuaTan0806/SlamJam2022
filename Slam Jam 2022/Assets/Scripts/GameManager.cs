@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private const string SAVE_INVENTORY_ID = "I";
     public static GameManager instance;
+    public static List<GameObject> _enemies = new List<GameObject>();
     public int skillPointGainPerLevel = 5;
     public int skillPointsToLevel = 10;
 
@@ -71,6 +72,8 @@ public class GameManager : MonoBehaviour
     public static void LevelStart()
     {
         Player.instance.InitialisePotions();
+
+        instance.StartCoroutine(CheckGameComplete());
     }
     /// <summary>
     /// Call when the player succeeds a level
@@ -80,5 +83,32 @@ public class GameManager : MonoBehaviour
         Player.instance.skillPoints += instance.skillPointGainPerLevel;
         //Grant the player a scaling reward
         Items.ItemRewarder.GrantReward(Player.instance.skillPoints / instance.skillPointsToLevel);
+
+        _enemies.Clear();
+
+        instance.StartCoroutine(OnLevelFinish());
+    }
+
+    private static IEnumerator CheckGameComplete()
+    {
+        while (_enemies.Count > 0)
+        {
+            _enemies.RemoveAll((obj) => obj == null);
+
+            yield return null;
+        }
+
+        LevelFinish();
+    }
+
+    private static IEnumerator OnLevelFinish()
+    {
+        if (Player.instance.Dead)
+            yield break;
+        yield return new WaitForSeconds(1f);
+
+        if (!Player.instance.Dead)
+            //Load the airship
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Airship");
     }
 }

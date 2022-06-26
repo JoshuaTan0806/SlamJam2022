@@ -149,6 +149,9 @@ public class PlayerStats : MonoBehaviour
 	void Die()
 	{
 		Dead = true;
+
+		this.PerformAfterDelay(() => Destroy(gameObject), 3);
+
 		OnDeath?.Invoke();
 	}
 }
