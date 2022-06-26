@@ -125,7 +125,7 @@ public class PlayerStats : MonoBehaviour
 		if (objectHit != null)
 		{
 			Vector3 knockbackVector = (objectHit.transform.position - transform.position).normalized;
-			transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
+			transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().Knockback - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
 		}
 
 		if (stats[Stat.DmgReduc].TotalValue == 0)

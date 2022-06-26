@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour
 	[SerializeField] bool useKnockBack;
 	[ShowIf("useKnockBack")]
 	[SerializeField] float knockBack;
+	public float Knockback => knockBack;
 	[ShowIf("useKnockBack")]
 	[SerializeField] float knockbackTime = 1;
 
