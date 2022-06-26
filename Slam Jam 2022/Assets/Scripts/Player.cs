@@ -8,9 +8,6 @@ using TMPro;
 public class Player : PlayerStats
 {
     public static Player instance;
-    [SerializeField] Image healthBar;
-    [SerializeField] TextMeshProUGUI healthText;
-
 
     public int skillPoints
     {
@@ -64,7 +61,6 @@ public class Player : PlayerStats
         {
             UsePotion();
         }
-        UpdateHealthBar();
     }
 
     public void InitialisePotions()
@@ -82,9 +78,5 @@ public class Player : PlayerStats
         CurrentHealth += GetStat(Stat.Health).TotalValue;
     }
 
-    void UpdateHealthBar()
-    {
-        healthBar.fillAmount = CurrentHealth / GetStat(Stat.Health).TotalValue;
-        healthText.text = CurrentHealth + "/" + GetStat(Stat.Health).TotalValue;
-    }
+    
 }
