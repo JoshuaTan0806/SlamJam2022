@@ -89,7 +89,12 @@ public class Player : PlayerStats
 
         NumberOfPots--;
 
-        CurrentHealth += GetStat(Stat.Health).TotalValue;
+        float amountToHeal = GetStat(Stat.Health).TotalValue * 0.25f * GetStat(Stat.PotMult).TotalValue;
+
+        if (CurrentHealth - amountToHeal <= 0)
+            CurrentHealth = 0;
+        else
+            CurrentHealth -= GetStat(Stat.Health).TotalValue * 0.25f * GetStat(Stat.PotMult).TotalValue;
     }
 
     protected override void Die()
