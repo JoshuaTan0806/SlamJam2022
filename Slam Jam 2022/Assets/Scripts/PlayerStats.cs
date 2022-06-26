@@ -106,7 +106,10 @@ public class PlayerStats : MonoBehaviour
 				for (int i = 0; i < collider.Length; i++)
 				{
 					if (collider[i].TryGetComponent(out PlayerStats stats))
-						stats.TakeDamage(GetStat(Stat.DmgReflect).TotalValue);
+					{
+						if (stats != this)
+							stats.TakeDamage(GetStat(Stat.DmgReflect).TotalValue);
+					}
 				}
 			}
 			else
