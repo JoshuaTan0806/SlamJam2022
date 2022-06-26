@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1271606682133163756, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372817, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: m_Name
       value: Old Maiden
@@ -65,11 +69,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372847, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: idleActions.m_keys.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372847, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: idleActions.m_values.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372847, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: idleActions.m_keys.Array.data[0]

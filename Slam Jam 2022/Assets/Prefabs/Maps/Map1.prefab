@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawnRange: {x: 1, y: 3}
   agentOptions:
-  - {fileID: 1355885711233501083, guid: d3fef6695317fd849a7f004142e5c6dd, type: 3}
-  - {fileID: 1355885711233501083, guid: c6fcb001da1d0794dac94b884e79f799, type: 3}
+  - {fileID: 1355885711233501083, guid: 9c09cc2755029014abdf04a26698a1cd, type: 3}
+  - {fileID: 6469421818178846061, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   spawnAreaRange: 3
 --- !u!1 &206260230
 GameObject:
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawnRange: {x: 1, y: 3}
   agentOptions:
-  - {fileID: 1355885711233501083, guid: d3fef6695317fd849a7f004142e5c6dd, type: 3}
-  - {fileID: 1355885711233501083, guid: c6fcb001da1d0794dac94b884e79f799, type: 3}
+  - {fileID: 1355885711233501083, guid: 9c09cc2755029014abdf04a26698a1cd, type: 3}
+  - {fileID: 6469421818178846061, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   spawnAreaRange: 3
 --- !u!1 &626384408
 GameObject:
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawnRange: {x: 1, y: 3}
   agentOptions:
-  - {fileID: 1355885711233501083, guid: d3fef6695317fd849a7f004142e5c6dd, type: 3}
-  - {fileID: 1355885711233501083, guid: c6fcb001da1d0794dac94b884e79f799, type: 3}
+  - {fileID: 1355885711233501083, guid: 9c09cc2755029014abdf04a26698a1cd, type: 3}
+  - {fileID: 6469421818178846061, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   spawnAreaRange: 3
 --- !u!1 &1003366636
 GameObject:
@@ -342,8 +342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawnRange: {x: 1, y: 3}
   agentOptions:
-  - {fileID: 1355885711233501083, guid: d3fef6695317fd849a7f004142e5c6dd, type: 3}
-  - {fileID: 1355885711233501083, guid: c6fcb001da1d0794dac94b884e79f799, type: 3}
+  - {fileID: 1355885711233501083, guid: 9c09cc2755029014abdf04a26698a1cd, type: 3}
+  - {fileID: 6469421818178846061, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   spawnAreaRange: 3
 --- !u!1 &1192390645
 GameObject:
@@ -484,8 +484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawnRange: {x: 1, y: 3}
   agentOptions:
-  - {fileID: 1355885711233501083, guid: d3fef6695317fd849a7f004142e5c6dd, type: 3}
-  - {fileID: 1355885711233501083, guid: c6fcb001da1d0794dac94b884e79f799, type: 3}
+  - {fileID: 1355885711233501083, guid: 9c09cc2755029014abdf04a26698a1cd, type: 3}
+  - {fileID: 6469421818178846061, guid: f675b74b1844f2648967ba38039a777d, type: 3}
   spawnAreaRange: 3
 --- !u!1 &1461386963
 GameObject:
@@ -11474,6 +11474,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb4e0b01a8eccf24c9e5ca4c30a9b2be, type: 3}
+--- !u!1 &1932660265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 104214, guid: fb4e0b01a8eccf24c9e5ca4c30a9b2be, type: 3}
+  m_PrefabInstance: {fileID: 1932761407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1317018603
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932660265}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1317018608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932660265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0000005, y: 0, z: 3.0000002}
+  m_Center: {x: -1.5000002, y: 1.182099e-15, z: -1.500002}
+--- !u!114 &1317018602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932660265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40df09cf9ab596547a0dc701bdb2556b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1932916605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 421442, guid: fb4e0b01a8eccf24c9e5ca4c30a9b2be, type: 3}

@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] float spawnAreaRange = 5;
 
-    private void Awake()
+    private void Start()
     {
         Spawn();
     }
@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        GameManager.LevelStart();
+        this.PerformAtEndOfFrame(GameManager.LevelStart);
     }
 
     private void OnDrawGizmos()
