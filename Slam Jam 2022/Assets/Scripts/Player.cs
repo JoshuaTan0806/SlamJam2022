@@ -38,9 +38,9 @@ public class Player : PlayerStats
 
     protected override void Start()
     {
+        base.Start();
         RefreshBonuses();
 
-        base.Start();
     }
     /// <summary>
     /// Rebuilds the players stats
