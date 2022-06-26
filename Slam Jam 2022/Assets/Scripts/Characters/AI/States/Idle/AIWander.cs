@@ -12,6 +12,8 @@ public class AIWander : AIIdleState
 
 	public override void TriggerState(AIManager ai)
 	{
+		this.ai = ai;
+
 		base.TriggerState(ai);
 
 		GetRandomSpot();
@@ -26,6 +28,7 @@ public class AIWander : AIIdleState
 
 			if (NavMesh.SamplePosition(currentTargetPos, out var hit, wanderRange * 2, NavMesh.AllAreas))
 			{
+				ai.SetMoving(true);
 				Agent.SetDestination(currentTargetPos);
 				return;
 			}

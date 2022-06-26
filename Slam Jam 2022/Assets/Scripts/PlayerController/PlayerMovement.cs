@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
-        playerModel = GetComponentInChildren<Animator>().gameObject;
-        body = playerModel.GetComponent<CharacterBody>();
+        playerModel = transform.GetChild(0).gameObject;
+        body = GetComponentInChildren<CharacterBody>();
     }
 
     void Update()
@@ -64,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+        body.SetMoving(horizontal != 0 || vertical != 0);
 
-
-        if(direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.1f)
         {
             characterController.Move(direction * GetComponent<Player>().GetStat(Stat.Spd).TotalValue * Time.deltaTime);
             playerModel.transform.forward = direction;

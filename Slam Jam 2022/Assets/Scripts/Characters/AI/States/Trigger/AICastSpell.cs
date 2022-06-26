@@ -27,11 +27,8 @@ public class AICastSpell : AITriggeredState
     bool casted = false;
     Vector3 currentDestination;
 
-    AIManager ai;
-
     public override void TriggerState(AIManager ai)
     {
-        this.ai = ai;
         base.TriggerState(ai);
 
         castInst = Instantiate(toCast);
@@ -76,6 +73,8 @@ public class AICastSpell : AITriggeredState
 
         casted = true;
 
+        ai.SetMoving(false);
+
         if (afterCastCooldown > 0)
             stats.PerformAfterDelay(FinishState, afterCastCooldown);
         else
@@ -84,6 +83,7 @@ public class AICastSpell : AITriggeredState
 
     void SetDestination()
     {
+        ai.SetMoving(true);
         currentDestination = ai.AiTarget.transform.position;
         Agent.SetDestination(currentDestination);
     }

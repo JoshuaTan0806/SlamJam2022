@@ -37,29 +37,120 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 247cb504efaf4474bbaeb4346701b99c, type: 3}
     - {fileID: 21300000, guid: 138796f6771a1ba4c9a72797e7dabeb6, type: 3}
   statChances:
-    m_keys: 000000000100000004000000
+    m_keys: 0000000001000000040000000200000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000
     m_values:
     - weight: 1
       probability: 33.333332
-      gainPerLevel: 2
+      gainPerLevel: 3
       levelUnlocked: 0
-      baseValues: {x: 1, y: 100}
+      baseValues: {x: 10, y: 100}
       cap: 0
-      type: 1
+      type: 0
     - weight: 1
       probability: 33.333332
-      gainPerLevel: 1
+      gainPerLevel: 3
       levelUnlocked: 0
-      baseValues: {x: 1, y: 100}
+      baseValues: {x: 10, y: 100}
       cap: 0
-      type: 1
+      type: 0
     - weight: 1
       probability: 33.333332
-      gainPerLevel: 1
+      gainPerLevel: 3
       levelUnlocked: 0
-      baseValues: {x: 1, y: 100}
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 1
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
       cap: 0
       type: 1
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
+    - weight: 0
+      probability: 0
+      gainPerLevel: 3
+      levelUnlocked: 0
+      baseValues: {x: 10, y: 100}
+      cap: 0
+      type: 0
   levelInfo:
     m_keys: 00
     m_values:

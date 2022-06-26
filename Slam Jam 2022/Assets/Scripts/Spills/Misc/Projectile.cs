@@ -7,7 +7,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 	[SerializeField] float projectileSpeed;
-	public float knockBack;
 
 	[Tooltip("How long of a delay before gravity is enabled for this projectile, (-1 for never on, 0 for instantly on, etc)")]
 	[SerializeField] float gravityEnableDelay = -1;
@@ -28,6 +27,13 @@ public class Projectile : MonoBehaviour
 	[Space]
 	[SerializeField] Summonable onDestroySummonable;
 
+	[SerializeField] bool useKnockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockBack;
+	public float Knockback => knockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockbackTime = 1;
+
 	Summonable summonable;
 	Rigidbody rb;
 
@@ -38,6 +44,8 @@ public class Projectile : MonoBehaviour
 	{
 		summonable = GetComponent<Summonable>();
 		rb = GetComponent<Rigidbody>();
+
+		Initialise(summonable.Summoner);
 
 		rb.AddForce(transform.forward * projectileSpeed);
 		
@@ -55,9 +63,9 @@ public class Projectile : MonoBehaviour
 
 	public void Initialise(PlayerStats caster)
     {
+		damage *= caster.GetStat(Stat.ProjDmg).TotalValue;
+		projectileSpeed *= caster.GetStat(Stat.ProjSpd).TotalValue;
 		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
-		damage = caster.GetStat(Stat.ProjDmg).TotalValue;
-		projectileSpeed = caster.GetStat(Stat.ProjSpd).TotalValue;
     }
 
 	private void OnTriggerEnter(Collider other)
@@ -117,6 +125,25 @@ public class Projectile : MonoBehaviour
 
 			if (enemiesHit < pierceAmount)
 				return;
+		}
+
+		if (useKnockBack)
+		{
+			var dirToEnemy = (stats.transform.position - transform.position).normalized;
+			dirToEnemy.y = 0;
+
+			var aiManager = stats.GetComponent<AIManager>();
+			if (aiManager)
+			{
+				aiManager.AddKnockback(dirToEnemy * knockBack, knockbackTime);
+				return;
+			}
+
+			var player = stats.GetComponent<PlayerMovement>();
+			if (player)
+			{
+				player.AddVelocity(dirToEnemy * knockBack, knockbackTime);
+			}
 		}
 
 		DestroyProjectile();
