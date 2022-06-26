@@ -32,13 +32,27 @@ public class SummonSpill : GenericSpill
 		if (!base.Cast(caster))
 			return false;
 
+		if(summon.TryGetComponent(out Projectile projectile))
+        {
+			numToSummon += Mathf.CeilToInt(caster.GetStat(Stat.AddProj).TotalValue);
+        }
+
+        for (int i = 0; i < numToSummon; i++)
+        {
+			GameManager.instance.StartCoroutine(Cast(caster, numToSummon));
+		}
+	
+		return true;
+	}
+
+	IEnumerator Cast(PlayerStats caster, int num)
+	{
+		yield return new WaitForSeconds(0.2f * num);
 		var inst = Instantiate(summon);
 		inst.Initialise(caster, this);
 		currentSummons++;
 
 		inst.OnSummonDestroyed += () => RemoveSummon(inst);
-
-		return true;
 	}
 
 	void RemoveSummon(Summonable s)

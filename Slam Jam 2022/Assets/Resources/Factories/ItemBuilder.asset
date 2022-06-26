@@ -66,7 +66,7 @@ MonoBehaviour:
       levelUnlocked: 0
       baseValues: {x: 10, y: 100}
       cap: 0
-      type: 1
+      type: 0
     - weight: 0
       probability: 0
       gainPerLevel: 3
