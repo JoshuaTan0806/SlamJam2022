@@ -37,6 +37,9 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
+        if (caster == null)
+            return false;
+
         if (caster is Player)
             if (caster.CurrentHealth + castCost * CastMultiplier(caster) > caster.GetStat(Stat.Health).TotalValue)
                 return false;
@@ -112,7 +115,8 @@ public class GenericSpill : ScriptableObject
                     particleInstance = Instantiate(particles, caster.transform);
 
                     var ps = particleInstance.GetComponentInChildren<ParticleSystem>();
-                    ps.Play();
+                    if(ps)
+                        ps.Play();
                 }
                 else
                 {

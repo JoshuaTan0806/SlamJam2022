@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: projectileSpeed
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 4530935819388533106, guid: 10ca7bdbe8e6cae479d926ea1097ef0d, type: 3}
+      propertyPath: spawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4530935819388533107, guid: 10ca7bdbe8e6cae479d926ea1097ef0d, type: 3}
       propertyPath: m_RootOrder
       value: 0

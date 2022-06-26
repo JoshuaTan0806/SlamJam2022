@@ -47,6 +47,6 @@ public class CharacterBody : MonoBehaviour
 
     public void SetMoving(bool val)
     {
-        animator.SetBool("Run", val);
+        animator?.SetBool("Run", val);
     }
 }
