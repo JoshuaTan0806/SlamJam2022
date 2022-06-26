@@ -13,19 +13,14 @@ public class SpillInput : ScriptableObject
         set { spill = value; }
     }
 
-    PlayerStats player;
-    public PlayerStats Player
-    {
-        get { return player; }
-        set { player = value; }
-    }
-
     // Update is called once per frame
-    void Update()
+    public void SpillUpdate()
     {
         if(Input.GetKeyDown(input))
         {
-            spill.Cast(player);
+            spill.Cast(Player.instance);
         }
+
+        spill.UpdateSpell();
     }
 }
