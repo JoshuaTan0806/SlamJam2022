@@ -81,9 +81,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1271606682133163756, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372817, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: m_Name
-      value: Old Maiden - Ally
+      value: Old Maiden - Summon
       objectReference: {fileID: 0}
     - target: {fileID: 4811475236929372842, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}
       propertyPath: m_RootOrder
@@ -167,7 +171,7 @@ MonoBehaviour:
   summonPlace: 2
   parentToPlayer: 0
   spawnOffset: {x: 0, y: 0, z: 0}
-  summonLifeTime: -1
+  summonLifeTime: 4
 --- !u!4 &6469421818178846056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811475236929372842, guid: 76d8774ddf9472b4198586f1388d7b6b, type: 3}

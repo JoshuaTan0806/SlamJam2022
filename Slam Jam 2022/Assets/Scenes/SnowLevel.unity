@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2686185575821539032, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2686185577227262444, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_Name
       value: Player Static
@@ -188,23 +192,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577241025990, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8816746
+      value: 0.88167465
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577241025990, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000015170428
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577241025990, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008118967
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577451732980, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000015170428
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 2686185577451732980, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000008118967
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c901b38d0370bb84a8a4cf073b39cd22, type: 3}
