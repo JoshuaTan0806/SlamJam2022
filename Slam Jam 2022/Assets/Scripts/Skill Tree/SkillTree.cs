@@ -75,6 +75,15 @@ public class SkillTree : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (statHolderReference)
+        {
+            ToggleStatsMenu(false);
+            ToggleStatsMenu(true);
+        }
+    }
+
     private void Update()
     {
         Zoom();
@@ -148,7 +157,7 @@ public class SkillTree : MonoBehaviour
 
                 if (statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + Mathf.CeilToInt(statData.TotalValue));
                 }
             }
         }
@@ -169,7 +178,7 @@ public class SkillTree : MonoBehaviour
 
                 if(statData.TotalValue != 0)
                 {
-                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + statData.TotalValue);
+                    statsHolder.SpawnDescription(StatManager.StatDictionary[stat.Key].InGameName + ": " + Mathf.CeilToInt(statData.TotalValue));
                 }
             }
         }

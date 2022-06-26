@@ -9,17 +9,6 @@ public static class SpillInputManager
     public static SpillInput[] SpillArray = new SpillInput[4];
     static SpillInput inputClone = null;
 
-    private static void Start()
-    {
-        InputCheck();
-        SpillCheck();
-
-        for (int i = 0; i < SpillArray.Length; i++)
-        {
-            SpillArray[i].Player = Player.instance;
-        }
-    }
-
     public static void UpdateSpills()
     {
         if (!inputClone)
@@ -101,6 +90,8 @@ public static class SpillInputManager
 
     /// <summary>
     /// Ties the spills the player has equipped to an input
+    /// 
+    /// REMINDER unequip spells
     /// </summary>
     private static void SpillCheck()
     {

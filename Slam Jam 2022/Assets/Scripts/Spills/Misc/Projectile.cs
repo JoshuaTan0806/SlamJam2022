@@ -53,6 +53,13 @@ public class Projectile : MonoBehaviour
 		}
 	}
 
+	public void Initialise(PlayerStats caster)
+    {
+		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
+		damage = caster.GetStat(Stat.ProjDmg).TotalValue;
+		projectileSpeed = caster.GetStat(Stat.ProjSpd).TotalValue;
+    }
+
 	private void OnTriggerEnter(Collider other)
 	{
 		var stats = other.GetComponent<PlayerStats>();
