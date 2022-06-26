@@ -61,6 +61,16 @@ public class Player : PlayerStats
         {
             UsePotion();
         }
+
+        for (int i = 0; i < SpillInputManager.SpillArray.Length; i++)
+        {
+            if (!SpillInputManager.SpillArray[i])
+                break;
+            if (!SpillInputManager.SpillArray[i].Spill)
+                continue;
+
+            SpillInputManager.SpillArray[i].SpillUpdate();
+        }
     }
 
     public void InitialisePotions()
