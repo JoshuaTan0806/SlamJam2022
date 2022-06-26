@@ -41,7 +41,7 @@ public class GenericSpill : ScriptableObject
             return false;
 
         if (caster is Player)
-            if (caster.CurrentHealth + castCost * CastMultiplier(caster) > caster.GetStat(Stat.Health).TotalValue)
+            if (caster.CurrentHealth + (castCost * CastMultiplier(caster)) > caster.GetStat(Stat.Health).TotalValue)
                 return false;
 
         if (CastTimer > 0)
@@ -55,7 +55,7 @@ public class GenericSpill : ScriptableObject
         if (caster.GetStat(Stat.SpellCostMult).TotalValue == 0)
             return 1;
         else
-            return 1 - 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
+            return 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
     }
 
     float CastSpeed(PlayerStats caster)
