@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
 			AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
 		}
 
-		AddStat(StatManager.CreateStat(Stat.Spd, StatType.FinalMultiplier, 5));
+		AddStat(StatManager.CreateStat(Stat.Spd, StatType.FinalMultiplier, 3));
 
 		foreach (var s in StatManager.StatDictionary)
 		{
