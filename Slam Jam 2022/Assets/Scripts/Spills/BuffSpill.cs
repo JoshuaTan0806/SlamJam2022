@@ -64,7 +64,7 @@ public class BuffSpill : GenericSpill
 	{
 		foreach (var b in buffs)
         {
-			caster.AddStat(StatManager.CreateStat(b.stat, b.statType, -b.val));
+			caster.RemoveStat(StatManager.CreateStat(b.stat, b.statType, b.val));
 		}
 
 		casted = false;
