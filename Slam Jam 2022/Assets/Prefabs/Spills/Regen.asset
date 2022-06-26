@@ -21,7 +21,7 @@ MonoBehaviour:
   buffs:
   - stat: 14
     statType: 1
-    val: 5
+    val: 10
   - stat: 5
     statType: 0
     val: -70
