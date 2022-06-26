@@ -81,7 +81,7 @@ public class Melee : MonoBehaviour
 			var aiManager = stats.GetComponent<AIManager>();
 			if (aiManager)
 			{
-				aiManager.AddKnockback(dirToEnemy * knockBack, knockbackTime);
+				aiManager.AddKnockback(dirToEnemy * Mathf.Clamp(knockBack - stats.GetStat(Stat.KnockbackReduc).TotalValue, 0, 100), knockbackTime);
 				return;
 			}
 

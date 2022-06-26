@@ -51,13 +51,15 @@ public class Projectile : MonoBehaviour
 		{
 			this.PerformAfterDelay(() => rb.useGravity = true, gravityEnableDelay);
 		}
+
+		Initialise(summonable.Summoner);
 	}
 
 	public void Initialise(PlayerStats caster)
     {
-		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
 		damage = caster.GetStat(Stat.ProjDmg).TotalValue;
 		projectileSpeed = caster.GetStat(Stat.ProjSpd).TotalValue;
+		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
     }
 
 	private void OnTriggerEnter(Collider other)
