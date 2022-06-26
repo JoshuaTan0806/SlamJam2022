@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] float spawnAreaRange = 5;
 
-    private void Awake()
+    private void Start()
     {
         Spawn();
     }
@@ -30,8 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
                 var go = Instantiate(agentOptions.ChooseRandomElementInArray(), hit.position, rot);
 
+                GameManager._enemies.Add(go.gameObject);
             }
         }
+
+        this.PerformAtEndOfFrame(GameManager.LevelStart);
     }
 
     private void OnDrawGizmos()

@@ -37,8 +37,11 @@ public class GenericSpill : ScriptableObject
 
     public virtual bool CanCastSpell(PlayerStats caster)
     {
+        if (caster == null)
+            return false;
+
         if (caster is Player)
-            if (caster.CurrentHealth + castCost * CastMultiplier(caster) > caster.GetStat(Stat.Health).TotalValue)
+            if (caster.CurrentHealth + (castCost * CastMultiplier(caster)) > caster.GetStat(Stat.Health).TotalValue)
                 return false;
 
         if (CastTimer > 0)
@@ -52,7 +55,7 @@ public class GenericSpill : ScriptableObject
         if (caster.GetStat(Stat.SpellCostMult).TotalValue == 0)
             return 1;
         else
-            return 1 - 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
+            return 1 / caster.GetStat(Stat.SpellCostMult).TotalValue;
     }
 
     float CastSpeed(PlayerStats caster)
@@ -71,7 +74,7 @@ public class GenericSpill : ScriptableObject
         castTimer = CastSpeed(caster);
 
         if (caster is Player)
-            caster.CurrentHealth += castCost * CastMultiplier(caster);
+            caster.TakeDamage(castCost * CastMultiplier(caster));
 
         spellToggled = !spellToggled;
 
@@ -112,7 +115,8 @@ public class GenericSpill : ScriptableObject
                     particleInstance = Instantiate(particles, caster.transform);
 
                     var ps = particleInstance.GetComponentInChildren<ParticleSystem>();
-                    ps.Play();
+                    if(ps)
+                        ps.Play();
                 }
                 else
                 {

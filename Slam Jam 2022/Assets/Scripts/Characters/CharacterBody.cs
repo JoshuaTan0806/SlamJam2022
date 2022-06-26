@@ -41,10 +41,12 @@ public class CharacterBody : MonoBehaviour
         {
             rb.isKinematic = true;
         }
+
+        //transform.rotation = Quaternion.identity;
     }
 
     public void SetMoving(bool val)
     {
-        animator.SetBool("Run", val);
+        animator?.SetBool("Run", val);
     }
 }

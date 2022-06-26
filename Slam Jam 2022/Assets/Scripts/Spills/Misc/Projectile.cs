@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 
 	[SerializeField] bool useKnockBack;
 	[ShowIf("useKnockBack")]
-	[SerializeField] float knockBack;
+	[SerializeField] float knockBack = 1;
 	public float Knockback => knockBack;
 	[ShowIf("useKnockBack")]
 	[SerializeField] float knockbackTime = 1;
@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
     {
 		damage *= caster.GetStat(Stat.ProjDmg).TotalValue;
 		projectileSpeed *= caster.GetStat(Stat.ProjSpd).TotalValue;
-		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
+		knockBack *= caster.GetStat(Stat.Knockback).TotalValue;
     }
 
 	private void OnTriggerEnter(Collider other)

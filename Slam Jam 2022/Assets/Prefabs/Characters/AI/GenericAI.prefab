@@ -416,8 +416,8 @@ MonoBehaviour:
   baseStats:
     m_keys: 0000000005000000
     m_values:
-    - 50
-    - 5
+    - 15
+    - 1
   CurrentHealth: 0
 --- !u!114 &4811475236929372847
 MonoBehaviour:

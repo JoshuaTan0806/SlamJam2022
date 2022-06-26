@@ -22,10 +22,10 @@ MonoBehaviour:
     StatType: 2
     Stat: 6
     value: 2
-  - Description: 0% decreased Permeability
-    StatType: 0
-    Stat: 0
-    value: 0
+  - Description: Splash Area is halved.
+    StatType: 2
+    Stat: 7
+    value: 0.5
   connectedNodes:
   - {fileID: 11400000, guid: 0b5dd1572f05bc84294a3698779a92b2, type: 2}
   isActive: 0

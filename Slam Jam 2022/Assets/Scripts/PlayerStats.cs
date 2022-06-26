@@ -18,12 +18,14 @@ public class PlayerStats : MonoBehaviour
 	public event System.Action OnDeath;
 	public bool Dead { get; protected set; }
 
-	private void Start()
+	protected virtual void Start()
 	{
 		foreach (var s in baseStats)
 		{
 			AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
 		}
+
+		AddStat(StatManager.CreateStat(Stat.Spd, StatType.FinalMultiplier, 3));
 
 		foreach (var s in StatManager.StatDictionary)
 		{
@@ -146,9 +148,12 @@ public class PlayerStats : MonoBehaviour
 			Die();
 	}
 
-	void Die()
+	protected virtual void Die()
 	{
 		Dead = true;
+
+		this.PerformAfterDelay(() => Destroy(gameObject), 3);
+
 		OnDeath?.Invoke();
 	}
 }

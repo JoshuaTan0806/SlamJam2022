@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SnowLevel.unity
     guid: 04238bde2a276da40950dc5971731ac7
+  - enabled: 1
+    path: Assets/Scenes/JapaneseLevel.unity
+    guid: 499275284d0c49b44bb9d792cf94c547
+  - enabled: 1
+    path: Assets/Scenes/ArenaLevel.unity
+    guid: de22eb59693cc0844aa4474abb06cdd1
   m_configObjects: {}

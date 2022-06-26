@@ -18,10 +18,10 @@ MonoBehaviour:
   nodeType: 2
   isStartingNode: 0
   powerUps:
-  - Description: qwe
+  - Description: Liquefiability is doubled.
     StatType: 2
     Stat: 12
-    value: -3
+    value: 2
   - Description: Viscosity Resistance is halved.
     StatType: 2
     Stat: 5
