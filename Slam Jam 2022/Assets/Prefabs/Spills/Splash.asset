@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87beb564d844db140b829b9a8e85721b, type: 3}
   m_Name: Splash
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: fa57b5ab7a2953b46807366785a9d860, type: 3}
   castCost: 4
   castCooldown: 1
   spellType: 0

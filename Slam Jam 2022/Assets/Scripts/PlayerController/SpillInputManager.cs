@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Items;
 
 
@@ -8,6 +9,7 @@ public static class SpillInputManager
 {
     public static SpillInput[] SpillArray = new SpillInput[4];
     static SpillInput inputClone = null;
+    public static GameObject[] InputImages;
 
     public static void UpdateSpills()
     {
@@ -98,7 +100,10 @@ public static class SpillInputManager
         var spillList = ItemInventory.GetSpills();
 
         for (int i = 0; i < SpillArray.Length; i++)
+        {
             SpillArray[i].Spill = null;
+            InputImages[i].GetComponent<Image>().sprite = null;
+        }
 
         //Loop through every spill the player has equipped
         foreach (var spill in spillList)
@@ -114,6 +119,7 @@ public static class SpillInputManager
                 if (SpillArray[i].Spill == null)
                 {
                     SpillArray[i].Spill = spill;
+                    InputImages[i].GetComponent<Image>().sprite = SpillArray[i].Spill.icon;
                     break;
                 }
             }
