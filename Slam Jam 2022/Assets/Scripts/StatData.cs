@@ -55,6 +55,20 @@ public class StatData : ScriptableObject
         return statData;
     }
 
+    public static StatData operator -(StatData l, StatData r)
+    {
+        if (l.Stat != r.Stat)
+            throw new System.Exception("Adding different stat");
+
+        StatData statData = StatManager.NullStat(l.Stat);
+
+        statData.PercentValue = l.PercentValue - r.PercentValue;
+        statData.FlatValue = l.FlatValue - r.FlatValue;
+        statData.FinalMultiplier = l.FinalMultiplier * 1 / r.FinalMultiplier;
+
+        return statData;
+    }
+
     public virtual void CalculateTotal()
     {
         float newValue = FlatValue;

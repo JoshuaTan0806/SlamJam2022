@@ -4,130 +4,145 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [System.Serializable]
-    public class BaseStatDict : SerializableDictionary<Stat, float> { }
+	[System.Serializable]
+	public class BaseStatDict : SerializableDictionary<Stat, float> { }
 
-    [SerializeField] protected StatDictionary stats = new StatDictionary();
+	[SerializeField] protected StatDictionary stats = new StatDictionary();
 
-    [Space]
+	[Space]
 
-    [SerializeField] protected BaseStatDict baseStats = new BaseStatDict();
+	[SerializeField] protected BaseStatDict baseStats = new BaseStatDict();
 
-    public event System.Action OnDamageTaken;
-    [HideInInspector] public float CurrentHealth;
-    public event System.Action OnDeath;
-    public bool Dead { get; protected set; }
+	public event System.Action OnDamageTaken;
+	[HideInInspector] public float CurrentHealth;
+	public event System.Action OnDeath;
+	public bool Dead { get; protected set; }
 
-    private void Start()
-    {
-        foreach (var s in baseStats)
-        {
-            AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
-        }
+	private void Start()
+	{
+		foreach (var s in baseStats)
+		{
+			AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, s.Value));
+		}
 
-        foreach (var s in StatManager.StatDictionary)
-        {
-            if (!stats.ContainsKey(s.Key))
-            {
-                AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, 1));
-            }
-        }
+		foreach (var s in StatManager.StatDictionary)
+		{
+			if (!stats.ContainsKey(s.Key))
+			{
+				AddStat(StatManager.CreateStat(s.Key, StatType.FlatValue, 1));
+			}
+		}
 
-        CurrentHealth = 0;
+		CurrentHealth = 0;
 
-        StartCoroutine(Regen());
-    }
+		StartCoroutine(Regen());
+	}
 
-    public void AddStat(StatData statData)
-    {
-        if(!stats.ContainsKey(statData.Stat))
-        {
-            stats.Add(statData.Stat, statData);
-        }
-        else
-        {
-            stats[statData.Stat] = stats[statData.Stat] + statData;
-        }
+	public void AddStat(StatData statData)
+	{
+		if (!stats.ContainsKey(statData.Stat))
+		{
+			stats.Add(statData.Stat, statData);
+		}
+		else
+		{
+			stats[statData.Stat] = stats[statData.Stat] + statData;
+		}
 
-        stats[statData.Stat].CalculateTotal();
-    }
+		stats[statData.Stat].CalculateTotal();
+	}
 
-    public StatData GetStat(Stat stat)
-    {
-        return stats.ContainsKey(stat) ? stats[stat] : StatManager.NullStat(stat);
-    }
+	public void RemoveStat(StatData statData)
+	{
+		if (!stats.ContainsKey(statData.Stat))
+		{
+			stats.Add(statData.Stat, StatManager.NullStat(statData.Stat));
+			stats[statData.Stat] = stats[statData.Stat] - statData;
+		}
+		else
+		{
+			stats[statData.Stat] = stats[statData.Stat] - statData;
+		}
 
-    List<Summonable> currentActiveSummons = new List<Summonable>();
-    public List<Summonable> CurrentActiveSummons => currentActiveSummons;
+		stats[statData.Stat].CalculateTotal();
+	}
 
-    public List<PlayerStats> GetPlayerMinions()
-    {
-        List<PlayerStats> minions = new List<PlayerStats>();
+	public StatData GetStat(Stat stat)
+	{
+		return stats.ContainsKey(stat) ? stats[stat] : StatManager.NullStat(stat);
+	}
 
-        foreach (var m in CurrentActiveSummons)
-        {
-            PlayerStats s = m.GetComponent<PlayerStats>();
+	List<Summonable> currentActiveSummons = new List<Summonable>();
+	public List<Summonable> CurrentActiveSummons => currentActiveSummons;
 
-            if (s)
-                minions.Add(s);
-        }
+	public List<PlayerStats> GetPlayerMinions()
+	{
+		List<PlayerStats> minions = new List<PlayerStats>();
 
-        return minions;
-    }
+		foreach (var m in CurrentActiveSummons)
+		{
+			PlayerStats s = m.GetComponent<PlayerStats>();
 
-    IEnumerator Regen()
-    {
-        while (!Dead)
-        {
-            yield return new WaitForSeconds(1);
-            if (CurrentHealth - stats[Stat.Regen].TotalValue > 0)
-            {
-                CurrentHealth -= stats[Stat.Regen].TotalValue;
+			if (s)
+				minions.Add(s);
+		}
 
-                Collider[] collider = Physics.OverlapSphere(transform.position, 3);
+		return minions;
+	}
 
-                for (int i = 0; i < collider.Length; i++)
-                {
-                    if (collider[i].TryGetComponent(out PlayerStats stats))
-                        stats.TakeDamage(GetStat(Stat.DmgReflect).TotalValue);
-                }
-            }
-            else
-                CurrentHealth = 0;
-        }
-    }
+	IEnumerator Regen()
+	{
+		while (!Dead)
+		{
+			yield return new WaitForSeconds(1);
+			if (CurrentHealth - stats[Stat.Regen].TotalValue > 0)
+			{
+				CurrentHealth -= stats[Stat.Regen].TotalValue;
 
-    /// <summary>
-    /// Takes damage
-    /// </summary>
-    /// <param name="damage">How much damage we take</param>
-    /// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
-    public void TakeDamage(float damage, bool internalDamage = false, GameObject objectHit = null)
-    {
-        if (Dead)
-            return;
+				Collider[] collider = Physics.OverlapSphere(transform.position, 3);
 
-        if (objectHit != null)
-        {
-            Vector3 knockbackVector = (objectHit.transform.position - transform.position).normalized;
-            transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
-        }
+				for (int i = 0; i < collider.Length; i++)
+				{
+					if (collider[i].TryGetComponent(out PlayerStats stats))
+						stats.TakeDamage(GetStat(Stat.DmgReflect).TotalValue);
+				}
+			}
+			else
+				CurrentHealth = 0;
+		}
+	}
 
-        if (stats[Stat.DmgReduc].TotalValue == 0)
-            CurrentHealth += damage;
-        else
-            CurrentHealth += damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
+	/// <summary>
+	/// Takes damage
+	/// </summary>
+	/// <param name="damage">How much damage we take</param>
+	/// <param name="internalDamage">If the damage was internal, won't call damage taken event</param>
+	public void TakeDamage(float damage, bool internalDamage = false, GameObject objectHit = null)
+	{
+		if (Dead)
+			return;
 
-        if (!internalDamage)
-            OnDamageTaken?.Invoke();
+		if (objectHit != null)
+		{
+			Vector3 knockbackVector = (objectHit.transform.position - transform.position).normalized;
+			transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().knockBack - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
+		}
 
-        if (CurrentHealth > GetStat(Stat.Health).TotalValue)
-            Die();
-    }
+		if (stats[Stat.DmgReduc].TotalValue == 0)
+			CurrentHealth += damage;
+		else
+			CurrentHealth += damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
 
-    void Die()
-    {
-        Dead = true;
-        OnDeath?.Invoke();
-    }
+		//if (!internalDamage)
+		OnDamageTaken?.Invoke();
+
+		if (CurrentHealth > GetStat(Stat.Health).TotalValue)
+			Die();
+	}
+
+	void Die()
+	{
+		Dead = true;
+		OnDeath?.Invoke();
+	}
 }

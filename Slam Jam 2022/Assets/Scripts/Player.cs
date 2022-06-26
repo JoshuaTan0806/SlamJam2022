@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class Player : PlayerStats
 {
@@ -37,9 +40,6 @@ public class Player : PlayerStats
     /// </summary>
     private void RefreshBonuses()
     {
-        stats.Clear();
-        //Combine stats
-
         foreach (var item in Items.ItemInventory.GetItemStats())
         {
             AddStat(item.Value);
@@ -77,4 +77,6 @@ public class Player : PlayerStats
 
         CurrentHealth += GetStat(Stat.Health).TotalValue;
     }
+
+    
 }

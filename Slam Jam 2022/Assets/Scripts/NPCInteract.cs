@@ -36,4 +36,5 @@ public class NPCInteract : MonoBehaviour
     {
         npcoutline.enabled = false;
     }
+
 }
