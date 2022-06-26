@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 /// <summary>
 /// Contains constants specific to Stats
@@ -6,7 +7,7 @@ public static class StatIDs
 {
     public static string StatToName(Stat stat)
     {
-        switch(stat)
+        switch (stat)
         {
             default:
                 return stat.ToString();
@@ -17,15 +18,25 @@ public static class StatIDs
 /// Dictionary for storing stats.
 /// </summary>
 [System.Serializable]
-public class StatDictionary : SerializableDictionary<Stat, float> { }
+public class StatDictionary : SerializableDictionary<Stat, StatData> { }
 
 public enum Stat
 {
-    CurrentSaturation = 'H',
-    MaxSaturation = 'P',
-    Damage = 'D',
-    PercentDamage = 'd',
-    Speed = 'S',
-    PercentSpeed = 's',
-    ProjectilePierceAmount = 'p',
+    Health,
+    ProjDmg,
+    AddProj,
+    CastSpd,
+    Lifesteal,
+    Spd,
+    AOEDmg,
+    AOEArea,
+    KnockbackReduc,
+    DmgReduc,
+    PotAmount,
+    PotMult,
+    SpellCostMult,
+    DmgReflect,
+    Regen,
+    Knockback,
+    ProjSpd
 }

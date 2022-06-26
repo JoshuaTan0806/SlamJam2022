@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1245a00b0724822469d3432710cb25e6, type: 3}
+  m_Name: Adrenaline
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a685aa7ba5f7a074f8a84237bbab1032, type: 3}
+  castCost: 3
+  castCooldown: 5
+  spellType: 0
+  spellDuration: 3
+  particles: {fileID: 3980673827091838712, guid: 833800d5ebc469a4da2e548c0e732c87, type: 3}
+  buffs:
+  - stat: 0
+    statType: 1
+    val: 15

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1d034c561cc12439fd695fa7442a6e, type: 3}
+  m_Name: PotionMult
+  m_EditorClassIdentifier: 
+  InGameName: Friction
+  Description: Potion Multiplier
+  Icon: {fileID: 21300000, guid: 95d7767d60b0d7e42be7af95b85a5f63, type: 3}
+  Stat: 11
+  PercentValue: 0
+  FlatValue: 0
+  FinalMultiplier: 1
+  TotalValue: 0

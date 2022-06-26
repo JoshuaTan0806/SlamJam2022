@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: 11 14
+  m_EditorClassIdentifier: 
+  Name: Minor Exudation
+  icon: {fileID: 21300000, guid: 2066a244b6f1d464bbafc25ff0d9a29f, type: 3}
+  coordinates: {x: 11, y: 14}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Exudation
+    StatType: 0
+    Stat: 4
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: efa3e39c6fb07f047a0d515d2ea3d4ea, type: 2}
+  - {fileID: 11400000, guid: 5b72cde6b84a4174aa297784b8a6416c, type: 2}
+  - {fileID: 11400000, guid: 16fe68c1eae33894eb8e793b963ee4ca, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

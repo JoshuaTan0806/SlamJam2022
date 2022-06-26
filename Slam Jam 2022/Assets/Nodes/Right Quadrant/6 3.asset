@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: 6 3
+  m_EditorClassIdentifier: 
+  Name: Minor Viscosity Resistance
+  icon: {fileID: 21300000, guid: 616f0bfc94f49fb48a0ff369d43044cc, type: 3}
+  coordinates: {x: 6, y: 3}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Viscosity Resistance
+    StatType: 0
+    Stat: 5
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: f78f1028104ce7d4ead08aa9eaea6870, type: 2}
+  - {fileID: 11400000, guid: 119fa7148840dd54c8c3119a17e9715f, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

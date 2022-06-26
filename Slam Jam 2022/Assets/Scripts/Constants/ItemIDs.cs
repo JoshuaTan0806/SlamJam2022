@@ -1,5 +1,6 @@
 // By Luke Jones
 
+using UnityEngine;
 using Items;
 /// <summary>
 /// Contains contants specific to items
@@ -27,5 +28,22 @@ public static class ItemIDs
             default:
                 throw NOT_IMPLEMENTED_CONNECTION;
         }    
+    }
+
+    public static Color ToColor(ConnectionType t)
+    {
+        switch (t)
+        {
+            case ConnectionType.RED:
+                return Color.red;
+            case ConnectionType.BLUE:
+                return Color.blue;
+            case ConnectionType.GREEN:
+                return Color.green;
+            case ConnectionType.ANY_ALSO_WHITE:
+                return Color.white;
+            default:
+                throw NOT_IMPLEMENTED_CONNECTION;
+        }
     }
 }

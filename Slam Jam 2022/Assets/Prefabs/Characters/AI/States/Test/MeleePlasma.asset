@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a3cfe7e2991d54f99230c5d7fe2668, type: 3}
+  m_Name: MeleePlasma
+  m_EditorClassIdentifier: 
+  stateDuration: -1
+  singleTime: 0
+  toCast: {fileID: 11400000, guid: 6c0064095bbb2454aa3d4842fb8f726e, type: 2}
+  afterCastCooldown: 1
+  castOnSpot: 0
+  idealCastDistance: 3
+  snapOnCast: 1

@@ -15,6 +15,10 @@ namespace Items
         /// </summary>
         private static ItemData[,] _equipped = new ItemData[ItemIDs.INVENTORY_SIZE, ItemIDs.INVENTORY_SIZE];
         /// <summary>
+        /// Storage for the players currently equipped skills
+        /// </summary>
+        private static List<GenericSpill> _skills = new List<GenericSpill>();
+        /// <summary>
         /// The combined stats of all equipped items
         /// </summary>
         private static StatDictionary _combinedItemStats = new StatDictionary();
@@ -23,12 +27,27 @@ namespace Items
         /// </summary>
         public static System.Action onItemsRefresh = null;
         /// <summary>
+        /// Clears all items from the inventory
+        /// </summary>
+        public static void Clear()
+        {
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                    if (_equipped[x, y])
+                    {
+                        Object.Destroy(_equipped[x, y]);
+                        _equipped[x, y] = null;
+                    }
+        }
+        /// <summary>
         /// Equips an item
         /// </summary>
         /// <param name="item">The item to equip. Set to null to unequip</param>
         /// <param name="slot">The slot to equip to</param>
         public static void EquipItem(ItemData item, Vector2Int slot)
         {
+            UnapplyItemStats();
+
             _equipped[slot.x, slot.y] = item;
             //Not instanced
             if (item && !item.IsInstance)
@@ -40,8 +59,10 @@ namespace Items
         /// Refreshs the bonuses you get from items
         /// </summary>
         public static void RefreshItemBonuses()
-        {   //Rebuild bonus stats from items
+        {
+            //Rebuild bonus stats from items
             _combinedItemStats.Clear();
+            _skills.Clear();
 
             StatDictionary itemStats;
             for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
@@ -51,6 +72,9 @@ namespace Items
                     //Item is null
                     if (!data)
                         continue;
+
+                    if (data.Spill)
+                        _skills.Add(data.Spill);
 
                     int validConnections = 0;
                     //Calculate how many connections are valid.
@@ -87,14 +111,14 @@ namespace Items
                         var otherConnections = otherItem.possibleConnections;
                         //Get the opposite direction
                         ConnectionDirection opposite = ItemIDs.GetOppositeDirection(connection);
-                        if (otherConnections.ContainsKey(opposite) 
+                        if (otherConnections.ContainsKey(opposite)
                             //Check connections
                             && (data.possibleConnections[connection] == otherConnections[opposite]
                                 //Check for any conneciton
                                 || data.possibleConnections[connection] == ConnectionType.ANY_ALSO_WHITE
                                 || otherConnections[opposite] == ConnectionType.ANY_ALSO_WHITE))
-                                //Is valid connection
-                                validConnections++;
+                            //Is valid connection
+                            validConnections++;
                     }
                     //Set the level of the item
                     data.SetLevel(validConnections);
@@ -108,12 +132,24 @@ namespace Items
                             _combinedItemStats[stat] += itemStats[stat];
                         //Else set
                         else
-                            _combinedItemStats[stat] = itemStats[stat];
+                            _combinedItemStats[stat] = Object.Instantiate(itemStats[stat]);
                     }
                 }
 
             onItemsRefresh.SafeInvoke();
+            SpillInputManager.UpdateSpills();
         }
+        /// <summary>
+        /// Remove Stats of currently equipped items
+        /// </summary>
+        public static void UnapplyItemStats()
+        {
+            foreach (var item in _combinedItemStats)
+            {
+                Player.instance.RemoveStat(item.Value);
+            }
+        }
+
         /// <summary>
         /// Get an item from the inventory.
         /// </summary>
@@ -133,5 +169,72 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         public static StatDictionary GetItemStats() => _combinedItemStats;
+        /// <summary>
+        /// Gets the spills the player currently has equipped
+        /// </summary>
+        /// <returns></returns>
+        public static ReadOnlyCollection<GenericSpill> GetSpills() => _skills.AsReadOnly();
+
+        public static void UnequipItem(ItemData item)
+        {   //Unequip all instances of the item
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                    if (_equipped[x, y] == item)
+                    {
+                        _equipped[x, y] = null;
+                        //Could break here but want to make sure there are no references
+                    }
+        }
+        /// <summary>
+        /// Saves the players inventory as a string
+        /// </summary>
+        /// <returns>Player inventory string</returns>
+        public static string Save()
+        {   //I don't like it but it works to do mass string concat
+            string ret = string.Empty;
+
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                {
+                    ItemData cur = _equipped[x, y];
+
+                    if (cur)
+                        ret += "|" + cur.Save();
+                    else
+                        ret += "|";
+                }
+            //The first character will be a | so we can remove that
+            ret.Remove(0);
+
+            return ret;
+        }
+        /// <summary>
+        /// Loads the players inventory from a save string
+        /// </summary>
+        /// <param name="saveData">The save string</param>
+        public static void Load(string saveData)
+        {   //Nothing to load
+            if (string.IsNullOrEmpty(saveData))
+                return;
+            //This should result in 9 items
+            string[] items = saveData.Split('|', System.StringSplitOptions.None);
+            int i = 0;
+
+            for (int x = 0; x < ItemIDs.INVENTORY_SIZE; x++)
+                for (int y = 0; y < ItemIDs.INVENTORY_SIZE; y++)
+                {
+                    if (i >= items.Length)
+                    {
+                        Debug.LogError("Item Data failed to load propperly!");
+                        return;
+                    }
+                    string item = items[i];
+                    //If not null, load
+                    if (!string.IsNullOrEmpty(item))
+                        _equipped[x, y] = ItemData.Load(item);
+
+                    i++;
+                }
+        }
     }
 }

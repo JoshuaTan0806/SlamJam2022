@@ -8,7 +8,7 @@ namespace Items
     /// <summary>
     /// Item class
     /// </summary>
-    [CreateAssetMenu(fileName = "Item", menuName = "Item", order = 0)]
+    [CreateAssetMenu(fileName = "Item", menuName = "Items/Item", order = 0)]
     public class ItemData : ScriptableObject
     {
         #region Variables
@@ -26,7 +26,7 @@ namespace Items
         /// The type of item this is
         /// </summary>
         [SerializeField]
-        private ItemType type = ItemType.NULL;
+        private ItemType type;
         /// <summary>
         /// The type of item this is
         /// </summary>
@@ -57,87 +57,86 @@ namespace Items
         /// </summary>
         [SerializeField]
         private StatDictionary stats = new StatDictionary();
+        private StatDictionary bonusStats = new StatDictionary();
+        /// <summary>
+        /// The asset to reference
+        /// </summary>
+        [SerializeField]
+        private GenericSpill skill = null;
+        /// <summary>
+        /// Instanced copy of the asset
+        /// </summary>
+        private GenericSpill instance = null;
+        /// <summary>
+        /// Getter & Setter to make sure intance is always correctly set
+        /// </summary>
+        public GenericSpill Spill
+        {
+            get
+            {
+                if (instance == null && skill != null)
+                    instance = Instantiate(skill);
+
+                return instance;
+            }
+            set
+            {
+                skill = value;
+
+                if (value == null)
+                    instance = null;
+                else
+                    instance = Instantiate(skill);
+            }
+        }
         #endregion
 
         #region Functions
         /// <summary>
-        /// Creates a new instance of this item.
+        /// Generates a completely random item
         /// </summary>
+        /// <param name="scale"></param>
         /// <returns></returns>
-        public ItemData CreateInstance()
+        public static ItemData CreateRandomItem(int scale)
         {
-            if (IsInstance)
-                throw new System.Exception("Attempting to Instance instanced Item");
-
+            var rollData = ItemBuilder.Instance;
             ItemData ret = CreateInstance<ItemData>();
-            ret.type = type;
+
+            byte level = (byte)scale;
+
             ret._isInstance = true;
-
-            #region Connection Randomisation
-            if (randomiseConnectionDirection)
-            {
-                tempList.Clear();
-                foreach (var dir in possibleConnections.Keys)
-                    tempList.Add(dir);
-
-                //Foreach existing direction
-                for (int i = 0; i < tempList.Count; i++)
-                {   //Randomise it to be one of the existing directions
-                    float rand = Random.Range(0, 1);
-                    //Don't remove
-                    if (rand > removeChance)
-                        ret.possibleConnections.Add(tempList[i], possibleConnections[tempList[i]]);
-                }
-            }
-            else
-                //Just direct copy the dictionary
-                foreach (var dir in possibleConnections.Keys)
-                    ret.possibleConnections[dir] = possibleConnections[dir];
-
-            if (randomiseConnectionType)
-                foreach (ConnectionDirection dir in ret.possibleConnections.Keys)
-                {   //Randomise the type
-                    tempTypeList.Clear();
-                    var type = ret.possibleConnections[dir];
-                    //Build the possible options
-                    foreach (ConnectionType value in System.Enum.GetValues(type.GetType()))
-                        if (type.HasFlag(value))
-                            tempTypeList.Add(value);
-                    //Pick a random option
-                    int rand = Random.Range(0, tempTypeList.Count);
-                    ret.possibleConnections[dir] = tempTypeList[rand];
-                }
-            #endregion
-
-            return ret;
-        }
-        /// <summary>
-        /// Rolls an item.
-        /// </summary>
-        /// <param name="itemToRoll">The item to roll</param>
-        /// <returns></returns>
-        public static ItemData RollItem(ItemData itemToRoll, float scale)
-        {   //Null catch
-            if (!itemToRoll)
-                return null;
-
-            var ret = itemToRoll.CreateInstance();
-            ret.SetScale(scale);
+            ret.type = rollData.RollType();
+            ret.Spill = rollData.RollSkill(level);
+            rollData.RollConnections(level, ref ret.possibleConnections);
+            rollData.RollStats(level, ref ret.stats);
 
             return ret;
         }
         /// <summary>
         /// Sets the level of the item
         /// </summary>
-        /// <param name="index">The level of the item</param>
-        public void SetLevel(int index)
+        /// <param name="level">The level of the item</param>
+        public void SetLevel(int level)
         {
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
             //Calculate stat bonuses
-        }
+            foreach (var stat in stats.Keys)
+            {
+                var s = Instantiate(stats[stat]);
 
-        public void SetScale(float scale)
+                bonusStats[stat] = s;
+
+                var c = ItemBuilder.Instance.statChances[stat];
+                //Ignore cap
+                s.ModifyStat(c.type, c.gainPerLevel * level);
+            }
+        }
+        /// <summary>
+        /// Scale the items power
+        /// </summary>
+        /// <param name="scale"></param>
+        public void SetScale(int scale)
         {
             throw new System.NotImplementedException();
         }
@@ -150,7 +149,37 @@ namespace Items
             if (!_isInstance)
                 throw ItemIDs.NOT_INSTANCED_ERROR;
 
-            return stats;
+            StatDictionary ret = new StatDictionary();
+
+            foreach (var k in stats.Keys)
+            {
+                if (bonusStats.ContainsKey(k))
+                    ret[k] = stats[k] + bonusStats[k];
+                else
+                    ret[k] = Instantiate(stats[k]);
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Converts the item to json
+        /// </summary>
+        /// <returns>Returns the item has json</returns>
+        public string Save()
+        {
+            return JsonUtility.ToJson(this);
+        }
+        /// <summary>
+        /// Loads an Item from Json
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns>Return an instanced copy of json</returns>
+        public static ItemData Load(string json)
+        {
+            ItemData ret = JsonUtility.FromJson<ItemData>(json);
+            ret._isInstance = true;
+
+            return ret;
         }
         #endregion
 
@@ -165,7 +194,12 @@ namespace Items
     /// </summary>
     public enum ItemType
     {
-        NULL = 0
+        Helmet = 0,
+        Armour = 1,
+        Sword = 2,
+        Belt,
+        Staff,
+        Shoes
     }
     /// <summary>
     /// The connections items can have
@@ -180,13 +214,12 @@ namespace Items
     /// <summary>
     /// The type of connections
     /// </summary>
-    [System.Flags]
     public enum ConnectionType
     {
-        RED = 1,
-        BLUE = 2,
-        GREEN = 4,
-        ANY_ALSO_WHITE = 8,
+        RED,
+        BLUE,
+        GREEN,
+        ANY_ALSO_WHITE,
         //Other = 16,
         //Other = 32,
         //Other = 64,

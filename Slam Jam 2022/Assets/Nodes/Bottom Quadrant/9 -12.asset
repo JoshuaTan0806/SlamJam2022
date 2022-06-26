@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: 9 -12
+  m_EditorClassIdentifier: 
+  Name: Minor Buoyancy
+  icon: {fileID: 21300000, guid: 85745b23f0ac7c14fad09ee533b6cb62, type: 3}
+  coordinates: {x: 9, y: -12}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Buoyancy
+    StatType: 0
+    Stat: 8
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: 82f1e3f272869d64ab5efb6888cc9cd0, type: 2}
+  - {fileID: 11400000, guid: 8d156597a4c6d164e83177fe51cacd8b, type: 2}
+  - {fileID: 11400000, guid: 70fcc61ef46542d48aff679a03956046, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

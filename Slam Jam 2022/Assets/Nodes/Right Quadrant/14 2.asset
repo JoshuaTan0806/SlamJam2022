@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: 14 2
+  m_EditorClassIdentifier: 
+  Name: Minor Permeability
+  icon: {fileID: 21300000, guid: 62c2cd7afeb409d4da8ff472e8eca16f, type: 3}
+  coordinates: {x: 14, y: 2}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Permeability
+    StatType: 0
+    Stat: 0
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: 67b94b62b7d4a59478c2681f6aaa79e1, type: 2}
+  - {fileID: 11400000, guid: 75d81082537d38b47924a13a2fb16df6, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

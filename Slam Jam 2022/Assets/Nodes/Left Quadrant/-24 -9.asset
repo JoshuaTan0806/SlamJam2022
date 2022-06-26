@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: -24 -9
+  m_EditorClassIdentifier: 
+  Name: Minor Acidity
+  icon: {fileID: 21300000, guid: 9d3ef275d02ea744d910a448697704f1, type: 3}
+  coordinates: {x: -24, y: -9}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Acidity
+    StatType: 0
+    Stat: 13
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: 5ebb7335c609d9c4dabf76ef635c0796, type: 2}
+  - {fileID: 11400000, guid: 60a14c0c7402d814e9f56e730e269dff, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

@@ -1,14 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class Player : PlayerStats
 {
     public static Player instance;
 
-    public int skillPoints;
+    public int skillPoints
+    {
+        get
+        {
+            return _skillPoints;
+        }
+        set
+        {
+            _skillPoints = value;
+            OnSkillPointsChanged?.Invoke();
+        }
+    }
+    [SerializeField] int _skillPoints;
+    public static System.Action OnSkillPointsChanged;
 
-    [SerializeField] StatDictionary baseStats = new StatDictionary();
+    public int NumberOfPots;
 
     private void Awake()
     {
@@ -24,10 +40,10 @@ public class Player : PlayerStats
     /// </summary>
     private void RefreshBonuses()
     {
-        stats.Clear();
-        //Combine stats
-        AddStats(baseStats);
-        AddStats(Items.ItemInventory.GetItemStats());
+        foreach (var item in Items.ItemInventory.GetItemStats())
+        {
+            AddStat(item.Value);
+        }
 
         RecalculateStats();
     }
@@ -38,21 +54,39 @@ public class Player : PlayerStats
     {
         //Read the stats from stats and re-calculate any stats
     }
-    /// <summary>
-    /// Adds a stat dictionary to our current stats
-    /// </summary>
-    /// <param name="stats"></param>
-    private void AddStats(StatDictionary stats)
+
+    private void Update()
     {
-        if (stats == null)
-            return;
-        //Add the stats to our current stats
-        foreach (var stat in stats.Keys)
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (stats.ContainsKey(stat))
-                stats[stat] += stats[stat];
-            else
-                stats[stat] = stats[stat];
+            UsePotion();
+        }
+
+        for (int i = 0; i < SpillInputManager.SpillArray.Length; i++)
+        {
+            if (!SpillInputManager.SpillArray[i])
+                break;
+            if (!SpillInputManager.SpillArray[i].Spill)
+                continue;
+
+            SpillInputManager.SpillArray[i].SpillUpdate();
         }
     }
+
+    public void InitialisePotions()
+    {
+        NumberOfPots = Mathf.CeilToInt(GetStat(Stat.PotAmount).TotalValue);
+    }
+
+    void UsePotion()
+    {
+        if (NumberOfPots <= 0)
+            return;
+
+        NumberOfPots--;
+
+        CurrentHealth += GetStat(Stat.Health).TotalValue;
+    }
+
+    
 }

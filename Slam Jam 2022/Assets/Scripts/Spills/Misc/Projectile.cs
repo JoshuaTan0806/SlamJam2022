@@ -27,6 +27,13 @@ public class Projectile : MonoBehaviour
 	[Space]
 	[SerializeField] Summonable onDestroySummonable;
 
+	[SerializeField] bool useKnockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockBack = 1;
+	public float Knockback => knockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockbackTime = 1;
+
 	Summonable summonable;
 	Rigidbody rb;
 
@@ -38,8 +45,10 @@ public class Projectile : MonoBehaviour
 		summonable = GetComponent<Summonable>();
 		rb = GetComponent<Rigidbody>();
 
-		rb.AddForce(transform.forward * projectileSpeed);
+		Initialise(summonable.Summoner);
 
+		rb.AddForce(transform.forward * projectileSpeed);
+		
 		rb.useGravity = false;
 
 		if (gravityEnableDelay == 0)
@@ -51,6 +60,13 @@ public class Projectile : MonoBehaviour
 			this.PerformAfterDelay(() => rb.useGravity = true, gravityEnableDelay);
 		}
 	}
+
+	public void Initialise(PlayerStats caster)
+    {
+		damage *= caster.GetStat(Stat.ProjDmg).TotalValue;
+		projectileSpeed *= caster.GetStat(Stat.ProjSpd).TotalValue;
+		knockBack *= caster.GetStat(Stat.Knockback).TotalValue;
+    }
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -69,16 +85,33 @@ public class Projectile : MonoBehaviour
 			return;
 
 		//If we hit an ally summonable
-		var s = stats.GetComponent<Summonable>();
-		if (s && summonable.Summoner.CurrentActiveSummons.Contains(s))
-			return;
+		var s = other.GetComponent<Summonable>();
+		if (s)
+		{
+			if (summonable.Summoner.CurrentActiveSummons.Contains(s))
+				return;
+		}
 
-		HitEnemy(stats);
+		//If our summoner was a summon
+		var summonerAsSummonable = summonable.Summoner.GetComponent<Summonable>();
+		if (summonerAsSummonable)
+		{
+			//If we hit their summoner
+			if (stats == summonerAsSummonable.Summoner)
+				return;
+
+			//If we hit their summoners other summons
+			if (s != null && summonerAsSummonable.Summoner)
+				if (summonerAsSummonable.Summoner.CurrentActiveSummons.Contains(s))
+					return;
+		}
+
+		HitEnemy(stats, summonable.Summoner);
 	}
 
-	void HitEnemy(PlayerStats stats)
+	void HitEnemy(PlayerStats stats, PlayerStats caster)
 	{
-		stats.AddStat(Stat.CurrentSaturation, damage);
+		stats.TakeDamage(damage + summonable.Summoner.GetStat(Stat.ProjDmg).TotalValue, gameObject);
 
 		immuneEnemies.Add(stats);
 		this.PerformAfterDelay(() => immuneEnemies.Remove(stats), 0.5f);
@@ -92,6 +125,25 @@ public class Projectile : MonoBehaviour
 
 			if (enemiesHit < pierceAmount)
 				return;
+		}
+
+		if (useKnockBack)
+		{
+			var dirToEnemy = (stats.transform.position - transform.position).normalized;
+			dirToEnemy.y = 0;
+
+			var aiManager = stats.GetComponent<AIManager>();
+			if (aiManager)
+			{
+				aiManager.AddKnockback(dirToEnemy * knockBack, knockbackTime);
+				return;
+			}
+
+			var player = stats.GetComponent<PlayerMovement>();
+			if (player)
+			{
+				player.AddVelocity(dirToEnemy * knockBack, knockbackTime);
+			}
 		}
 
 		DestroyProjectile();

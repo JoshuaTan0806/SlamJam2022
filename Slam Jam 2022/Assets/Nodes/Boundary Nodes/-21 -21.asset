@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: -21 -21
+  m_EditorClassIdentifier: 
+  Name: Boiling Point
+  icon: {fileID: 21300000, guid: a7c7d1c6e6ff35e4fb1fd64202c4b68d, type: 3}
+  coordinates: {x: -21, y: -21}
+  nodeType: 2
+  isStartingNode: 0
+  powerUps:
+  - Description: Liquefiability is doubled.
+    StatType: 2
+    Stat: 12
+    value: 2
+  - Description: Dehydration Rate is halved.
+    StatType: 2
+    Stat: 14
+    value: 0.5
+  connectedNodes:
+  - {fileID: 11400000, guid: 991b576870b6a5d48955d29043403b68, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: -6 3
+  m_EditorClassIdentifier: 
+  Name: Minor Buoyant Force
+  icon: {fileID: 21300000, guid: 59e5eaa9a6f64f345922d41bf3cc0d50, type: 3}
+  coordinates: {x: -6, y: 3}
+  nodeType: 0
+  isStartingNode: 0
+  powerUps:
+  - Description: 10% increased Buoyant Force
+    StatType: 0
+    Stat: 15
+    value: 10
+  connectedNodes:
+  - {fileID: 11400000, guid: 482d2905215bb534fb774f7f1fa89d07, type: 2}
+  - {fileID: 11400000, guid: c54b6a24e1d6c48478f35a42e1b03cc8, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}

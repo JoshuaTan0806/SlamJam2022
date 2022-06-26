@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36894b073f7a04c9b3c0be4159ec5e, type: 3}
+  m_Name: 18 -18
+  m_EditorClassIdentifier: 
+  Name: Major Buoyancy
+  icon: {fileID: 21300000, guid: 85745b23f0ac7c14fad09ee533b6cb62, type: 3}
+  coordinates: {x: 18, y: -18}
+  nodeType: 1
+  isStartingNode: 0
+  powerUps:
+  - Description: 25% increased Buoyancy
+    StatType: 0
+    Stat: 8
+    value: 25
+  connectedNodes:
+  - {fileID: 11400000, guid: afb621d22d914424a9e253b4e063ea43, type: 2}
+  - {fileID: 11400000, guid: 30c85f8e899eb1548948796f590743ee, type: 2}
+  - {fileID: 11400000, guid: 900da7547e7665f49bd4f045b7642968, type: 2}
+  isActive: 0
+  NodeToConnect: {x: 0, y: 0}
