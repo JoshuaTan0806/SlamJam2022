@@ -44,8 +44,14 @@ public class Summonable : MonoBehaviour
             casterAsSummonable.Summoner.CurrentActiveSummons.Add(this);
         }
 
+        Transform dirTransform = summoner.transform;
+
+        if (summoner is Player)
+            dirTransform = summoner.transform.GetChild(0);
+
+
         if (parentToPlayer)
-            transform.SetParent(summoner.transform);
+            transform.SetParent(dirTransform);
 
         switch (summonPlace)
         {
@@ -53,7 +59,7 @@ public class Summonable : MonoBehaviour
                 transform.position = summoner.transform.position;
                 break;
             case SummonPlace.InFrontOfPlayer:
-                transform.position = summoner.transform.position + summoner.transform.forward;
+                transform.position = summoner.transform.position + dirTransform.forward;
                 break;
             case SummonPlace.RandomlyAroundPlayer:
                 transform.position = summoner.transform.position + new Vector3((Random.insideUnitCircle * 2).x, 0, (Random.insideUnitCircle * 2).y);
@@ -64,7 +70,7 @@ public class Summonable : MonoBehaviour
             + transform.up* spawnOffset.y 
             + transform.forward * spawnOffset.z;
 
-        transform.forward = summoner.transform.forward;
+        transform.forward = dirTransform.forward;
     }
 
     public virtual void DestroySummon()

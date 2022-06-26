@@ -42,4 +42,9 @@ public class CharacterBody : MonoBehaviour
             rb.isKinematic = true;
         }
     }
+
+    public void SetMoving(bool val)
+    {
+        animator.SetBool("Run", val);
+    }
 }
