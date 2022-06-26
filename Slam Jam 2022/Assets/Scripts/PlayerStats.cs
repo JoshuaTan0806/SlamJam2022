@@ -122,16 +122,22 @@ public class PlayerStats : MonoBehaviour
 		if (Dead)
 			return;
 
-		if (objectHit != null)
-		{
-			Vector3 knockbackVector = (objectHit.transform.position - transform.position).normalized;
-			transform.GetComponent<Rigidbody>().AddForce(knockbackVector * Mathf.Clamp(objectHit.GetComponent<Projectile>().Knockback - GetStat(Stat.KnockbackReduc).TotalValue, 0, 100));
-		}
+		float totalDamage;
 
 		if (stats[Stat.DmgReduc].TotalValue == 0)
-			CurrentHealth += damage;
+			totalDamage = damage;
 		else
-			CurrentHealth += damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
+			totalDamage = damage * 1 - 1 / stats[Stat.DmgReduc].TotalValue;
+
+		if (objectHit != null)
+		{
+			if (objectHit.TryGetComponent(out Summonable summonable))
+			{
+				summonable.Summoner.CurrentHealth -= summonable.Summoner.GetStat(Stat.Lifesteal).TotalValue * totalDamage;
+			}
+		}
+
+		CurrentHealth += totalDamage;
 
 		//if (!internalDamage)
 		OnDamageTaken?.Invoke();
