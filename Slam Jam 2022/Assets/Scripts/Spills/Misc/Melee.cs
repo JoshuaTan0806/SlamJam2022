@@ -16,7 +16,7 @@ public class Melee : MonoBehaviour
 
 	[SerializeField] bool useKnockBack;
 	[ShowIf("useKnockBack")]
-	[SerializeField] float knockBack;
+	[SerializeField] float knockBack = 1;
 	[ShowIf("useKnockBack")]
 	[SerializeField] float knockbackTime = 1;
 
@@ -24,6 +24,13 @@ public class Melee : MonoBehaviour
 	{
 		summonable = GetComponent<Summonable>();
 		rb = GetComponent<Rigidbody>();
+	}
+
+	public void Initialise(PlayerStats caster)
+	{
+		damage *= caster.GetStat(Stat.AOEDmg).TotalValue;
+		knockBack *= caster.GetStat(Stat.Knockback).TotalValue;
+		transform.localScale *= caster.GetStat(Stat.AOEArea).TotalValue;
 	}
 
 	private void OnTriggerEnter(Collider other)
