@@ -30,8 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
                 var go = Instantiate(agentOptions.ChooseRandomElementInArray(), hit.position, rot);
 
+                GameManager._enemies.Add(go.gameObject);
             }
         }
+
+        GameManager.LevelStart();
     }
 
     private void OnDrawGizmos()
