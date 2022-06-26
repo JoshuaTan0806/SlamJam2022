@@ -74,7 +74,7 @@ public class GenericSpill : ScriptableObject
         castTimer = CastSpeed(caster);
 
         if (caster is Player)
-            caster.CurrentHealth += castCost * CastMultiplier(caster);
+            caster.TakeDamage(castCost * CastMultiplier(caster));
 
         spellToggled = !spellToggled;
 
