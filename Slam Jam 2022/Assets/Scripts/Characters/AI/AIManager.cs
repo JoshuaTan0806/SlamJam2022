@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(AIEyes), typeof(PlayerStats))]
 public class AIManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class AIManager : MonoBehaviour
 	AIState currentState;
 	AIEyes aiEyes;
 	PlayerStats aiStats;
+	NavMeshAgent agent;
 
 	PlayerStats aiTarget;
 	public PlayerStats AiTarget => aiTarget;
@@ -32,7 +34,10 @@ public class AIManager : MonoBehaviour
 	private void Awake()
 	{
 		aiStats = GetComponent<PlayerStats>();
+		
 		aiEyes = GetComponent<AIEyes>();
+
+		agent = GetComponent<NavMeshAgent>();
 
 		PickIdleState();
 	}
@@ -45,6 +50,21 @@ public class AIManager : MonoBehaviour
 
 	private void Update()
 	{
+		agent.enabled = beingKnocked == false;
+		if (beingKnocked)
+		{
+			elapsed += Time.deltaTime;
+
+			if(elapsed > disabledTime)
+			{
+				beingKnocked = false;
+
+				Destroy(tempRB);
+			}
+
+			return;
+		}
+
 		if (aiStats.Dead || Player.instance.Dead)
 			return;
 
@@ -98,6 +118,23 @@ public class AIManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	bool beingKnocked = false;
+	float disabledTime;
+	float elapsed;
+	Rigidbody tempRB;
+	public void AddKnockback(Vector3 velocity, float disabledTime)
+	{
+		if (!tempRB)
+			tempRB = gameObject.AddComponent<Rigidbody>();
+			
+		tempRB.AddForce(velocity);
+
+		beingKnocked = true;
+		this.disabledTime = disabledTime;
+
+		elapsed = 0;
 	}
 
 	bool CanSeeEnemies(out PlayerStats enemy)
@@ -219,14 +256,4 @@ public class AIManager : MonoBehaviour
 		//Debug.Log($"State changed to: {currentState.name}");
 	}
 	#endregion
-
-	//Activate idleAction
-	//When duration over, repeat
-
-	//When spot player
-	//Stop idleAction
-	//Pick triggeredAction
-
-	//If lose sight of player
-	//Return to idleAction
 }

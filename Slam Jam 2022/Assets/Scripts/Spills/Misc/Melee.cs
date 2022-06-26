@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,12 @@ public class Melee : MonoBehaviour
 	[SerializeField] float damage;
 
 	List<PlayerStats> immuneEnemies = new List<PlayerStats>();
+
+	[SerializeField] bool useKnockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockBack;
+	[ShowIf("useKnockBack")]
+	[SerializeField] float knockbackTime = 1;
 
 	private void Start()
 	{
@@ -65,5 +72,24 @@ public class Melee : MonoBehaviour
 		stats.TakeDamage(damage + summonable.Summoner.GetStat(Stat.ProjDmg).TotalValue);
 
 		immuneEnemies.Add(stats);
+
+		if (useKnockBack)
+		{
+			var dirToEnemy = (stats.transform.position - transform.position).normalized;
+			dirToEnemy.y = 0;
+
+			var aiManager = stats.GetComponent<AIManager>();
+			if (aiManager)
+			{
+				aiManager.AddKnockback(dirToEnemy * knockBack, knockbackTime);
+				return;
+			}
+
+			var player = stats.GetComponent<PlayerMovement>();
+			if (player)
+			{
+				player.AddVelocity(dirToEnemy * knockBack, knockbackTime);
+			}
+		}
 	}
 }
