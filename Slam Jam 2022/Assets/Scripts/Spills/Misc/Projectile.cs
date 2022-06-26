@@ -45,6 +45,8 @@ public class Projectile : MonoBehaviour
 		summonable = GetComponent<Summonable>();
 		rb = GetComponent<Rigidbody>();
 
+		Initialise(summonable.Summoner);
+
 		rb.AddForce(transform.forward * projectileSpeed);
 		
 		rb.useGravity = false;
@@ -57,14 +59,12 @@ public class Projectile : MonoBehaviour
 		{
 			this.PerformAfterDelay(() => rb.useGravity = true, gravityEnableDelay);
 		}
-
-		Initialise(summonable.Summoner);
 	}
 
 	public void Initialise(PlayerStats caster)
     {
 		damage = caster.GetStat(Stat.ProjDmg).TotalValue;
-		projectileSpeed = caster.GetStat(Stat.ProjSpd).TotalValue;
+		projectileSpeed *= caster.GetStat(Stat.ProjSpd).TotalValue;
 		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
     }
 
