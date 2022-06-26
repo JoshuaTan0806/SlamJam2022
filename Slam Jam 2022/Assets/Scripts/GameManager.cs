@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     void Load()
     {
-        Player.instance.skillPoints = PlayerPrefs.GetInt("SkillPoints");
+        //Player.instance.skillPoints = PlayerPrefs.GetInt("SkillPoints");
         Items.ItemInventory.Load(PlayerPrefs.GetString(SAVE_INVENTORY_ID, null));
     }
 
