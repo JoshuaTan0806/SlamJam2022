@@ -32,14 +32,16 @@ public class SummonSpill : GenericSpill
 		if (!base.Cast(caster))
 			return false;
 
-		if(summon.TryGetComponent(out Projectile projectile))
+		int totalNumToSummon = numToSummon;
+
+		if (summon.TryGetComponent(out Projectile projectile))
         {
-			numToSummon += Mathf.CeilToInt(caster.GetStat(Stat.AddProj).TotalValue);
+			totalNumToSummon = Mathf.CeilToInt(caster.GetStat(Stat.AddProj).TotalValue);
         }
 
-        for (int i = 0; i < numToSummon; i++)
+        for (int i = 0; i < totalNumToSummon; i++)
         {
-			GameManager.instance.StartCoroutine(Cast(caster, numToSummon));
+			GameManager.instance.StartCoroutine(Cast(caster, i));
 		}
 	
 		return true;
