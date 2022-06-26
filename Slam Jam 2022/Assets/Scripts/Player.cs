@@ -92,5 +92,11 @@ public class Player : PlayerStats
         CurrentHealth += GetStat(Stat.Health).TotalValue;
     }
 
-    
+    protected override void Die()
+    {
+        base.Die();
+
+        for (int i = 0; i < SpillInputManager.SpillArray.Length; i++)
+            SpillInputManager.SpillArray[i].Spill = null;
+    }
 }

@@ -74,6 +74,9 @@ public class BuffSpill : GenericSpill
 	{
 		base.UpdateSpell();
 
+		if (!casted)
+			return;
+
 		if(spellType == SpellType.SingleCast)
 		{
 			spellActiveLifeTime += Time.deltaTime;
@@ -81,6 +84,7 @@ public class BuffSpill : GenericSpill
 			if(spellActiveLifeTime > spellDuration)
 			{
 				FinishSpell();
+				spellActiveLifeTime = 0;
 			}
 		}
 

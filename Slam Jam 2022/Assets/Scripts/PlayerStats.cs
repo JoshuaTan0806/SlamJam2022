@@ -148,7 +148,7 @@ public class PlayerStats : MonoBehaviour
 			Die();
 	}
 
-	void Die()
+	protected virtual void Die()
 	{
 		Dead = true;
 
