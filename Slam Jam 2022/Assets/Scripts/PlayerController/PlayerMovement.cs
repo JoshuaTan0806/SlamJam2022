@@ -27,6 +27,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (beingKnocked)
+        {
+            elapsedKnockback += Time.deltaTime;
+
+            if(elapsedKnockback > knockbackTime)
+            {
+                velocity -= cachedVelocity[0];
+                cachedVelocity.RemoveAt(0);
+
+                beingKnocked = cachedVelocity.Count > 0;
+            }
+        }
+
         if (player.Dead)
             return;
 
@@ -56,5 +69,21 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += Gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    bool beingKnocked;
+    float knockbackTime;
+    float elapsedKnockback;
+    List<Vector3> cachedVelocity = new List<Vector3>();
+    public void AddVelocity(Vector3 velocity, float knockbackTime)
+    {
+        beingKnocked = true;
+
+        cachedVelocity.Add(velocity);
+
+        this.velocity += velocity;
+
+        this.knockbackTime = knockbackTime;
+        elapsedKnockback = 0;
     }
 }
