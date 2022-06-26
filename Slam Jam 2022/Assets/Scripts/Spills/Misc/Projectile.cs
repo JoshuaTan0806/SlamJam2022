@@ -63,7 +63,7 @@ public class Projectile : MonoBehaviour
 
 	public void Initialise(PlayerStats caster)
     {
-		damage = caster.GetStat(Stat.ProjDmg).TotalValue;
+		damage *= caster.GetStat(Stat.ProjDmg).TotalValue;
 		projectileSpeed *= caster.GetStat(Stat.ProjSpd).TotalValue;
 		knockBack = caster.GetStat(Stat.Knockback).TotalValue;
     }
