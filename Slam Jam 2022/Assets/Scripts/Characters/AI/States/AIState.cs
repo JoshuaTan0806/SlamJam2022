@@ -21,8 +21,11 @@ public class AIState : ScriptableObject
 	NavMeshAgent agent;
 	protected NavMeshAgent Agent => agent;
 
+	protected AIManager ai;
+
 	public virtual void TriggerState(AIManager ai)
 	{
+		this.ai = ai;
 		agent = ai.GetComponent<NavMeshAgent>();
 	}
 
@@ -40,5 +43,7 @@ public class AIState : ScriptableObject
 	{
 		stateDuration = 1;
 		stateTimer = 2;
+
+		ai.SetMoving(false);
 	}
 }

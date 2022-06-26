@@ -22,6 +22,8 @@ public class AIManager : MonoBehaviour
 	PlayerStats aiStats;
 	NavMeshAgent agent;
 
+	CharacterBody cBody;
+
 	PlayerStats aiTarget;
 	public PlayerStats AiTarget => aiTarget;
 
@@ -38,6 +40,8 @@ public class AIManager : MonoBehaviour
 		aiEyes = GetComponent<AIEyes>();
 
 		agent = GetComponent<NavMeshAgent>();
+
+		cBody = GetComponentInChildren<CharacterBody>();
 
 		PickIdleState();
 	}
@@ -118,6 +122,11 @@ public class AIManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void SetMoving(bool val)
+	{
+		cBody.SetMoving(val);
 	}
 
 	bool beingKnocked = false;
