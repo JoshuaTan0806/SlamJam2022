@@ -36,7 +36,7 @@ namespace Items.UI
 
         public void ToggleInventory()
         {
-            gameObject.SetActive(!gameObject.activeSelf);
+            transform.parent.gameObject.SetActive(!transform.parent.gameObject.activeSelf);
             _bin.gameObject.SetActive(!_bin.gameObject.activeSelf);
         }
     }

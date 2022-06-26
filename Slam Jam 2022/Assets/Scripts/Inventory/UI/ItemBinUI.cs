@@ -18,7 +18,7 @@ namespace Items.UI
 
             //Delete
             Destroy(ui.item);
-            Destroy(ui);
+            Destroy(ui.gameObject);
         }
     }
 }
